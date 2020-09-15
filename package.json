@@ -1,15 +1,15 @@
 {
-  "name": "@questnetwork/qd-messages-ts",
+  "name": "@questnetwork/qd-profiles-ts",
   "author": "StationedInTheField",
   "version": "0.9.3",
-  "description": "Decentralized End-To-End Encrypted P2P Messenger For qDesk",
-  "main": "src/qd-messages-ts.module.ts",
+  "description": "Decentralized End-To-End Encrypted P2P Social Network Module For qDesk",
+  "main": "src/qd-profiles-ts.module.ts",
   "license": "AGPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/QuestNetwork/qd-messages-ts.git"
+    "url": "https://github.com/QuestNetwork/qd-profiles-ts.git"
   },
-  "homepage": "https://www.quest-messenger.com",
+  "homepage": "https://www.qDesk.org",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
