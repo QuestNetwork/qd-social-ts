@@ -1,5 +1,5 @@
-import { QuestMessengerJSRoutingModule } from './qd-messages-ts-routing.module';
-import { QuestMessengerJSComponent } from './qd-messages-ts.component';
+import { QDProfileRoutingModule } from './qd-profile-ts-routing.module';
+import { QDProfileComponent } from './qd-profile-ts.component';
 
 
 import { CommonModule } from '@angular/common';
@@ -121,6 +121,6 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
   providers: [
   NbDialogService
   ],
-  bootstrap: [QuestMessengerJSComponent]
+  bootstrap: [QDProfileComponent]
 })
-export class QuestMessengerJSModule { }
+export class QDProfileModule { }
