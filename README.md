@@ -4,7 +4,7 @@
 
 ## Description
 
-qDesk Profiles is a module for qDesk and offers the ability to share posts and information about yourself. You can have a public profile. granular privacy settings or invite only. qDesk Profiles is a module for [qDesk](https://github.com/QuestNetwork/qDesk) and it's built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
+qDesk Profiles is a module for qDesk and offers the ability to share posts and information about yourself and make connections with other people. You can have a public profile, granular privacy settings or invite only. qDesk Profiles is a module for [qDesk](https://github.com/QuestNetwork/qDesk) and it's built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
 
 We're not planning to make this a decentralized version of "Facebook" or "Twitter". We're crating the real deal and we feel like those premium platforms are more like the "for kids" version of what they should actually be.
 
