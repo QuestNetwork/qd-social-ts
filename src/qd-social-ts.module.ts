@@ -1,5 +1,5 @@
-import { QDProfileRoutingModule } from './qd-profile-ts-routing.module';
-import { QDProfileComponent } from './qd-profile-ts.component';
+import { QDSocialRoutingModule } from './qd-social-ts-routing.module';
+import { QDSocialComponent } from './qd-social-ts.component';
 
 
 import { CommonModule } from '@angular/common';
@@ -60,7 +60,7 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
 @NgModule({
   declarations: [
 
-    QDProfileComponent,
+    QDSocialComponent,
     ChannelComponent,
     MatMenuComponent,
 
@@ -85,7 +85,7 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
     MatCheckboxModule,
     MatMenuModule,
     CommonModule,
-    QDProfileRoutingModule,
+    QDSocialRoutingModule,
     FontAwesomeModule,
     NbThemeModule,
     NbLayoutModule,
@@ -111,7 +111,7 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
 
   ],
   exports: [
-    QDProfileComponent,
+    QDSocialComponent,
     CdkTableModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -121,6 +121,6 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
   providers: [
   NbDialogService
   ],
-  bootstrap: [QDProfileComponent]
+  bootstrap: [QDSocialComponent]
 })
-export class QDProfileModule { }
+export class QDSocialModule { }
