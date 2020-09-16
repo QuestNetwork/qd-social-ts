@@ -60,7 +60,7 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
 @NgModule({
   declarations: [
 
-    QuestMessengerJSComponent,
+    QDProfileComponent,
     ChannelComponent,
     MatMenuComponent,
 
@@ -85,7 +85,7 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
     MatCheckboxModule,
     MatMenuModule,
     CommonModule,
-    QuestMessengerJSRoutingModule,
+    QDProfileRoutingModule,
     FontAwesomeModule,
     NbThemeModule,
     NbLayoutModule,
@@ -111,7 +111,7 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
 
   ],
   exports: [
-    QuestMessengerJSComponent,
+    QDProfileComponent,
     CdkTableModule,
     MatFormFieldModule,
     MatSelectModule,
