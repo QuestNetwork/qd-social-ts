@@ -34,17 +34,11 @@ import { NbChatModule } from '@nebular/theme';
 import { NbSidebarModule,NbMenuModule } from '@nebular/theme';
 
 import { FsIconComponent } from './nb-fs-icon/nb-fs-icon.component';
-import { ChannelComponent } from './channel/channel.component';
 import { MatMenuComponent } from './mat-menu/mat-menu.component';
 
 
 
-import { ChannelListComponent } from './channel-list/channel-list.component';
-import { ChannelSidebarRightComponent } from './channel-sidebar-right/channel-sidebar-right.component';
-import { ChannelSidebarLeftComponent } from './channel-sidebar-left/channel-sidebar-left.component';
-import { ChannelParticipantListComponent } from './channel-participant-list/channel-participant-list.component';
-import { ChannelSettingsComponent } from './channel-settings/channel-settings.component';
-import { ChannelTabComponent } from './channel-tab/channel-tab.component';
+import { ProfileComponent } from './profile/profile.component';
 
 import {MatIconModule} from '@angular/material/icon';
 
@@ -61,16 +55,10 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
   declarations: [
 
     QDSocialComponent,
-    ChannelComponent,
     MatMenuComponent,
 
     FsIconComponent,
-    ChannelListComponent,
-    ChannelSidebarRightComponent,
-    ChannelSidebarLeftComponent,
-    ChannelParticipantListComponent,
-    ChannelSettingsComponent,
-    ChannelTabComponent
+    ProfileComponent
   ],
   imports: [
   NbSidebarModule,
