@@ -4,7 +4,9 @@
 
 ## Description
 
-qDesk Social is a module for qDesk. It's accessible across qDesk, you can use it with qDesk Messages and other qDesk modules. It is used to show store information and latest store campaigns on qDesk Market. It's not all qDesk though, qDesk Social is a Protocol as well and if you are using [Quest OS](https://github.com/QuestNetwork/quest-os-js) into your applications, you can even use the underlying channels and data in your own application.
+qDesk Social is a module for qDesk. It's accessible across qDesk, you can use it with qDesk Messages and other qDesk modules. It is used to show store information and latest store campaigns on qDesk Market. 
+
+It's not all qDesk though, qDesk Social is a protocol as well and if you are using [Quest OS](https://github.com/QuestNetwork/quest-os-js) in your applications, you can even use the underlying channels and data in your own application by booting with [Quest Social JS](https://github.com/QuestNetwork/quest-social-js).
 
 qDesk Social offers the ability to share posts and information about yourself and make connections with other people. You can have a public profile, granular privacy settings or invite only. qDesk Social is a module for [qDesk](https://github.com/QuestNetwork/qDesk) and it's built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
 
@@ -49,8 +51,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Features
 
 **0.9.3**
-- Public Social
-- Invite Only Social
+- Public Profile
+- Invite Only Profile
 - Alias, Full Name
 - Profile Picture
 
