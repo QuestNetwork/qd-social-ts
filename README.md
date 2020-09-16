@@ -1,12 +1,12 @@
 ![Completion 1.0.0](https://img.shields.io/badge/completion%20v1.0.0-8%25-red) ![Help Wanted](https://img.shields.io/badge/%20-help--wanted-%23159818) ![Version 0.9.3](https://img.shields.io/badge/version-v0.9.3-green) ![Version 0.9.3](https://img.shields.io/badge/version-v0.9.4-blue) ![Sponsors](https://img.shields.io/badge/sponsors-0-red)
 
-## qDesk Profiles
+## qDesk Social
 
 ## Description
 
-qDesk Profiles is a module for qDesk. It's accessible across qDesk, you can use it with qDesk Messages and other qDesk modules. It is used to show store information and latest store campaigns on qDesk Market. It's not all qDesk though, qDesk Profiles is a Protocol as well and if you integrate [Quest OS](https://github.com/QuestNetwork/quest-os-js) into your applications, you can even use the underlying channels and data in your own application. 
+qDesk Social is a module for qDesk. It's accessible across qDesk, you can use it with qDesk Messages and other qDesk modules. It is used to show store information and latest store campaigns on qDesk Market. It's not all qDesk though, qDesk Social is a Protocol as well and if you are using [Quest OS](https://github.com/QuestNetwork/quest-os-js) into your applications, you can even use the underlying channels and data in your own application.
 
-qDesk Profiles offers the ability to share posts and information about yourself and make connections with other people. You can have a public profile, granular privacy settings or invite only. qDesk Profiles is a module for [qDesk](https://github.com/QuestNetwork/qDesk) and it's built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
+qDesk Social offers the ability to share posts and information about yourself and make connections with other people. You can have a public profile, granular privacy settings or invite only. qDesk Social is a module for [qDesk](https://github.com/QuestNetwork/qDesk) and it's built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
 
 We're not planning to make this a decentralized version of "Facebook" or "Twitter". We're crating the real deal and we feel like those premium platforms are more like the "for kids" version of what they should actually be.
 
@@ -34,7 +34,7 @@ This project is a lot of work and unfortunately we need to eat food (ツ)
 
 ## Development
 
-qDesk Profiles is a module of [qDesk](https://github.com/QuestNetwork/qDesk), so please see https://github.com/QuestNetwork/qDesk#development for instructions.
+qDesk Social is a module of [qDesk](https://github.com/QuestNetwork/qDesk), so please see https://github.com/QuestNetwork/qDesk#development for instructions.
 
 ### Commands
 
@@ -49,8 +49,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Features
 
 **0.9.3**
-- Public Profiles
-- Invite Only Profiles
+- Public Social
+- Invite Only Social
 - Alias, Full Name
 - Profile Picture
 

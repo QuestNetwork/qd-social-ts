@@ -3,10 +3,10 @@ import { Component, ViewChild, ElementRef, Inject, AfterContentInit,ChangeDetect
 
 @Component({
   selector: 'quest-messenger-root',
-  templateUrl: './qd-messages-ts.component.html',
-  styleUrls: ['./qd-messages-ts.component.scss']
+  templateUrl: './qd-social-ts.component.html',
+  styleUrls: ['./qd-social-ts.component.scss']
 })
-export class QDProfileComponent {
+export class QDSocialComponent {
   constructor( ){}
 
 }
