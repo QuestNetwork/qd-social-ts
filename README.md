@@ -51,8 +51,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Features
 
 **0.9.3**
-- Public Social
-- Invite Only Social
+- Public Profile
+- Invite Only Profile
 - Alias, Full Name
 - Profile Picture
 
