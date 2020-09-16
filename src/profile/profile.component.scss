@@ -31,7 +31,7 @@
 
 .poster{
   height:30vh;
-  background-color:blue;
+  background-color:#111161;
 }
 
 
@@ -41,6 +41,7 @@
   position: relative;
 left: 30px;
 top: -30px;
+z-index:1;
 }
 
 .pp > img, .pp{
@@ -55,22 +56,59 @@ top: -30px;
 .alias{
   white-space: nowrap;
   float:left;
+  font-size: 24px;
 }
 
 .fullname{
   white-space: nowrap;
   float:left;
+  margin-left: 20px;
+      opacity: 0.5;
+}
+
+.about{
+  clear:both;
+  padding-top: 30px;
+  padding-right: 20px;
 }
 
 
 .details{
   overflow:hidden;
-  background:black;
-  color:white
+  background:#2d2b2b;
+  color:white;
+  padding-left: 20px;
+  font-size: 20px;
+  position: relative;
+  top: -60px;
+  padding-top: 60px;
+  z-index: 0;
+  padding-bottom: 50px;
 }
 
 .editButton{
   position: absolute;
-    right: 40px;
-    top: 42vh;
+      right: 23px;
+      font-size: 20px;
+      top: 52px;
+      z-index: 1;
+}
+
+
+.fundUs{
+  text-align:center;
+}
+
+.fundButton{
+  background: #bfbf13 !important;
+font-size: 16px !important;
+border: 3px solid #e4e4e4 !important;
+}
+
+
+@media only screen and (max-width: 370px) {
+  .fullname{
+    clear: both;
+    margin-left: 0;
+  }
 }
