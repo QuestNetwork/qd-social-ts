@@ -9,6 +9,6 @@ import { Component, ViewChild, ElementRef, Inject, AfterContentInit,ChangeDetect
 export class QDSocialComponent {
   constructor( ){}
 
-  selectedProfile = "default";
+  selectedProfile = "NoProfileSelected";
 
 }

@@ -90,8 +90,25 @@ z-index:1;
   position: absolute;
       right: 23px;
       font-size: 20px;
-      top: 52px;
       z-index: 1;
+      top: 48px;
+}
+
+.saveButton{
+  position: absolute;
+      font-size: 20px;
+      z-index: 1;
+      top: 48px;
+      right: 143px;
+}
+
+
+.discardButton{
+  position: absolute;
+      right: 23px;
+      font-size: 20px;
+      z-index: 1;
+      top: 48px;
 }
 
 
@@ -102,13 +119,41 @@ z-index:1;
 .fundButton{
   background: #bfbf13 !important;
 font-size: 16px !important;
-border: 3px solid #e4e4e4 !important;
 }
 
+.profilePrivacy{
+  position: absolute;
+      top: 70px;
+      font-size: 19px;
+      right: 22px;
+      background: #eed864;
+      padding: 3px;
+      font-weight: bold;
+      border-radius: 4px;
+      color: #2769f7c7;
+      font-family: Ubuntu;
+      line-height: 30px;
+      padding-right: 10px;
+      padding-left: 10px;
+      cursor: pointer;
+}
 
-@media only screen and (max-width: 370px) {
+.profilePrivacy nb-icon{
+  font-size: 24px;
+  opacity: 0.7;
+  position: relative;
+  top: 2px;
+}
+
+@media only screen and (max-width: 600px) {
   .fullname{
     clear: both;
     margin-left: 0;
   }
+  .editButton{
+    top: 52px;
+  }
 }
+
+
+input { caret-color: white; }
