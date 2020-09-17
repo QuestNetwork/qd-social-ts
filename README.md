@@ -64,11 +64,10 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.5**
 - Comments On Posts
-- Connect To Facebook/Instagram
+- Connect To Facebook/Instagram/Other Platforms
 
 **0.9.6**
-- Connect To TikTok
+- Up to 5 Social Profiles 
 
 ## License
-
 GNU Affero GPLv3
