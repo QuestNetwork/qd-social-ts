@@ -53,7 +53,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.3**
 - Public Profile
 - Invite Only Profile
-- Alias, Full Name
+- Alias, Full Name, About
 
 **0.9.4**
 - Change Profile Picture
