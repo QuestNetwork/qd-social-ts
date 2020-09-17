@@ -54,14 +54,20 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Public Profile
 - Invite Only Profile
 - Alias, Full Name
-- Profile Picture
 
 **0.9.4**
-- Posts
-- Followers
+- Change Profile Picture
+- Change Poster
+- Native Posts
+- Native Followers
+- Connect To Twitter
 
 **0.9.5**
 - Comments On Posts
+- Connect To Facebook/Instagram
+
+**0.9.6**
+- Connect To TikTok
 
 ## License
 
