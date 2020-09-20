@@ -68,7 +68,10 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Connect To Facebook/Instagram/Other Platforms
 
 **0.9.6**
-- Up to 5 Social Profiles 
+- Connect Vibes 
+
+**0.9.9**
+- Connect Market
 
 ## License
 GNU Affero GPLv3
