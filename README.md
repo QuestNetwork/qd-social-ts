@@ -60,6 +60,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Change Poster
 - Native Posts
 - Native Followers
+- Use up To 5 Social Profiles Simultaneously 
 - Connect To Twitter
 
 **0.9.5**
