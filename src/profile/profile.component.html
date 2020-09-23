@@ -8,6 +8,8 @@
 <div class="pp">
 <img src="./assets/defaultAvatar.png">
 </div>
+<div class="pubKeyDisplay">{{ pubKey }}</div>
+
 
 <div class="details" *ngIf="!editDetails">
 
@@ -26,10 +28,25 @@
 {{ about }}
 </div>
 
+<button mat-stroked-button color="primary" (click)="setConnection(true)" class="defaultSettingsButton thickOutlineButton editButton starButton" *ngIf="!isMyProfile && !isConnection">
+<nb-icon icon="star-outline"></nb-icon>
+</button>
+
+<button mat-stroked-button color="primary" (click)="openMessages(pubKey)" class="defaultSettingsButton thickOutlineButton editButton starButton active" *ngIf="!isMyProfile && isConnection">
+<nb-icon icon="message-circle-outline"></nb-icon>
+</button>
+
+<button mat-stroked-button color="primary" (click)="setConnection(false)" class="defaultSettingsButton thickOutlineButton editButton starButton pending" *ngIf="!isMyProfile && isRequestedConnection">
+<nb-icon icon="star-outline"></nb-icon>
+</button>
 
 <button mat-stroked-button color="primary" (click)="edit()" class="defaultSettingsButton thickOutlineButton editButton" *ngIf="isMyProfile">Edit</button>
 
+
 </div>
+
+
+
 
 <div class="details" *ngIf="editDetails">
 
@@ -41,8 +58,6 @@
     <input matInput placeholder="Full Name" name='newFullName' [(ngModel)]='newFullName'>
   </div>
 </div>
-
-
 
 <div class="about">
   <textarea matInput name='about' [(ngModel)]='newAbout'></textarea>
@@ -56,6 +71,8 @@
 </div>
 
 
+
+<div>
 
 
 <div class="fundUs">

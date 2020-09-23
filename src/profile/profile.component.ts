@@ -1,10 +1,9 @@
 import { Component, OnInit, Input,ViewChild, ChangeDetectorRef} from '@angular/core';
-import { UiService} from '../../../qDesk/src/app/services/ui.service';
 import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
 
-import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
-
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+// import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
+//
+// import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 import swarmJson from '../swarm.json';
 
@@ -15,13 +14,10 @@ import swarmJson from '../swarm.json';
 })
 export class ProfileComponent implements OnInit {
 
-
-
-
   @Input() pubKey: string;
 
 
-  constructor(private _sanitizer: DomSanitizer, private aChD: ChangeDetectorRef, private ui: UiService, private q: QuestOSService) {
+  constructor(private aChD: ChangeDetectorRef, private q: QuestOSService) {
     //parse channels
   }
   DEVMODE = swarmJson['dev'];
@@ -34,7 +30,12 @@ export class ProfileComponent implements OnInit {
 
     //load channel
     console.log("Profile: Bootstrapping Profile...");
+
     this.select(this.pubKey);
+
+    this.isConnection = this.q.os.social.isFavorite(this.pubKey);
+    console.log('qSocial Profile: ',this.q.os.social.isRequestedFavorite(this.pubKey));
+    this.isRequestedConnection = this.q.os.social.isRequestedFavorite(this.pubKey);
 
   }
 
@@ -67,7 +68,7 @@ export class ProfileComponent implements OnInit {
 
   isMyProfile = false;
   async select(profileId){
-    console.log("Selecting profile...")
+    console.log("Selecting profile...",profileId)
     // console.log(this.q.os.social.getProfile(profileId));
 
     try{
@@ -78,7 +79,7 @@ export class ProfileComponent implements OnInit {
 
      console.log(this.pubKey);
 
-     this.isMyProfile = this.q.os.social.isMyProfile(this.pubKey);
+     this.isMyProfile = this.q.os.social.isMyProfileId(this.pubKey);
      console.log('Social: Is my profile:',this.isMyProfile);
 
      if(typeof socialComb['alias'] != 'undefined'){
@@ -94,11 +95,48 @@ export class ProfileComponent implements OnInit {
        this.private = socialComb['private'];
      }
 
+     this.aChD.detectChanges();
+
     }catch(e){console.log(e)}
   }
 
   private = true;
-async  togglePrivacy(){
+  isConnection = false;
+  isRequestedConnection = false;
+  requestLock = false;
+  async setConnection(v){
+    if(this.requestLock){
+      return false;
+    }
+    this.requestLock = true;
+    // this.isConnection = v;
+    if(v){
+      let mpk = await this.q.os.social.getMyProfileId();
+      console.log('qSocial: trying to add New Favorite Request...',this.pubKey);
+      if(!this.q.os.social.isRequestedFavorite(this.pubKey)){
+        let chName = await this.q.os.channel.create('qprivatedch-'+mpk+'-'+this.pubKey,"",true);
+        this.q.os.social.addFavoriteRequest(this.pubKey,chName);
+        this.isRequestedConnection = v;
+        this.requestLock = false;
+      }
+    }
+    else{
+      //remove also the channelList
+      // this.q.os.channel.remove(this.q.os.social.getRequestedFavoriteChannel(this.pubKey));
+      let channel = this.q.os.channel.find(this.pubKey);
+      this.q.os.channel.remove(channel);
+      this.q.os.social.removeFavorite(this.pubKey);
+      this.q.os.social.removeFavoriteRequest(this.pubKey);
+      this.isRequestedConnection = v;
+      this.isConnection = v;
+      this.requestLock = false;
+    }
+  }
+  async  togglePrivacy(){
+    if(!this.isMyProfile){
+      return false;
+    }
+
     await this.q.os.social.togglePrivacy(this.pubKey);
 
     if(this.private){
@@ -107,6 +145,13 @@ async  togglePrivacy(){
     else{
       this.private = true;
     }
+  }
+
+
+  async openMessages(pubKey){
+    let channelName = this.q.os.channel.find(pubKey);
+    this.q.os.channel.select(channelName);
+    this.q.os.ui.toTabIndex('1');
   }
 
 

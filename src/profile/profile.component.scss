@@ -157,3 +157,68 @@ font-size: 16px !important;
 
 
 input { caret-color: white; }
+
+
+.pubKeyDisplay{
+  position: absolute;
+  left: 99px;
+  top: 30vh;
+      margin-top: 55px;
+  right: 8px;
+  line-height: 7px;
+  font-size: 7px;
+  font-family: MONOSPACE;
+  word-break: break-all;
+  overflow: hidden;
+  color: #d3a64140 !important;
+z-index: 9999;
+}
+
+
+@media only screen and (max-width: 807px) {
+
+  .pubKeyDisplay{
+    margin-top:0;
+    position: fixed;
+    left: 10px;
+    top: 17.5vh;
+    right: 10px;
+    line-height: 10px;
+    font-size: 10px;
+    font-family: MONOSPACE;
+    word-break: break-all;
+    overflow: hidden;
+  }
+}
+
+
+.starButton{
+  color: #2a447882;
+    border: 0px solid transparent !important;
+}
+
+.starButton nb-icon{
+  font-size: 2.5rem;
+}
+
+.starButton:hover{
+  color: #256dff8f;
+}
+
+.starButton.active{
+  color: #256dff;
+  // color: green;
+
+    border: 0px solid transparent !important;
+        font-size: 2.5rem;
+}
+
+.starButton.active nb-icon{
+  font-size:2rem;
+}
+
+.starButton.pending{
+  color: #256dff;
+    border: 0px solid transparent !important;
+        font-size: 2.5rem;
+}
