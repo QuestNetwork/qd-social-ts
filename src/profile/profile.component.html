@@ -1,0 +1,82 @@
+<div class="poster">
+
+  <div class="profilePrivacy" *ngIf="private" (click)="togglePrivacy()"><nb-icon icon="lock-outline"></nb-icon> Private</div>
+  <div class="profilePrivacy" *ngIf="!private"  (click)="togglePrivacy()"><nb-icon icon="globe-outline"></nb-icon> Public</div>
+
+
+</div>
+<div class="pp">
+<img src="./assets/defaultAvatar.png">
+</div>
+<div class="pubKeyDisplay">{{ pubKey }}</div>
+
+
+<div class="details" *ngIf="!editDetails">
+
+<div class="name">
+  <div class="alias">
+    {{ alias }}
+  </div>
+  <div class="fullname">
+    {{ fullName }}
+  </div>
+</div>
+
+
+
+<div class="about">
+{{ about }}
+</div>
+
+<button mat-stroked-button color="primary" (click)="setConnection(true)" class="defaultSettingsButton thickOutlineButton editButton starButton" *ngIf="!isMyProfile && !isConnection">
+<nb-icon icon="star-outline"></nb-icon>
+</button>
+
+<button mat-stroked-button color="primary" (click)="openMessages(pubKey)" class="defaultSettingsButton thickOutlineButton editButton starButton active" *ngIf="!isMyProfile && isConnection">
+<nb-icon icon="message-circle-outline"></nb-icon>
+</button>
+
+<button mat-stroked-button color="primary" (click)="setConnection(false)" class="defaultSettingsButton thickOutlineButton editButton starButton pending" *ngIf="!isMyProfile && isRequestedConnection">
+<nb-icon icon="star-outline"></nb-icon>
+</button>
+
+<button mat-stroked-button color="primary" (click)="edit()" class="defaultSettingsButton thickOutlineButton editButton" *ngIf="isMyProfile">Edit</button>
+
+
+</div>
+
+
+
+
+<div class="details" *ngIf="editDetails">
+
+<div class="name">
+  <div class="alias">
+    <input matInput placeholder="Alias"  name='newAlias' [(ngModel)]='newAlias'>
+  </div>
+  <div class="fullname">
+    <input matInput placeholder="Full Name" name='newFullName' [(ngModel)]='newFullName'>
+  </div>
+</div>
+
+<div class="about">
+  <textarea matInput name='about' [(ngModel)]='newAbout'></textarea>
+</div>
+
+
+<button mat-stroked-button color="primary" class="defaultSettingsButton thickOutlineButton saveButton" (click)="save()">Save</button>
+<button mat-stroked-button color="primary" class="defaultSettingsButton thickOutlineButton discardButton" (click)="edit(false)" >Discard</button>
+
+
+</div>
+
+
+
+<div>
+
+
+<div class="fundUs">
+
+  <a href="https://github.com/QuestNetwork/qd-social-ts#support-us" target="_blank"><button mat-stroked-button color="secondary" class="defaultSettingsButton noOutlineButton fundButton" >Fund This Module For Upgrades!</button></a>
+
+</div>
