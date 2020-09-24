@@ -53,16 +53,25 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.3**
 - Public Profile
 - Invite Only Profile
-- Alias, Full Name
-- Profile Picture
+- Alias, Full Name, About
 
 **0.9.4**
-- Posts
-- Followers
+- Change Profile Picture
+- Change Poster
+- Native Posts
+- Native Followers
+- Use up To 5 Social Profiles Simultaneously 
+- Connect To Twitter
 
 **0.9.5**
 - Comments On Posts
+- Connect To Facebook/Instagram/Other Platforms
+
+**0.9.6**
+- Connect Vibes 
+
+**0.9.9**
+- Connect Market
 
 ## License
-
 GNU Affero GPLv3
