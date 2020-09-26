@@ -55,6 +55,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Invite Only Profile
 - Alias, Full Name, About
 
+## Roadmap
+
 **0.9.4**
 - Change Profile Picture
 - Change Poster
