@@ -71,10 +71,10 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Connect To Facebook/Instagram/Other Platforms
 
 **0.9.9**
-- Connect [Markets](github.com/QuestNetwork/qd-markets-ts)
+- Connect [Markets](https://github.com/QuestNetwork/qd-markets-ts)
 
 **1.0.0**
-- Connect [Vibenarium](github.com/Vibenarium/vibenarium-platform)
+- Connect [Vibenarium](https://github.com/Vibenarium/vibenarium-platform)
 
 ## License
 GNU Affero GPLv3
