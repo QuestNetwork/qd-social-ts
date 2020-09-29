@@ -57,12 +57,12 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.4**
 - Pair by QR Code
-- Native Posts
 - A Search For Social Profiles Received From All Connected Modules
 
 ## Roadmap
 
 **0.9.4**
+- Native Posts
 - Share Private Profiles 
 
 **0.9.5**
