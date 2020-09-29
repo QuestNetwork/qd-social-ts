@@ -1,7 +1,7 @@
 {
   "name": "@questnetwork/qd-social-ts",
   "author": "StationedInTheField",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Decentralized End-To-End Encrypted P2P Social Network Module For qDesk",
   "main": "src/qd-social-ts.module.ts",
   "license": "AGPL-3.0",
