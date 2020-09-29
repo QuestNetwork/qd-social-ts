@@ -27,7 +27,7 @@ Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/aw
 [StationedInTheField](https://github.com/StationedInTheField)
 
 ## Support Us
-This project is a lot of work and unfortunately we need to eat food (ツ)
+Please consider supporting us, so that we can build a non-profit for this project (ツ)
 
 | Ethereum| Bitcoin |
 |---|---|
@@ -55,9 +55,10 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Invite Only Profile
 - Alias, Full Name, About
 
-## Roadmap
-
 **0.9.4**
+- Now allows to share private profiles, so you can have direct conversations with people who have shared their private profiles with you. 
+- It now allows to share pair by QR Code, so you can see who you already met.
+- A search to open social profiles of people you've seen in other modules.
 - Change Profile Picture
 - Change Poster
 - Native Posts
@@ -69,11 +70,11 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Comments On Posts
 - Connect To Facebook/Instagram/Other Platforms
 
-**0.9.6**
-- Connect [Vibes](https://github.com/Vibenarium/vibenarium-platform)
-
 **0.9.9**
 - Connect [Markets](https://github.com/QuestNetwork/qd-market-ts)
+
+**1.0.0**
+- Connect [Vibenarium](https://github.com/Vibenarium/vibenarium-platform)
 
 ## License
 GNU Affero GPLv3
