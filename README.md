@@ -56,21 +56,28 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Alias, Full Name, About
 
 **0.9.4**
-- Now allows to share private profiles, so you can have direct conversations with people who have shared their private profiles with you. 
-- It now allows to share pair by QR Code, so you can see who you already met.
-- A search to open social profiles of people you've seen in other modules.
-- Change Profile Picture
-- Change Poster
+- Pair by QR Code
+- A Search For Social Profiles Received From All Connected Modules
+
+## Roadmap
+
+**0.9.4**
 - Native Posts
-- Native Followers
-- Use up To 5 Social Profiles Simultaneously 
-- Connect To Twitter
+- Share Private Profiles 
 
 **0.9.5**
+- Native Followers
 - Comments On Posts
-- Connect To Facebook/Instagram/Other Platforms
+- Connect To Twitter
+
+**0.9.6**
+- Use up To 5 Social Profiles Simultaneously 
+- Change Profile Picture
+- Change Poster
+
 
 **0.9.9**
+- Connect To Facebook/Instagram/Other Platforms
 - Connect [Markets](https://github.com/QuestNetwork/qd-market-ts)
 
 **1.0.0**
