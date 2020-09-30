@@ -70,6 +70,8 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 **0.9.4**
 - Native Posts
 - Share Private Profiles 
+- Report Posts & Users
+- Ban Users
 
 **0.9.5**
 - Native Followers
