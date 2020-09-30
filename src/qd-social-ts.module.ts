@@ -28,6 +28,7 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 import { HttpClientModule } from '@angular/common/http';
 
 
+import { NbFormFieldModule } from '@nebular/theme';
 
 import { NbDialogService } from '@nebular/theme';
 import { NbChatModule } from '@nebular/theme';
@@ -81,6 +82,7 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
     NbTabsetModule,
     NbEvaIconsModule,
     NbIconModule,
+    NbFormFieldModule,
     FormsModule,
     NbContextMenuModule,
     NbDialogModule.forRoot(),

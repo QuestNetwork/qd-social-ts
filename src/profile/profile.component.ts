@@ -1,6 +1,20 @@
-import { Component, OnInit, Input,ViewChild, ChangeDetectorRef} from '@angular/core';
 import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
 
+import {
+  ChangeDetectionStrategy,
+  OnInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
+
+import { DomSanitizer } from '@angular/platform-browser';
+
+import { NbComponentStatus } from '@nebular/theme';
 // import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 //
 // import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -17,15 +31,65 @@ export class ProfileComponent implements OnInit {
   @Input() pubKey: string;
 
 
-  constructor(private aChD: ChangeDetectorRef, private q: QuestOSService) {
+  constructor(private cd: ChangeDetectorRef, private q: QuestOSService) {
     //parse channels
   }
   DEVMODE = swarmJson['dev'];
 
+  @Input() buttonTitle: string = '';
+  status: NbComponentStatus | '' = '';
+  inputFocus: boolean = false;
+  inputHover: boolean = false;
+
+  parseSearchBar(){
+    if(this.searchPhrase.length > 0){
+      this.search();
+    }
+    else{
+      this.searchResultsActive = false;
+      this.cd.detectChanges();
+    }
+  }
+
+
+  searchPhrase ="";
+  searchResults = [];
+  async search(){
+    this.searchResults = await this.q.os.social.search(this.searchPhrase);
+    if(this.searchResults.length > 0){
+      this.searchResultsActive = true;
+    }
+    else{
+      this.searchResultsActive = false;
+    }
+    this.cd.detectChanges();
+  }
+
+
+  searchResultsActive = false;
+
+
+    setStatus(status: NbComponentStatus): void {
+      if (this.status !== status) {
+        this.status = status;
+        // this.cd.detectChanges();
+      }
+    }
+
+    getInputStatus(): NbComponentStatus | '' {
+      // if (this.fileOver) {
+      //   return this.status || 'primary';
+      // }
+      //
+      // if (this.inputFocus || this.inputHover) {
+      //   return this.status;
+      // }
+
+      return '';
+    }
+
   noProfileSelected = "NoProfileSelected";
-
-  ngOnInit(): void {
-
+  init(){
     console.log("Profile: Initializing...");
 
     //load channel
@@ -37,6 +101,11 @@ export class ProfileComponent implements OnInit {
     console.log('qSocial Profile: ',this.q.os.social.isRequestedFavorite(this.pubKey));
     this.isRequestedConnection = this.q.os.social.isRequestedFavorite(this.pubKey);
 
+  }
+
+  ngOnInit(): void {
+
+    this.init();
   }
 
 
@@ -95,7 +164,7 @@ export class ProfileComponent implements OnInit {
        this.private = socialComb['private'];
      }
 
-     this.aChD.detectChanges();
+     this.cd.detectChanges();
 
     }catch(e){console.log(e)}
   }
@@ -148,12 +217,27 @@ export class ProfileComponent implements OnInit {
   }
 
 
+
+    async openProfile(pubKey){
+      this.pubKey = pubKey;
+      this.init();
+      this.searchResultsActive = false;
+
+    }
+
+
   async openMessages(pubKey){
     let channelName = this.q.os.channel.find(pubKey);
     this.q.os.channel.select(channelName);
     this.q.os.ui.toTabIndex('1');
   }
 
+
+  searchBarClicked(){
+    if(this.searchResults.length > 0){
+      this.searchResultsActive = true;
+    }
+  }
 
 
 }
