@@ -57,7 +57,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.4**
 - Pair by QR Code
-- A Search For Social Profiles Received From All Connected Modules
+- Search For Social Profiles Received From All Connected Modules
 
 ## Roadmap
 
