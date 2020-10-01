@@ -10,14 +10,19 @@ It's not all qDesk though, qDesk Social is a protocol as well and if you are usi
 
 qDesk Social offers the ability to share posts and information about yourself and make connections with other people. You can have a public profile, granular privacy settings or invite only. qDesk Social is a module for [qDesk](https://github.com/QuestNetwork/qDesk) and it's built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/) and [qDesk](https://github.com/QuestNetwork/qDesk), our window platform based on [Angular10](https://angular.io/).
 
-We're not planning to make this a decentralized version of "Facebook" or "Twitter". We're crating the real deal and we feel like those premium platforms are more like the "for kids" version of what they should actually be.
+We have chosen Angular/Electron as an example environment because we believe it offers the best accessibility for developers coming from any other language/framework. It is already being used in Python on PyQt5 and we aim to provide the underlying library in Go and wherever possible in Rust as well.
+
+qDesk makes it possible to build custom, secure and decentralized social networks in less than 20 days.
+
+0.9.5+ allow to connect qDesk Social profiles to Twitter without sharing information with Twitter as an additional layer of verification. It is planned to add passive verification for a custom list of external networks to verify the peer identities.
+
+1.0.0+ complies with privacy regulations and can be used for confidential information as a production social network for enterprises worldwide.
 
 [qDesk](https://github.com/QuestNetwork/qDesk) works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
 
 Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/awesome/blob/master/README.md)!
 
 ## Security
-
 ![Completion 1.0.0](https://img.shields.io/badge/OAEP-4096%20Bit-green) ![EC](https://img.shields.io/badge/EC-P&#8208;521-green) ![AES](https://img.shields.io/badge/AES-256%20Bit-yellow)
 
 [Quest OS](https://github.com/QuestNetwork/quest-os-js) uses [4096 Bit RSA-OAEP](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Operation) encryption, [256 Bit AES-CBC](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption and [NIST P-521 EC](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography#Fast_reduction_(NIST_curves)) signatures.
@@ -27,7 +32,7 @@ Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/aw
 [StationedInTheField](https://github.com/StationedInTheField)
 
 ## Support Us
-This project is a lot of work and unfortunately we need to eat food (ツ)
+Please consider supporting us, so that we can build a non-profit for this project (ツ)
 
 | Ethereum| Bitcoin |
 |---|---|
@@ -35,6 +40,12 @@ This project is a lot of work and unfortunately we need to eat food (ツ)
 |  <img src="doc/images/eth-qr.png" >   | <img src="doc/images/btc-qr.png" > |
 
 ## Development
+
+### Planning 
+
+See our [Kanban](https://github.com/orgs/QuestNetwork/projects/1) for the development of 0.9.4, feel free to add or pick up features!
+
+### Building
 
 qDesk Social is a module of [qDesk](https://github.com/QuestNetwork/qDesk), so please see https://github.com/QuestNetwork/qDesk#development for instructions.
 
@@ -56,22 +67,35 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Alias, Full Name, About
 
 **0.9.4**
-- Change Profile Picture
-- Change Poster
+- Pair by QR Code
+- Search For Social Profiles Received From All Connected Modules
+
+
+## Roadmap
+
+**0.9.4**
 - Native Posts
-- Native Followers
-- Use up To 5 Social Profiles Simultaneously 
-- Connect To Twitter
+- Share Private Profiles 
+- Report Posts & Users
+- Ban Users
 
 **0.9.5**
+- Native Followers
 - Comments On Posts
-- Connect To Facebook/Instagram/Other Platforms
+- Connect To Twitter
 
 **0.9.6**
-- Connect Vibes 
+- Use up To 5 Social Profiles Simultaneously 
+- Change Profile Picture
+- Change Poster
+
 
 **0.9.9**
-- Connect Market
+- Connect To Facebook/Instagram/Other Platforms
+- Connect [Markets](https://github.com/QuestNetwork/qd-market-ts)
+
+**1.0.0**
+- Connect [Vibenarium](https://github.com/Vibenarium/vibenarium-platform)
 
 ## License
 GNU Affero GPLv3
