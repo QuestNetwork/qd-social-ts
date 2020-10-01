@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
   @Input() pubKey: string;
 
 
-  constructor(private dialog:NbDialogService, private cd: ChangeDetectorRef, private q: QuestOSService) {
+  constructor(private _sanitizer: DomSanitizer, private dialog:NbDialogService, private cd: ChangeDetectorRef, private q: QuestOSService) {
     //parse channels
   }
   DEVMODE = swarmJson['dev'];
@@ -332,5 +332,62 @@ export class ProfileComponent implements OnInit {
         this.popupRef.pop();
       // }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    qrCodeURLSafe;
+
+    async generateQR(text){
+      console.log(text);
+      this.qrCodeURLSafe = this._sanitizer.bypassSecurityTrustUrl(await this.q.os.utilities.qr.generate(text));
+    }
+
+    isOwner = false;
+    generateInviteCode(){
+      // let channel = this.selectedChannel;
+      // let link;
+
+        // link =  this.q.os.channel.invite.create(channel,this.newInviteCodeMax);
+
+      // let ivC =  this.q.os.ocean.dolphin.getInviteCodes(this.selectedChannel);
+      // this.channelInviteCodes = [];
+      // if(typeof ivC != 'undefined' && typeof ivC['items'] != 'undefined'){
+      //          this.channelInviteCodes = ivC['items'];
+      // }
+    }
+
+
+
+
+      @ViewChild('qrCode') qrCode;
+      async showVerificationQR(){
+        if(this.isMyProfile){
+          let p = await this.q.os.social.getMyProfile();
+          let privKey = p['key']['privKey'];
+          let text = JSON.stringify(await this.q.os.crypto.ec.sign({ pubKey: this.pubKey } ,privKey));
+          console.log(text);
+          this.generateQR(text);
+          this.open(this.qrCode);
+        }
+
+      }
+
+
+
+
+
+
+
+
+
 
 }

@@ -20,6 +20,35 @@
         </ng-template>
 
 
+        <ng-template #qrCode let-data let-ref="qrCodeRef">
+              <nb-card>
+                <nb-card-header>Scan QR</nb-card-header>
+                <nb-card-body style="margin:10px;color:goldenrod;">
+
+                  <div style="">
+
+
+
+
+
+
+                    <div class="qrCodeWrapper">
+                      <img [src]="qrCodeURLSafe" alt="" class="img-thumbnail" class="qrCodeShowGenerate">
+                    </div>
+
+
+
+
+                      </div>
+                </nb-card-body>
+                <nb-card-footer>
+                  <button mat-stroked-button color="primary" (click)="closePopup()" style="    border: 1px solid #ffffff24;">Close</button>
+                </nb-card-footer>
+              </nb-card>
+            </ng-template>
+
+
+
 
 <div class="poster" *ngIf="!searchResultsActive">
 
@@ -35,7 +64,7 @@
 
 <div class="details mat-elevation-z6" *ngIf="!editDetails && !searchResultsActive">
 
-  <div class="pubKeyDisplay" *ngIf="!searchResultsActive">{{ pubKey }}</div>
+  <div class="pubKeyDisplay" *ngIf="!searchResultsActive" (click)="showVerificationQR()">{{ pubKey }}</div>
 
 
 <div class="name">
@@ -85,7 +114,7 @@
 
 <div class="details mat-elevation-z6" *ngIf="editDetails && !searchResultsActive">
 
-  <div class="pubKeyDisplay" *ngIf="!searchResultsActive">{{ pubKey }}</div>
+  <div class="pubKeyDisplay" *ngIf="!searchResultsActive" (click)="showVerificationQR()">{{ pubKey }}</div>
 
 
 <div class="name">
