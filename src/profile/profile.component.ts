@@ -308,6 +308,7 @@ export class ProfileComponent implements OnInit {
         this.isVerified = true;
       }
       else{
+          this.q.os.ui.showSnack('Verification Failed',{duration:2000});
           this.isVerified = false;
       }
       this.closePopup();
