@@ -303,7 +303,7 @@ export class ProfileComponent implements OnInit {
       console.log(event);
       this.verifyQrCode = event;
       alert('success!');
-      // this.q.os.social.verify(this.pubKey, event);
+      await this.q.os.social.verify(this.pubKey, event);
       this.closePopup();
     }
 
@@ -371,7 +371,7 @@ export class ProfileComponent implements OnInit {
       @ViewChild('qrCode') qrCode;
       async showVerificationQR(){
         if(this.isMyProfile){
-        
+
           let text = await this.q.os.social.getVerificationQR();
           console.log(text);
           this.generateQR(text);
