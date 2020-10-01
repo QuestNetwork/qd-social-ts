@@ -384,12 +384,17 @@ export class ProfileComponent implements OnInit {
           this.generateQR(text);
           this.open(this.qrCode);
 
-          // this.q.os.request.listen('/social/verify').subscribe( (req) => {
-
-          //});
+           this.q.os.request.listen('/social/verify').subscribe( (req) => {
+             if(this.q.os.bee.comb.in("/social/verificationCodes/"+req['message']['socialPubKey'],req['message']['verificationCode'])){
+               let resObj = {};
+               resObj['path'] = '/social/verify';
+               resObj['message']['authenticated'];
+               this.q.os.bee.comb.add("/social/verified",req['message']['socialPubKey']);
+               this.q.os.request.res(resObj);
+             }
+          });
 
         }
-
       }
 
 
