@@ -299,7 +299,7 @@ export class ProfileComponent implements OnInit {
       this.tryHarder = !this.tryHarder;
     }
     verifyQrCode = "";
-    qrSuccessHandler(event){
+    async qrSuccessHandler(event){
       console.log(event);
       this.verifyQrCode = event;
       alert('success!');
