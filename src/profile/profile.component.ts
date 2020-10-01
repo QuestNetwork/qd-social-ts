@@ -302,9 +302,8 @@ export class ProfileComponent implements OnInit {
     verifyQrCode = "";
     async qrSuccessHandler(event){
       console.log(event);
-      this.verifyQrCode = event;
       alert('success!');
-      if(await this.q.os.social.verify(this.pubKey, event)){
+      if(await this.q.os.social.verify(this.pubKey, JSON.parse(event))){
         this.isVerified = true;
       }
       else{
@@ -327,6 +326,32 @@ export class ProfileComponent implements OnInit {
       this.open(this.qrPop);
 
     }
+
+
+    @ViewChild('qrCode') qrCode;
+    async showVerificationQR(){
+      if(this.isMyProfile){
+
+        let text = await this.q.os.social.getVerificationQR();
+        console.log(text);
+        this.generateQR(text);
+        this.open(this.qrCode);
+
+         this.q.os.request.listen('/social/verify').subscribe( (req) => {
+           if(this.q.os.bee.comb.in("/social/verificationCodes/"+req['message']['pubKey'],req['message']['random'])){
+             let resObj = {};
+             resObj['path'] = '/social/verify';
+             resObj['message']['authenticated'];
+             this.q.os.bee.comb.add("/social/verified",req['message']['socialPubKey']);
+             this.q.os.request.res(resObj);
+             this.q.os.bee.comb.removeFromComb("/social/verificationCodes/"+req['message']['pubKey'],req['message']['random']);
+           }
+        });
+
+      }
+    }
+
+
 
     popupRef = [];
     open(dialog: TemplateRef<any>) {
@@ -373,29 +398,6 @@ export class ProfileComponent implements OnInit {
     }
 
 
-
-
-      @ViewChild('qrCode') qrCode;
-      async showVerificationQR(){
-        if(this.isMyProfile){
-
-          let text = await this.q.os.social.getVerificationQR();
-          console.log(text);
-          this.generateQR(text);
-          this.open(this.qrCode);
-
-           this.q.os.request.listen('/social/verify').subscribe( (req) => {
-             if(this.q.os.bee.comb.in("/social/verificationCodes/"+req['message']['socialPubKey'],req['message']['verificationCode'])){
-               let resObj = {};
-               resObj['path'] = '/social/verify';
-               resObj['message']['authenticated'];
-               this.q.os.bee.comb.add("/social/verified",req['message']['socialPubKey']);
-               this.q.os.request.res(resObj);
-             }
-          });
-
-        }
-      }
 
 
 
