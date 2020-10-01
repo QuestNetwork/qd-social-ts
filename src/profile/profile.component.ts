@@ -107,6 +107,7 @@ export class ProfileComponent implements OnInit {
     this.isConnection = this.q.os.social.isFavorite(this.pubKey);
     console.log('qSocial Profile: ',this.q.os.social.isRequestedFavorite(this.pubKey));
     this.isRequestedConnection = this.q.os.social.isRequestedFavorite(this.pubKey);
+    this.isVerified = this.q.os.social.isVerified(this.pubKey);
 
   }
 
@@ -303,7 +304,12 @@ export class ProfileComponent implements OnInit {
       console.log(event);
       this.verifyQrCode = event;
       alert('success!');
-      await this.q.os.social.verify(this.pubKey, event);
+      if(await this.q.os.social.verify(this.pubKey, event)){
+        this.isVerified = true;
+      }
+      else{
+          this.isVerified = false;
+      }
       this.closePopup();
     }
 
