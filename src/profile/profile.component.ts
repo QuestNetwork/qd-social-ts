@@ -383,6 +383,11 @@ export class ProfileComponent implements OnInit {
           console.log(text);
           this.generateQR(text);
           this.open(this.qrCode);
+
+          // this.q.os.request.listen('/social/verify').subscribe( (req) => {
+
+          //});
+
         }
 
       }
