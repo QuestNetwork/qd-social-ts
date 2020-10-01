@@ -371,9 +371,8 @@ export class ProfileComponent implements OnInit {
       @ViewChild('qrCode') qrCode;
       async showVerificationQR(){
         if(this.isMyProfile){
-          let p = await this.q.os.social.getMyProfile();
-          let privKey = p['key']['privKey'];
-          let text = JSON.stringify(await this.q.os.crypto.ec.sign({ pubKey: this.pubKey } ,privKey));
+        
+          let text = await this.q.os.social.getVerificationQR();
           console.log(text);
           this.generateQR(text);
           this.open(this.qrCode);
