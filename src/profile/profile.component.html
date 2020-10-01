@@ -1,3 +1,26 @@
+
+    <ng-template #qrPop let-data let-ref="qrRef">
+          <nb-card>
+            <nb-card-header>Scan QR</nb-card-header>
+            <nb-card-body style="color:goldenrod;">
+
+              <div class='qrScanWrapper'>
+              <zxing-scanner [torch]="torchEnabled" [(device)]="currentDevice" (scanSuccess)="qrSuccessHandler($event)"
+                [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
+                (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
+                </div>
+
+            </nb-card-body>
+            <nb-card-footer>
+              <!-- <button mat-stroked-button color="primary" (click)="createNewChannel(newChannelName);" style="    margin-right: 20px;
+        border: 1px solid #ffffff24;">Use</button> -->
+              <button mat-stroked-button color="primary" (click)="closeQR()" style="    border: 1px solid #ffffff24;">Cancel</button>
+            </nb-card-footer>
+          </nb-card>
+        </ng-template>
+
+
+
 <div class="poster" *ngIf="!searchResultsActive">
 
   <div class="profilePrivacy mat-elevatation-z6" *ngIf="private" (click)="togglePrivacy()"><nb-icon icon="lock-outline"></nb-icon> Private</div>
@@ -8,10 +31,12 @@
 <div class="pp"  *ngIf="!searchResultsActive">
 <img class="mat-elevation-z14" src="./assets/defaultAvatar.png">
 </div>
-<div class="pubKeyDisplay" *ngIf="!searchResultsActive">{{ pubKey }}</div>
 
 
 <div class="details mat-elevation-z6" *ngIf="!editDetails && !searchResultsActive">
+
+  <div class="pubKeyDisplay" *ngIf="!searchResultsActive">{{ pubKey }}</div>
+
 
 <div class="name">
   <div class="alias">
@@ -27,6 +52,16 @@
 <div class="about">
 {{ about }}
 </div>
+
+<button mat-stroked-button color="primary" (click)="verify()" class="defaultSettingsButton thickOutlineButton editButton starButton verifyButton" *ngIf="!isMyProfile && !isVerified">
+<nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+</button>
+
+
+<button mat-stroked-button color="primary" class="defaultSettingsButton thickOutlineButton editButton starButton active verifyButton" *ngIf="!isMyProfile && isVerified">
+<nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+</button>
+
 
 <button mat-stroked-button color="primary" (click)="setConnection(true)" class="defaultSettingsButton thickOutlineButton editButton starButton" *ngIf="!isMyProfile && !isConnection">
 <nb-icon icon="star-outline"></nb-icon>
@@ -49,6 +84,9 @@
 
 
 <div class="details mat-elevation-z6" *ngIf="editDetails && !searchResultsActive">
+
+  <div class="pubKeyDisplay" *ngIf="!searchResultsActive">{{ pubKey }}</div>
+
 
 <div class="name">
   <div class="alias">

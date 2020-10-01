@@ -35,6 +35,10 @@
   background-color:#111161;
 }
 
+.verifyButton{
+      margin-right: 70px !important;
+}
+
 
 .pp{
   border-radius:5px;
@@ -173,7 +177,9 @@ input { caret-color: white; }
   overflow: hidden;
   color: #d3a64140 !important;
 z-index: 9999;
+top: -45px;
 }
+
 
 
 @media only screen and (max-width: 807px) {
@@ -235,7 +241,9 @@ z-index: 9999;
     right: 0;
     left: 0;
     padding: 20px;
-height: 95px;}
+height: 95px;
+    bottom: 78px;
+}
 
 .search input{
   font-family: Ubuntu;

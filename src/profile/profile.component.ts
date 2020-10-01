@@ -10,7 +10,14 @@ import {
   HostListener,
   Input,
   Output,
+  ViewChild,
+  TemplateRef
 } from '@angular/core';
+import {BehaviorSubject, Observable, of as observableOf} from 'rxjs';
+
+import { BarcodeFormat } from '@zxing/library';
+import {NbDialogService } from '@nebular/theme';
+
 
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -31,7 +38,7 @@ export class ProfileComponent implements OnInit {
   @Input() pubKey: string;
 
 
-  constructor(private cd: ChangeDetectorRef, private q: QuestOSService) {
+  constructor(private dialog:NbDialogService, private cd: ChangeDetectorRef, private q: QuestOSService) {
     //parse channels
   }
   DEVMODE = swarmJson['dev'];
@@ -239,5 +246,91 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+
+
+
+
+    @ViewChild('qrPop') qrPop;
+    @ViewChild('createPop') createPop;
+
+    availableDevices: MediaDeviceInfo[];
+    currentDevice: MediaDeviceInfo = null;
+
+    formatsEnabled: BarcodeFormat[] = [
+      BarcodeFormat.QR_CODE,
+    ];
+
+    hasDevices: boolean;
+    hasPermission: boolean;
+
+    torchEnabled = false;
+    torchAvailable$ = new BehaviorSubject<boolean>(false);
+    tryHarder = false;
+
+    verify(){
+      this.scanQR();
+    }
+
+    isVerified = false;
+
+    onCamerasFound(devices: MediaDeviceInfo[]): void {
+      this.availableDevices = devices;
+      this.hasDevices = Boolean(devices && devices.length);
+    }
+
+    onDeviceSelectChange(selected: string) {
+      const device = this.availableDevices.find(x => x.deviceId === selected);
+      this.currentDevice = device || null;
+    }
+
+    onHasPermission(has: boolean) {
+      this.hasPermission = has;
+    }
+
+    onTorchCompatible(isCompatible: boolean): void {
+      this.torchAvailable$.next(isCompatible || false);
+    }
+
+    toggleTorch(): void {
+      this.torchEnabled = !this.torchEnabled;
+    }
+
+    toggleTryHarder(): void {
+      this.tryHarder = !this.tryHarder;
+    }
+    verifyQrCode = "";
+    qrSuccessHandler(event){
+      console.log(event);
+      this.verifyQrCode = event;
+      alert('success!');
+      // this.q.os.social.verify(this.pubKey, event);
+      this.closePopup();
+    }
+
+    closeQR(){
+      setTimeout( () => {
+        this.closePopup();
+      },500);
+    }
+    scanQR(){
+      const data = {
+        hasDevices: this.hasDevices,
+        hasPermission: this.hasPermission,
+      };
+      this.open(this.qrPop);
+
+    }
+
+    popupRef = [];
+    open(dialog: TemplateRef<any>) {
+          this.popupRef.push(this.dialog.open(dialog, { context: 'this is some additional data passed to dialog' }));
+      }
+    closePopup(){
+      console.log('close toggled');
+      // for(i=0;i<this.popupRef.length;i++){
+        this.popupRef[this.popupRef.length-1].close();
+        this.popupRef.pop();
+      // }
+    }
 
 }
