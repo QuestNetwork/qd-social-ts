@@ -27,6 +27,10 @@ Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/aw
 
 [Quest OS](https://github.com/QuestNetwork/quest-os-js) uses [4096 Bit RSA-OAEP](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Operation) encryption, [256 Bit AES-CBC](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption and [NIST P-521 EC](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography#Fast_reduction_(NIST_curves)) signatures.
 
+## Manual & Documentation
+
+See our automated documentation for more information: https://questnetwork.github.io/docs
+
 ## Lead Maintainer
 
 [StationedInTheField](https://github.com/StationedInTheField)
