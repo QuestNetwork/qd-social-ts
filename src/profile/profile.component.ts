@@ -336,18 +336,7 @@ export class ProfileComponent implements OnInit {
         console.log(text);
         this.generateQR(text);
         this.open(this.qrCode);
-
-         this.q.os.request.listen('/social/verify').subscribe( (req) => {
-           if(this.q.os.bee.comb.in("/social/verificationCodes/"+req['message']['pubKey'],req['message']['random'])){
-             let resObj = {};
-             resObj['path'] = '/social/verify';
-             resObj['message']['authenticated'];
-             this.q.os.bee.comb.add("/social/verified",req['message']['socialPubKey']);
-             this.q.os.request.res(resObj);
-             this.q.os.bee.comb.removeFromComb("/social/verificationCodes/"+req['message']['pubKey'],req['message']['random']);
-           }
-        });
-
+        this.q.os.social.startVerificationWorker();
       }
     }
 

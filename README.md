@@ -4,7 +4,7 @@
 
 ## Description
 
-qDesk Social is a module for qDesk. It's accessible across qDesk, you can use it with qDesk Messages and other qDesk modules. It is used to show store information and latest store campaigns on qDesk Market. 
+qDesk Social is a module for qDesk. It's accessible across qDesk, you can use it with qDesk Messages and other qDesk modules. It is used to show store information and latest store campaigns on qDesk Market.
 
 It's not all qDesk though, qDesk Social is a protocol as well and if you are using [Quest OS](https://github.com/QuestNetwork/quest-os-js) in your applications, you can even use the underlying channels and data in your own application by booting with [Quest Social JS](https://github.com/QuestNetwork/quest-social-js).
 
@@ -41,7 +41,7 @@ Please consider supporting us, so that we can build a non-profit for this projec
 
 ## Development
 
-### Planning 
+### Planning
 
 See our [Kanban](https://github.com/orgs/QuestNetwork/projects/1) for the development of 0.9.4, feel free to add or pick up features!
 
@@ -59,6 +59,10 @@ We added an example ```swarm.json``` to the ```src/app``` folder with an example
 
 Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/to/quest-cli/index.js` from any folder on your system. It's much nicer!
 
+## API
+
+Check out the documentation.
+
 ## Features
 
 **0.9.3**
@@ -75,7 +79,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 
 **0.9.4**
 - Native Posts
-- Share Private Profiles 
+- Share Private Profiles
 - Report Posts & Users
 - Ban Users
 
@@ -85,7 +89,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Connect To Twitter
 
 **0.9.6**
-- Use up To 5 Social Profiles Simultaneously 
+- Use up To 5 Social Profiles Simultaneously
 - Change Profile Picture
 - Change Poster
 
