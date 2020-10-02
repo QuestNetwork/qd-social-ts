@@ -59,6 +59,10 @@ We added an example ```swarm.json``` to the ```src/app``` folder with an example
 
 Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/to/quest-cli/index.js` from any folder on your system. It's much nicer!
 
+## API
+
+See our documentation for the API Reference.`
+
 ## Features
 
 **0.9.3**
