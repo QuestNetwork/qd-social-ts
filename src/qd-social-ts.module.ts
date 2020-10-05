@@ -40,6 +40,7 @@ import { MatMenuComponent } from './mat-menu/mat-menu.component';
 
 
 import { ProfileComponent } from './profile/profile.component';
+import { ProfilePostComponent } from './profile-post/profile-post.component';
 
 import {MatIconModule} from '@angular/material/icon';
 
@@ -51,6 +52,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule,    NbCardModule } from '@nebular/theme';
 import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/theme';
 
+import { LinkyModule } from 'ngx-linky';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
     MatMenuComponent,
 
     FsIconComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfilePostComponent
   ],
   imports: [
   NbSidebarModule,
@@ -96,7 +99,8 @@ import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/the
    ZXingScannerModule,
    MatSliderModule,
    FlexLayoutModule,
-   MatIconModule
+   MatIconModule,
+   LinkyModule
 
 
   ],

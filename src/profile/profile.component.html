@@ -143,20 +143,10 @@
   <button mat-stroked-button color="primary" class="defaultSettingsButton postButton" (click)="post()">Post</button>
 </div>
 
+<app-profile-post *ngFor="let post of postList" [postObj]="post" isMyProfile="isMyProfile" class="postContainer mat-elevation-z8">
+</app-profile-post>
 
-<div *ngFor="let post of postList" class="postContainer mat-elevation-z8">
-  <div class="postDelete" (click)="postDelete(post)" *ngIf="isMyProfile">
-    <nb-icon icon="trash-2-outline" ></nb-icon>
-  </div>
-  <div class="postTime">
-    {{ post['timestamp'] }}
-  </div>
 
-  <div class="postContent">
-    {{ post['content'] }}
-  </div>
-
-</div>
 
 
 
