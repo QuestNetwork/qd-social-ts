@@ -25,6 +25,7 @@
     "@angular-devkit/build-angular": "0.1001.1",
     "@angular/animations": "10.1.1",
     "@angular/cdk": "10.1.1",
+    "autolinker": "^3.14.1",
     "@angular/common": "10.1.1",
     "@angular/compiler": "10.1.1",
     "@angular/core": "10.1.1",
