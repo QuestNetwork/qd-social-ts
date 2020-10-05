@@ -145,9 +145,13 @@
 
 
 <div *ngFor="let post of postList" class="postContainer mat-elevation-z8">
+  <div class="postDelete" (click)="postDelete(post)" *ngIf="isMyProfile">
+    <nb-icon icon="trash-2-outline" ></nb-icon>
+  </div>
   <div class="postTime">
     {{ post['timestamp'] }}
   </div>
+
   <div class="postContent">
     {{ post['content'] }}
   </div>

@@ -462,6 +462,16 @@ font-size: 16px;
     border: 2px solid #9dafaabf;
 }
 
+.postDelete{
+  float: right;
+color: #ff0000cf;
+margin-left: 10px;
+font-size: 20px;
+position: relative;
+top: -1px;
+cursor:pointer;
+}
+
 .postTime{
   float: right;
     color: #452781;
@@ -473,4 +483,17 @@ font-size: 16px;
 .mat-input-element {
     caret-color: #546184;
         text-align: left;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        padding: 10px;
+
+}
+
+.mat-input-element:focus{
+  border: 1px solid red;
+}
+
+
+.mat-input-element::placeholder:focus{
+  display:none;
 }

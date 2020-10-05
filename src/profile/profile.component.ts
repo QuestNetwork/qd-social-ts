@@ -38,10 +38,21 @@ export class ProfileComponent implements OnInit {
 
   @Input() pubKey: string;
 
-  postList = [ { id: "123a4", content: "Hey!", type: "text", timestamp: "3"  } ]
+  postList = [ ]
   newPost = "";
   post(){
-    console.log(this.newPost);
+    let postObj = { content: this.newPost, socialPubKey: this.pubKey };
+    this.q.os.social.post.new(postObj);
+    this.newPost = "";
+    setTimeout( () => {
+      this.init();
+    },2000);
+  }
+
+  postDelete(postObj){
+    console.log('qD Social/Profile: Deleting...',postObj);
+    this.q.os.social.post.delete({id: postObj['id']}, postObj['socialPubKey']);
+    this.init();
   }
   constructor(private _sanitizer: DomSanitizer, private dialog:NbDialogService, private cd: ChangeDetectorRef, private q: QuestOSService) {
     //parse channels
@@ -101,24 +112,40 @@ export class ProfileComponent implements OnInit {
     }
 
   noProfileSelected = "NoProfileSelected";
-  init(){
+  async init(){
     console.log("Profile: Initializing...");
 
     //load channel
     console.log("Profile: Bootstrapping Profile...");
 
     this.select(this.pubKey);
+    try{
+      this.postList = this.q.os.social.post.get(this.pubKey);
+    }catch(e){
+      if(e == 'no pubkey selected'){
+        let p = await this.q.os.social.getMyProfile();
+        this.pubKey = p['key']['pubKey'];
+        this.postList = this.q.os.social.post.get(this.pubKey);
+      }
+    }
 
-    this.isConnection = this.q.os.social.isFavorite(this.pubKey);
-    console.log('qSocial Profile: ',this.q.os.social.isRequestedFavorite(this.pubKey));
-    this.isRequestedConnection = this.q.os.social.isRequestedFavorite(this.pubKey);
-    this.isVerified = this.q.os.social.isVerified(this.pubKey);
-
+    this.cd.detectChanges();
   }
 
-  ngOnInit(): void {
+   ngOnInit(){
+     this.q.os.social.onSelect().subscribe( () => {
+       this.isConnection = this.q.os.social.isFavorite(this.pubKey);
+       console.log('qSocial Profile: ',this.q.os.social.isRequestedFavorite(this.pubKey));
+       this.isRequestedConnection = this.q.os.social.isRequestedFavorite(this.pubKey);
+       this.isVerified = this.q.os.social.isVerified(this.pubKey);
+       setTimeout( () => {
+         this.postList = this.q.os.social.post.get(this.pubKey);
+         this.cd.detectChanges();
+       },2000);
 
-    this.init();
+     });
+     this.init();
+
   }
 
 
