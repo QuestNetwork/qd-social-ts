@@ -138,6 +138,26 @@
 </div>
 
 
+<div class="newPostContainer mat-elevation-z8" *ngIf="isMyProfile">
+  <textarea matInput name='newPost' [(ngModel)]='newPost' placeholder="What's happening?"></textarea>
+  <button mat-stroked-button color="primary" class="defaultSettingsButton postButton" (click)="post()">Post</button>
+</div>
+
+
+<div *ngFor="let post of postList" class="postContainer mat-elevation-z8">
+  <div class="postTime">
+    {{ post['timestamp'] }}
+  </div>
+  <div class="postContent">
+    {{ post['content'] }}
+  </div>
+
+</div>
+
+
+
+
+
 
 <div class="fundUs"  *ngIf="!searchResultsActive">
 

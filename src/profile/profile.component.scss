@@ -234,16 +234,20 @@ cursor:pointer;
 
 
 .search{
-  position: absolute;
-    bottom: 28px;
+
     // background: #382b53;
 
 
-    right: 0;
-    left: 0;
+
     padding: 20px;
 height: 95px;
-    bottom: 78px;
+
+    position: fixed;
+right: 0;
+left: 0;
+padding: 20px;
+height: 95px;
+bottom: 28px;
 }
 
 .search input{
@@ -285,9 +289,8 @@ height: 95px;
 }
 .fundUs{
   z-index: 2;
-      bottom: 24vh;
       width: 100%;
-      position: fixed;
+      margin-bottom:120px;
 }
 
 .search button{
@@ -426,4 +429,48 @@ margin-top: 7px;
   }
 
 
+}
+
+
+
+
+.newPostContainer,.postContainer{
+  background: #1e2437c9;
+  margin-left: 5vw;
+  border-radius: 10px;
+  padding: 40px;
+  opacity: 0.9;
+  font-family: Ubuntu;
+  font-size: 22px;
+  color: #4680e9;
+  width: 90vw;
+  text-align: right;
+  margin-bottom: 5vh;
+      border: 1px solid #ff000042;
+}
+.postContainer{
+  text-align:left;
+  border: 1px solid #2d63eca6;
+
+}
+
+.postButton{
+  color: #c6c489c7;
+font-family: Ubuntu;
+font-size: 16px;
+    margin-top: 4vh;
+    border: 2px solid #9dafaabf;
+}
+
+.postTime{
+  float: right;
+    color: #452781;
+}
+
+.newPostContainer textarea::placeholder {
+  color: #ff0045;
+}
+.mat-input-element {
+    caret-color: #546184;
+        text-align: left;
 }

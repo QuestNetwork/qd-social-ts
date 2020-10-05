@@ -28,6 +28,7 @@ import { NbComponentStatus } from '@nebular/theme';
 
 import swarmJson from '../swarm.json';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -37,7 +38,11 @@ export class ProfileComponent implements OnInit {
 
   @Input() pubKey: string;
 
-
+  postList = [ { id: "123a4", content: "Hey!", type: "text", timestamp: "3"  } ]
+  newPost = "";
+  post(){
+    console.log(this.newPost);
+  }
   constructor(private _sanitizer: DomSanitizer, private dialog:NbDialogService, private cd: ChangeDetectorRef, private q: QuestOSService) {
     //parse channels
   }
