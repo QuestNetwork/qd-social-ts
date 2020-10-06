@@ -84,42 +84,36 @@ z-index:1;
   color:white;
   padding-left: 20px;
   font-size: 20px;
-  position: relative;
-  top: -60px;
   padding-top: 60px;
   z-index: 0;
   padding-bottom: 50px;
+  margin-top: -60px;
+margin-bottom: 42px;
+color: #6d95ce;
+z-index:11;
+
+background: rgb(21,27,46);
+background: linear-gradient(90deg, #151b2e 0%, #10162996 100%);
+
+
 }
 
 .editButton{
-  position: absolute;
-      right: 23px;
       font-size: 20px;
       z-index: 1;
-      top: 48px;
+      float: right;
+  margin-right: 20px;
+    margin-top: -15px;
 }
 
-.saveButton{
-  position: absolute;
+.saveButton,.discardButton{
       font-size: 20px;
       z-index: 1;
-      top: 48px;
-      right: 143px;
+      float:right;
+      margin-right: 23px;
 }
 
 
-.discardButton{
-  position: absolute;
-      right: 23px;
-      font-size: 20px;
-      z-index: 1;
-      top: 48px;
-}
-
-
-.fundUs{
-  text-align:center;
-}
 
 .fundButton{
   background: #bfbf13 !important;
@@ -155,9 +149,7 @@ font-size: 16px !important;
     clear: both;
     margin-left: 0;
   }
-  .editButton{
-    top: 52px;
-  }
+
 }
 
 
@@ -165,20 +157,23 @@ input { caret-color: white; }
 
 
 .pubKeyDisplay{
-  position: absolute;
   left: 99px;
-  top: 30vh;
-      margin-top: 55px;
-  right: 8px;
-  line-height: 7px;
-  font-size: 7px;
-  font-family: MONOSPACE;
-  word-break: break-all;
-  overflow: hidden;
-  color: #d3a64140 !important;
-z-index: 9999;
-top: -45px;
-cursor:pointer;
+    margin-top: -53px;
+    margin-left: 78px;
+    right: 8px;
+    line-height: 7px;
+    font-size: 7px;
+    font-family: MONOSPACE;
+    word-break: break-all;
+    overflow: hidden;
+    color: #d3a64140 !important;
+    z-index: 9999;
+    top: -45px;
+    cursor: pointer;
+    margin-top: -53px;
+        margin-bottom: 23px;
+        margin-left: 78px;
+
 }
 
 
@@ -186,16 +181,17 @@ cursor:pointer;
 @media only screen and (max-width: 807px) {
 
   .pubKeyDisplay{
-    margin-top:0;
-    position: fixed;
-    left: 10px;
-    top: 17.5vh;
-    right: 10px;
-    line-height: 10px;
-    font-size: 10px;
-    font-family: MONOSPACE;
-    word-break: break-all;
-    overflow: hidden;
+    max-height: 20px;
+  text-overflow: ellipsis;
+  line-height: 10px;
+  font-size: 10px;
+  font-family: MONOSPACE;
+  word-break: break-all;
+  overflow: hidden;
+  }
+
+  .editButton{
+          margin-top: -9px;
   }
 }
 
@@ -275,22 +271,17 @@ bottom: 28px;
   color:#2968f5d4;
 }
 
-.details{
-  background: rgb(21,27,46);
-  background: linear-gradient(90deg, #151b2e 0%, #10162996 100%);
-
-}
-
 .pp{
   z-index:12
 }
-.details{
-  z-index:11;
-}
+
 .fundUs{
   z-index: 2;
       width: 100%;
       margin-bottom:120px;
+      text-align:center;
+          margin-top: 38px;
+
 }
 
 .search button{
@@ -429,6 +420,11 @@ margin-top: 7px;
   }
 
 
+
+
+
+
+
 }
 
 
@@ -447,6 +443,7 @@ margin-top: 7px;
   text-align: right;
   margin-bottom: 5vh;
       border: 1px solid #ff000042;
+          display: block;
 }
 .postContainer{
   text-align:left;
@@ -498,6 +495,65 @@ cursor:pointer;
   display:none;
 }
 
-.details{
-      color: #6d95ce;
+
+.emojiPickerTrigger{
+  opacity: 1;
+z-index: 9;
+padding: 8px;
+margin-right: 10px;
+cursor: pointer;
+right: 0;
+top: 5px;
+position: relative;
+}
+
+.emojiPicker{
+
+    z-index: 222222 !important;
+    position: relative;
+right: 70px;
+background: transparent;
+
+}
+
+
+
+::ng-deep nb-popover{
+      background: transparent !important;
+}
+
+@media only screen and (max-width: 616px) {
+  .newPostContainer,.postContainer{
+margin-left: 0;
+margin-right: 0 !important;
+margin-top: 0;
+border: 0 !important;
+margin-bottom: 15px;
+border-radius: 0;
+border-top: 1px solid #40389e !important;
+border-bottom: 1px solid #423193 !important;
+width:100vw;
+}
+
+.postContainer:last-child{
+  margin-bottom:40px;
+}
+
+}
+
+.emojiPicker{
+  right: 60px;
+}
+
+@media only screen and (min-width: 420px) and  (max-width: 480px){
+  .emojiPicker{
+    right: -40px;
+  }
+}
+
+
+@media only screen and (min-width: 480px) and  (max-width: 900px){
+  .emojiPicker{
+    right: 0px
+  }
 }

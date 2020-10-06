@@ -44,12 +44,15 @@ import { ProfilePostComponent } from './profile-post/profile-post.component';
 
 import {MatIconModule} from '@angular/material/icon';
 
+import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+
 
 
 
 import { NbLayoutModule, NbTabsetModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbIconModule,    NbCardModule } from '@nebular/theme';
+import { NbIconModule,    NbCardModule,NbPopoverModule } from '@nebular/theme';
 import { NbThemeModule, NbContextMenuModule,  NbDialogModule} from '@nebular/theme';
 
 import { LinkyModule } from 'ngx-linky';
@@ -100,7 +103,10 @@ import { LinkyModule } from 'ngx-linky';
    MatSliderModule,
    FlexLayoutModule,
    MatIconModule,
-   LinkyModule
+   LinkyModule,
+   EmojiModule,
+   PickerModule,
+   NbPopoverModule
 
 
   ],

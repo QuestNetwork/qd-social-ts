@@ -1,18 +1,29 @@
-<div class="postDelete" (click)="postDelete(postObj)" *ngIf="isMyProfile">
+<div class="postDelete" (click)="postDelete(postObj)" *ngIf="isMyProfile && postObj.timestamp>0">
   <nb-icon icon="trash-2-outline" ></nb-icon>
 </div>
-<div class="postTime">
+
+<div class="pp"  *ngIf="postObj.timestamp>0">
+<img class="mat-elevation-z14" src="./assets/defaultAvatar.png">
+</div>
+
+
+<div class="postAlias" *ngIf="profile['alias'].length > 0 && postObj.timestamp>0"> {{ profile['alias'] }} </div>
+<div class="postTime" *ngIf="postObj['dTimestamp'].length > 0">
+  {{ postObj['dTimestamp'] }}
+</div>
+
+<div class="postTime" *ngIf="postObj['dTimestamp'].length < 0">
   {{ postObj['timestamp'] }}
 </div>
 
-<div class="postContent">
+<div class="postContent" *ngIf="postObj.timestamp>0">
 
   <div *ngIf="postRows.length > 0 && (postRows.length > 1 || !postRows[0][0]['isEmoji'])"  class="text">
-    <div *ngFor="let row of postRows" style="display:block;clear:both;">
+    <div *ngFor="let row of postRows" style="">
 
         <div *ngFor="let chunk of row" class="chunkContainer">
             <div *ngIf="!chunk['isEmoji']" class="textChunk"  [innerHTML]="chunk['text'] | linky:{newWindow: true}"></div>
-            <ngx-emoji *ngIf="chunk['isEmoji']" class="emojiChunk" [emoji]="chunk['emojiColon']" set="apple" size="22"  style="display:inline-block;max-height: 22px;overflow: hidden;"></ngx-emoji>
+            <ngx-emoji *ngIf="chunk['isEmoji']" class="emojiChunk" [emoji]="chunk['emojiColon']" set="apple" size="24"  style="display:inline-block;max-height: 24px;overflow: hidden;"></ngx-emoji>
         </div>
 
 
@@ -25,4 +36,8 @@
     <ngx-emoji emoji="{{ postRows[0][0]['emojiColon'] }}" set="apple" size="64" class="" ></ngx-emoji>
   </div>
 
+</div>
+
+<div class="postContent" *ngIf="postObj.timestamp == 0" style="margin-top:0px">
+[Post Deleted]
 </div>

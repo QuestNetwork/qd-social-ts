@@ -63,8 +63,10 @@
 
 
 <div class="details mat-elevation-z6" *ngIf="!editDetails && !searchResultsActive">
-
   <div class="pubKeyDisplay" *ngIf="!searchResultsActive" (click)="showVerificationQR()">{{ pubKey }}</div>
+
+  <button mat-stroked-button color="primary" (click)="edit()" class="defaultSettingsButton thickOutlineButton editButton" *ngIf="isMyProfile">Edit</button>
+
 
 
 <div class="name">
@@ -81,6 +83,9 @@
 <div class="about">
 {{ about }}
 </div>
+
+
+
 
 <button mat-stroked-button color="primary" (click)="verify()" class="defaultSettingsButton thickOutlineButton editButton starButton verifyButton" *ngIf="!isMyProfile && !isVerified">
 <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
@@ -104,17 +109,17 @@
 <nb-icon icon="star-outline"></nb-icon>
 </button>
 
-<button mat-stroked-button color="primary" (click)="edit()" class="defaultSettingsButton thickOutlineButton editButton" *ngIf="isMyProfile">Edit</button>
-
 
 </div>
-
 
 
 
 <div class="details mat-elevation-z6" *ngIf="editDetails && !searchResultsActive">
 
   <div class="pubKeyDisplay" *ngIf="!searchResultsActive" (click)="showVerificationQR()">{{ pubKey }}</div>
+
+  <button mat-stroked-button color="primary" class="defaultSettingsButton thickOutlineButton saveButton" (click)="save()">Save</button>
+  <button mat-stroked-button color="primary" class="defaultSettingsButton thickOutlineButton discardButton" (click)="edit(false)" >Discard</button>
 
 
 <div class="name">
@@ -131,19 +136,27 @@
 </div>
 
 
-<button mat-stroked-button color="primary" class="defaultSettingsButton thickOutlineButton saveButton" (click)="save()">Save</button>
-<button mat-stroked-button color="primary" class="defaultSettingsButton thickOutlineButton discardButton" (click)="edit(false)" >Discard</button>
-
 
 </div>
+
 
 
 <div class="newPostContainer mat-elevation-z8" *ngIf="isMyProfile">
   <textarea matInput name='newPost' [(ngModel)]='newPost' placeholder="What's happening?"></textarea>
+
+    <ngx-emoji [nbPopover]="emojiPickerRef" emoji="grinning" set="apple" size="24" class="emojiPickerTrigger"></ngx-emoji>
+
+    <ng-template #emojiPickerRef>
+      <emoji-mart title="Pick your emoji…" (emojiClick)="addEmoji($event)" emoji="blush" class="emojiPicker" darkMode="true"></emoji-mart>
+    </ng-template>
+
+
   <button mat-stroked-button color="primary" class="defaultSettingsButton postButton" (click)="post()">Post</button>
+
 </div>
 
-<app-profile-post *ngFor="let post of postList" [postObj]="post" isMyProfile="isMyProfile" class="postContainer mat-elevation-z8">
+
+<app-profile-post *ngFor="let post of postList" [postObj]="post" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8">
 </app-profile-post>
 
 

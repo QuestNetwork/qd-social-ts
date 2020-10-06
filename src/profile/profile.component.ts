@@ -49,11 +49,15 @@ export class ProfileComponent implements OnInit {
     },2000);
   }
 
-  postDelete(postObj){
-    console.log('qD Social/Profile: Deleting...',postObj);
-    this.q.os.social.post.delete({id: postObj['id']}, postObj['socialPubKey']);
-    this.init();
+  addEmoji($event){
+    // let data = this.emojiForm.get('inputField');
+    // data.patchValue(data.value + $event.emoji.native)
+
+    this.newPost +=  ' ' + $event.emoji.colons + ' ';
   }
+
+
+
   constructor(private _sanitizer: DomSanitizer, private dialog:NbDialogService, private cd: ChangeDetectorRef, private q: QuestOSService) {
     //parse channels
   }
@@ -73,6 +77,8 @@ export class ProfileComponent implements OnInit {
       this.cd.detectChanges();
     }
   }
+
+
 
 
   searchPhrase ="";

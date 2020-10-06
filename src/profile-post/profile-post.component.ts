@@ -32,22 +32,40 @@ import { NbComponentStatus } from '@nebular/theme';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfilePostComponent implements OnInit {
-  @Input() postObj = { id:"123",timestamp:0,content:"Demo" };
+  @Input() postObj = { id:"123",timestamp:0,content:"Demo", dTimestamp: "" };
   @Input() isMyProfile = false;
 
+  profile = {};
 
   postRows
-  ngOnInit(){
+  async ngOnInit(){
     if(typeof this.postObj['content'] != 'undefined'){
       this.postRows = this.getArray(this.postObj['content']);
+      this.postObj['dTimestamp'] = new Date(this.postObj['timestamp']).toString();
+      this.profile = await this.q.os.social.getProfile(this.postObj['socialPubKey']);
+      this.cd.detectChanges();
     }
   }
-  ngOnChanges(){
+  async ngOnChanges(){
     if(typeof this.postObj['content'] != 'undefined'){
       this.postRows = this.getArray(this.postObj['content']);
+      this.postObj['dTimestamp'] = new Date(this.postObj['timestamp']).toString();
+      this.profile = await this.q.os.social.getProfile(this.postObj['socialPubKey']);
+      this.cd.detectChanges();
     }
   }
 
+  constructor(private _sanitizer: DomSanitizer, private dialog:NbDialogService, private cd: ChangeDetectorRef, private q: QuestOSService) {
+    //parse channels
+  }
+
+  postDelete(postObj){
+    console.log('qD Social/Profile: Deleting...',postObj);
+    this.q.os.social.post.delete({id: postObj['id']}, postObj['socialPubKey']);
+    this.postObj['timestamp'] = 0;
+    this.postObj['dTimestamp'] = "";
+
+  }
 
   getArray(message){
     let messageArray = [];

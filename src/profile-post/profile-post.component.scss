@@ -41,12 +41,12 @@
 
 
 .pp{
-  border-radius:5px;
-  overflow:hidden;
-  position: relative;
-left: 30px;
-top: -30px;
-z-index:1;
+  border-radius: 5px;
+  overflow: hidden;
+
+  z-index: 1;
+  float: left;
+  margin-right: 10px;
 }
 
 .pp > img, .pp{
@@ -199,6 +199,58 @@ cursor:pointer;
   }
 }
 
+
+.senderIcon{
+  top: -2px;
+    position: relative;
+    color: #d2d24b;
+
+  }
+
+  .socialLink{
+    cursor:pointer;
+  }
+
+.messageDisplayName{
+  color: #d6d8dc !important;
+padding-bottom: 5px !important;
+}
+
+
+.messageSenderStarIcon{
+  color: #256dff !important;
+}
+
+
+.emojiChunk{
+  max-height: 22px;
+ overflow: hidden;
+ display: inline-block;
+ padding: 0;
+ margin: 0;
+ position: relative;
+ top: 5px;
+ padding-left: 2px;
+ padding-right: 2px;
+}
+
+
+.messagesInnerWrapper{
+  display:inline-block;
+}
+
+
+.chunkContainer{
+  display:inline-block;
+}
+
+.textChunk{
+  display:inline-block;
+  white-space:nowrap;
+  padding-left: 2px;
+  padding-right: 2px;
+  max-height:22px;
+}
 
 .starButton{
   color: #2a447882;
@@ -467,14 +519,15 @@ font-size: 16px;
 color: #ff0000cf;
 margin-left: 10px;
 font-size: 20px;
-position: relative;
 top: -1px;
 cursor:pointer;
 }
 
 .postTime{
-  float: right;
     color: #452781;
+    font-size: 14px;
+    margin-bottom: 10px;
+        width: 320px;
 }
 
 .newPostContainer textarea::placeholder {
@@ -500,4 +553,17 @@ cursor:pointer;
 
 .details{
       color: #6d95ce;
+}
+
+.postAlias{
+  display: inline-block;
+      font-weight: 900 !important;
+      color: #a60606c7;
+      letter-spacing: -0.1rem;
+      font-family: Helvetica;
+
+}
+.postContent{
+  width: 100%;
+    margin-top: 40px;
 }
