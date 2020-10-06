@@ -70,10 +70,10 @@ font-size: 17px;
 
 nb-layout-column{
   background: linear-gradient(-10deg, #1d1a38, #3a0e0e);
-
-   overflow-y: scroll;
+  overflow:hidden;
+   overflow-y: auto;
     position: fixed;
-    top: 52px;
+      top: 49px;
     bottom: 28px;
     left: 0;
     right: 0;
