@@ -30,7 +30,7 @@ import swarmJson from '../swarm.json';
 
 
 @Component({
-  selector: 'app-profile',
+  selector: 'app-social-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
@@ -139,15 +139,19 @@ export class ProfileComponent implements OnInit {
   }
 
    ngOnInit(){
-     this.q.os.social.onSelect().subscribe( () => {
+     this.q.os.social.onSelect().subscribe( (pK) => {
+       this.pubKey = pK;
        this.isConnection = this.q.os.social.isFavorite(this.pubKey);
        console.log('qSocial Profile: ',this.q.os.social.isRequestedFavorite(this.pubKey));
        this.isRequestedConnection = this.q.os.social.isRequestedFavorite(this.pubKey);
        this.isVerified = this.q.os.social.isVerified(this.pubKey);
+       this.postList = [];
        setTimeout( () => {
          this.postList = this.q.os.social.post.get(this.pubKey);
          this.cd.detectChanges();
        },2000);
+       this.init();
+
 
      });
      this.init();
@@ -266,7 +270,7 @@ export class ProfileComponent implements OnInit {
 
     async openProfile(pubKey){
       this.pubKey = pubKey;
-      this.init();
+      this.q.os.social.select(this.pubKey);
       this.searchResultsActive = false;
 
     }

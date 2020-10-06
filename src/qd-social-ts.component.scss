@@ -68,7 +68,7 @@ font-size: 17px;
 
 
 
-nb-layout-column{
+nb-layout-column.profileLayoutColumn{
   background: linear-gradient(-10deg, #1d1a38, #3a0e0e);
   overflow:hidden;
    overflow-y: auto;
@@ -108,7 +108,29 @@ nb-layout-column::-webkit-scrollbar-thumb {
       padding-right: 10px;
       padding-left: 10px;
       cursor: pointer;
-      top: 72px;
+top: 20px;
+}
+
+.toggleStreamsActive{
+  position: absolute;
+    font-size: 19px;
+    left: 22px;
+    padding: 3px;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #2769f7c7;
+    font-family: Ubuntu;
+    line-height: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+    top: 72px;
+    border: 1px solid #276ffd;
+
+}
+
+.toggleStreamsActive:hover{
+      background: #256dfe14;
 }
 
 .toggleStreams nb-icon{
@@ -116,4 +138,8 @@ nb-layout-column::-webkit-scrollbar-thumb {
   opacity: 0.7;
   position: relative;
   top: 2px;
+}
+
+nb-layout{
+  overflow: hidden;  position: fixed;
 }

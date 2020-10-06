@@ -16,12 +16,18 @@ export class QDSocialComponent {
     }
     this.q.os.social.onSelect().subscribe( (selected) => {
       this.selectedProfile = selected;
+      this.streamsActive = false;
     })
   }
 
   selectedProfile = "NoProfileSelected";
   streamsActive = false;
   toggleStreams(){
+    if(!this.streamsActive){
+      this.q.os.social.select('NoProfileSelected');
+    }
     this.streamsActive = !this.streamsActive;
   }
+
+
 }

@@ -26,7 +26,7 @@ import { NbComponentStatus } from '@nebular/theme';
 // import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-profile-post',
+  selector: 'app-social-profile-post',
   templateUrl: './profile-post.component.html',
   styleUrls: ['./profile-post.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

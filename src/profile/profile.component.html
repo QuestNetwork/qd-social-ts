@@ -68,6 +68,28 @@
   <button mat-stroked-button color="primary" (click)="edit()" class="defaultSettingsButton thickOutlineButton editButton" *ngIf="isMyProfile">Edit</button>
 
 
+  <button mat-stroked-button color="primary" (click)="verify()" class="defaultSettingsButton thickOutlineButton editButton starButton verifyButton" *ngIf="!isMyProfile && !isVerified">
+  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+  </button>
+
+
+  <button mat-stroked-button color="primary" class="defaultSettingsButton thickOutlineButton editButton starButton active verifyButton" *ngIf="!isMyProfile && isVerified">
+  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+  </button>
+
+
+  <button mat-stroked-button color="primary" (click)="setConnection(true)" class="defaultSettingsButton thickOutlineButton editButton starButton" *ngIf="!isMyProfile && !isConnection">
+  <nb-icon icon="star-outline"></nb-icon>
+  </button>
+
+  <button mat-stroked-button color="primary" (click)="openMessages(pubKey)" class="defaultSettingsButton thickOutlineButton editButton starButton active" *ngIf="!isMyProfile && isConnection">
+  <nb-icon icon="message-circle-outline"></nb-icon>
+  </button>
+
+  <button mat-stroked-button color="primary" (click)="setConnection(false)" class="defaultSettingsButton thickOutlineButton editButton starButton pending" *ngIf="!isMyProfile && isRequestedConnection">
+  <nb-icon icon="star-outline"></nb-icon>
+  </button>
+
 
 <div class="name">
   <div class="alias">
@@ -86,28 +108,6 @@
 
 
 
-
-<button mat-stroked-button color="primary" (click)="verify()" class="defaultSettingsButton thickOutlineButton editButton starButton verifyButton" *ngIf="!isMyProfile && !isVerified">
-<nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-</button>
-
-
-<button mat-stroked-button color="primary" class="defaultSettingsButton thickOutlineButton editButton starButton active verifyButton" *ngIf="!isMyProfile && isVerified">
-<nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-</button>
-
-
-<button mat-stroked-button color="primary" (click)="setConnection(true)" class="defaultSettingsButton thickOutlineButton editButton starButton" *ngIf="!isMyProfile && !isConnection">
-<nb-icon icon="star-outline"></nb-icon>
-</button>
-
-<button mat-stroked-button color="primary" (click)="openMessages(pubKey)" class="defaultSettingsButton thickOutlineButton editButton starButton active" *ngIf="!isMyProfile && isConnection">
-<nb-icon icon="message-circle-outline"></nb-icon>
-</button>
-
-<button mat-stroked-button color="primary" (click)="setConnection(false)" class="defaultSettingsButton thickOutlineButton editButton starButton pending" *ngIf="!isMyProfile && isRequestedConnection">
-<nb-icon icon="star-outline"></nb-icon>
-</button>
 
 
 </div>
@@ -156,8 +156,8 @@
 </div>
 
 
-<app-profile-post *ngFor="let post of postList" [postObj]="post" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8">
-</app-profile-post>
+<app-social-profile-post *ngFor="let post of postList" [postObj]="post" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8">
+</app-social-profile-post>
 
 
 

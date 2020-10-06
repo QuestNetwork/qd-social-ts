@@ -36,7 +36,7 @@
 }
 
 .verifyButton{
-      // margin-right: 70px !important;
+      margin-right: 70px !important;
 }
 
 
@@ -234,16 +234,11 @@ input { caret-color: white; }
     // background: #382b53;
 
 
-
+    right: 0;
+    left: 0;
     padding: 20px;
-height: 95px;
-
-    position: fixed;
-right: 0;
-left: 0;
-padding: 20px;
-height: 95px;
-bottom: 28px;
+    height: 95px;
+    bottom: 28px;
 }
 
 .search input{
@@ -312,11 +307,11 @@ box-shadow: none !important;
   font-family: Ubuntu;
   overflow:hidden;
   overflow-y: auto;
-  position: fixed;
-  left:0;
-  right:0;
+  position: absolute;
+  left: 0;
+  right: 0;
   bottom: 27px;
-  top: 49px;
+  top: 0;
 }
 
 
@@ -381,8 +376,6 @@ margin-top: 7px;
     overflow: hidden;
 
     background: linear-gradient(90deg, #192752 0%, #10162996 100%);
-
-        background: linear-gradient(90deg, #192752 0%, #101629d4 100%);
     overflow: hidden;
     cursor:pointer;
     border:1px solid transparent;
@@ -390,7 +383,7 @@ margin-top: 7px;
 
 
 .resultCard:hover{
-  background: linear-gradient(90deg, #151b2e 0%, #101629d4 100%);
+  background: linear-gradient(90deg, #151b2e 0%, #10162996 100%);
   overflow: hidden;
   border:1px solid red;
 }
@@ -441,7 +434,7 @@ margin-top: 7px;
   font-family: Ubuntu;
   font-size: 22px;
   color: #4680e9;
-  width: 90vw;
+margin-right: 5vw;
   text-align: right;
   margin-bottom: 5vh;
       border: 1px solid #ff000042;

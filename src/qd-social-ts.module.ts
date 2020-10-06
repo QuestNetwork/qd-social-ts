@@ -40,6 +40,8 @@ import { MatMenuComponent } from './mat-menu/mat-menu.component';
 
 
 import { ProfileComponent } from './profile/profile.component';
+import { StreamComponent } from './stream/stream.component';
+
 import { ProfilePostComponent } from './profile-post/profile-post.component';
 
 import {MatIconModule} from '@angular/material/icon';
@@ -65,9 +67,11 @@ import { LinkyModule } from 'ngx-linky';
 
     FsIconComponent,
     ProfileComponent,
-    ProfilePostComponent
+    ProfilePostComponent,
+    StreamComponent
   ],
   imports: [
+    
   NbSidebarModule,
     CdkTableModule,
     CdkTreeModule,

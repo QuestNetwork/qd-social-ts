@@ -1,0 +1,50 @@
+
+
+<div class="search">
+
+  <div class="message-row">
+  <div style="    width: 100%;">
+
+    <input [(ngModel)]='searchPhrase'
+           fullWidth nbInput
+
+           (focus)="inputFocus = true"
+           (blur)="inputFocus = false"
+           (mouseenter)="inputHover = true"
+           (mouseleave)="inputHover = false"
+           type="text"
+           placeholder="{{  'What are you looking for?' }}"
+           (keyup.enter)="search()" (keyup)="parseSearchBar()" class="mat-elevation-z16" (click)="searchBarClicked()">
+    <button  nbSuffix nbButton ghost class="searchButtonWrapper"
+
+            (click)="search()"
+        >
+      <nb-icon *ngIf="!buttonTitle; else title"  class="searchButton" icon="search-outline"></nb-icon>
+      <ng-template #title>{{ buttonTitle }}</ng-template>
+    </button>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+
+<app-social-profile-post *ngFor="let post of postList" [postObj]="post" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8">
+</app-social-profile-post>
+
+
+
+
+
+
+
+
+<div class="fundUs"  *ngIf="!searchResultsActive">
+
+  <a class="mat-elevation-z18" href="https://github.com/QuestNetwork/qd-social-ts#support-us" target="_blank"><button mat-stroked-button color="secondary" class="defaultSettingsButton noOutlineButton fundButton" >Fund This Module For Upgrades!</button></a>
+
+</div>
