@@ -1,5 +1,15 @@
 <nb-layout>
-  <nb-layout-column class="profileLayoutColumn">
+  <nb-layout-column class="streamsSidebarColumn" *ngIf="streamsActive">
+        sidebar
+  </nb-layout-column>
+  <nb-layout-column class="streamsBrowseColumn"  *ngIf="streamsActive">
+      browse
+  </nb-layout-column>
+  <nb-layout-column class="profileLayoutColumn"  *ngIf="!streamsActive">
         <app-profile [pubKey]="selectedProfile"></app-profile>
   </nb-layout-column>
 </nb-layout>
+
+
+  <div class="toggleStreams mat-elevatation-z6" *ngIf="streamsActive" (click)="toggleStreams()"><nb-icon icon="person-outline"></nb-icon> Profiles</div>
+  <div class="toggleStreams mat-elevatation-z14" *ngIf="!streamsActive"  (click)="toggleStreams()"><nb-icon icon="activity-outline"></nb-icon> Streams</div>

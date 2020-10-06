@@ -92,3 +92,28 @@ nb-layout-column::-webkit-scrollbar-thumb {
   background-color: #4e84e58f;
   outline: 0;
 }
+
+
+.toggleStreams{
+  position: absolute;
+      font-size: 19px;
+      left: 22px;
+      background: #eed864;
+      padding: 3px;
+      font-weight: bold;
+      border-radius: 4px;
+      color: #2769f7c7;
+      font-family: Ubuntu;
+      line-height: 30px;
+      padding-right: 10px;
+      padding-left: 10px;
+      cursor: pointer;
+      top: 72px;
+}
+
+.toggleStreams nb-icon{
+  font-size: 24px;
+  opacity: 0.7;
+  position: relative;
+  top: 2px;
+}

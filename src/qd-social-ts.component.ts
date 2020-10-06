@@ -20,5 +20,8 @@ export class QDSocialComponent {
   }
 
   selectedProfile = "NoProfileSelected";
-
+  streamsActive = false;
+  toggleStreams(){
+    this.streamsActive = !this.streamsActive;
+  }
 }
