@@ -42,7 +42,7 @@ export class ProfilePostComponent implements OnInit {
     if(typeof this.postObj['content'] != 'undefined'){
       this.postRows = this.getArray(this.postObj['content']);
       this.postObj['dTimestamp'] = new Date(this.postObj['timestamp']).toString();
-      this.profile = await this.q.os.social.getProfile(this.postObj['socialPubKey']);
+      this.profile = await this.q.os.social.profile.get(this.postObj['socialPubKey']);
       this.cd.detectChanges();
     }
   }
@@ -50,7 +50,7 @@ export class ProfilePostComponent implements OnInit {
     if(typeof this.postObj['content'] != 'undefined'){
       this.postRows = this.getArray(this.postObj['content']);
       this.postObj['dTimestamp'] = new Date(this.postObj['timestamp']).toString();
-      this.profile = await this.q.os.social.getProfile(this.postObj['socialPubKey']);
+      this.profile = await this.q.os.social.profile.get(this.postObj['socialPubKey']);
       this.cd.detectChanges();
     }
   }

@@ -233,12 +233,14 @@ input { caret-color: white; }
 
     // background: #382b53;
 
-
+    z-index: 2;
     right: 0;
     left: 0;
     padding: 20px;
     height: 95px;
     bottom: 28px;
+    position: absolute;
+    top: 0;
 }
 
 .search input{
@@ -551,4 +553,8 @@ width:100vw;
   .emojiPicker{
     right: 0px
   }
+}
+
+app-social-profile-post:nth-child(2){
+  margin-top: 120px;
 }

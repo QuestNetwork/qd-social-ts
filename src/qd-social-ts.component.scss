@@ -142,4 +142,13 @@ top: 20px;
 
 nb-layout{
   overflow: hidden;  position: fixed;
+
+}
+
+nb-layout-column{
+      overflow-y: auto;
+}
+
+.streamsBrowseColumn{
+  background: #22283a;
 }

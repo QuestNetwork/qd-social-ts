@@ -7,7 +7,7 @@
 </div>
 
 
-<div class="postAlias" *ngIf="profile['alias'].length > 0 && postObj.timestamp>0" (click)="q.os.social.select(profile['key']['pubKey'])"> {{ profile['alias'] }} </div>
+<div class="postAlias" *ngIf="profile['alias'].length > 0 && postObj.timestamp>0" (click)="q.os.social.profile.select(profile['key']['pubKey'])"> {{ profile['alias'] }} </div>
 <div class="postTime" *ngIf="postObj['dTimestamp'].length > 0">
   {{ postObj['dTimestamp'] }}
 </div>

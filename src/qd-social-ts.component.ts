@@ -10,11 +10,11 @@ export class QDSocialComponent {
   constructor(private q: QuestOSService){}
 
   ngOnInit(){
-    let selectedProfile = this.q.os.social.getSelected();
+    let selectedProfile = this.q.os.social.profile.getSelected();
     if(typeof selectedProfile != 'undefined'){
       this.selectedProfile = selectedProfile;
     }
-    this.q.os.social.onSelect().subscribe( (selected) => {
+    this.q.os.social.profile.onSelect().subscribe( (selected) => {
       this.selectedProfile = selected;
       this.streamsActive = false;
     })
@@ -24,7 +24,7 @@ export class QDSocialComponent {
   streamsActive = false;
   toggleStreams(){
     if(!this.streamsActive){
-      this.q.os.social.select('NoProfileSelected');
+      this.q.os.social.profile.select('NoProfileSelected');
     }
     this.streamsActive = !this.streamsActive;
   }

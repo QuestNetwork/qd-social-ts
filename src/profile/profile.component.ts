@@ -38,11 +38,14 @@ export class ProfileComponent implements OnInit {
 
   @Input() pubKey: string;
 
-  postList = [ ]
   newPost = "";
-  post(){
+  timeline = [];
+
+  async post(){
     let postObj = { content: this.newPost, socialPubKey: this.pubKey };
-    this.q.os.social.timeline.post.new(postObj);
+    await this.q.os.social.timeline.post.new(postObj);
+    this.timeline = this.q.os.social.timeline.get(this.pubKey);
+    this.q.os.social.profile.setProfile(await this.q.os.social.profile.get(this.pubKey),this.pubKey);
     this.newPost = "";
     setTimeout( () => {
       this.init();
@@ -84,7 +87,7 @@ export class ProfileComponent implements OnInit {
   searchPhrase ="";
   searchResults = [];
   async search(){
-    this.searchResults = await this.q.os.social.search(this.searchPhrase);
+    this.searchResults = await this.q.os.social.profile.search(this.searchPhrase);
     if(this.searchResults.length > 0){
       this.searchResultsActive = true;
     }
@@ -120,36 +123,37 @@ export class ProfileComponent implements OnInit {
   noProfileSelected = "NoProfileSelected";
   async init(){
     console.log("Profile: Initializing...");
-
+    this.isConnection = this.q.os.social.profile.isFavorite(this.pubKey);
+    this.isRequestedConnection = this.q.os.social.profile.isRequestedFavorite(this.pubKey);
+    this.isVerified = this.q.os.social.profile.isVerified(this.pubKey);
     //load channel
     console.log("Profile: Bootstrapping Profile...");
 
     this.select(this.pubKey);
     try{
-      this.postList = this.q.os.social.timeline.post.get(this.pubKey);
+      this.timeline = this.q.os.social.timeline.get(this.pubKey);
     }catch(e){
       if(e == 'no pubkey selected'){
-        let p = await this.q.os.social.getMyProfile();
+        let p = await this.q.os.social.profile.getMyProfile();
         this.pubKey = p['key']['pubKey'];
-        this.postList = this.q.os.social.timeline.get(this.pubKey);
+        this.timeline = this.q.os.social.timeline.get(this.pubKey);
       }
     }
 
+    console.log('qD Social: Getting Timeline...',  this.timeline );
     this.cd.detectChanges();
   }
 
    ngOnInit(){
-     this.q.os.social.onSelect().subscribe( (pK) => {
+     this.q.os.social.profile.onSelect().subscribe( (pK) => {
        this.pubKey = pK;
-       this.isConnection = this.q.os.social.isFavorite(this.pubKey);
-       console.log('qSocial Profile: ',this.q.os.social.isRequestedFavorite(this.pubKey));
-       this.isRequestedConnection = this.q.os.social.isRequestedFavorite(this.pubKey);
-       this.isVerified = this.q.os.social.isVerified(this.pubKey);
-       this.postList = [];
+
+       this.timeline = [];
        setTimeout( () => {
-         this.postList = this.q.os.social.timeline.get(this.pubKey);
+         this.timeline = this.q.os.social.timeline.get(this.pubKey);
          this.cd.detectChanges();
        },2000);
+
        this.init();
 
 
@@ -180,8 +184,8 @@ export class ProfileComponent implements OnInit {
 
   save(){
     let socialComb = { private: this.private, alias: this.newAlias, fullName: this.newFullName, about: this.newAbout};
-    this.q.os.social.saveProfile(this.pubKey,socialComb);
-    this.select(this.pubKey);
+    this.q.os.social.profile.set(this.pubKey,socialComb);
+    this.q.os.social.profile.select(this.pubKey);
     this.edit(false);
   }
 
@@ -191,14 +195,14 @@ export class ProfileComponent implements OnInit {
     // console.log(this.q.os.social.getProfile(profileId));
 
     try{
-     let socialComb = await this.q.os.social.getProfile(profileId);
+     let socialComb = await this.q.os.social.profile.get(profileId);
      if(socialComb['key']['pubKey'] != profileId){
        this.pubKey = socialComb['key']['pubKey'];
      }
 
      console.log(this.pubKey);
 
-     this.isMyProfile = this.q.os.social.isMyProfileId(this.pubKey);
+     this.isMyProfile = this.q.os.social.profile.isMyProfileId(this.pubKey);
      console.log('Social: Is my profile:',this.isMyProfile);
 
      if(typeof socialComb['alias'] != 'undefined'){
@@ -230,11 +234,11 @@ export class ProfileComponent implements OnInit {
     this.requestLock = true;
     // this.isConnection = v;
     if(v){
-      let mpk = await this.q.os.social.getMyProfileId();
+      let mpk = await this.q.os.social.profile.getMyProfileId();
       console.log('qSocial: trying to add New Favorite Request...',this.pubKey);
-      if(!this.q.os.social.isRequestedFavorite(this.pubKey)){
+      if(!this.q.os.social.profile.isRequestedFavorite(this.pubKey)){
         let chName = await this.q.os.channel.create('qprivatedch-'+mpk+'-'+this.pubKey,"",true);
-        this.q.os.social.addFavoriteRequest(this.pubKey,chName);
+        this.q.os.social.profile.addFavoriteRequest(this.pubKey,chName);
         this.isRequestedConnection = v;
         this.requestLock = false;
       }
@@ -244,8 +248,8 @@ export class ProfileComponent implements OnInit {
       // this.q.os.channel.remove(this.q.os.social.getRequestedFavoriteChannel(this.pubKey));
       let channel = this.q.os.channel.find(this.pubKey);
       this.q.os.channel.remove(channel);
-      this.q.os.social.removeFavorite(this.pubKey);
-      this.q.os.social.removeFavoriteRequest(this.pubKey);
+      this.q.os.social.profile.removeFavorite(this.pubKey);
+      this.q.os.social.profile.removeFavoriteRequest(this.pubKey);
       this.isRequestedConnection = v;
       this.isConnection = v;
       this.requestLock = false;
@@ -256,7 +260,7 @@ export class ProfileComponent implements OnInit {
       return false;
     }
 
-    await this.q.os.social.togglePrivacy(this.pubKey);
+    await this.q.os.social.profile.togglePrivacy(this.pubKey);
 
     if(this.private){
       this.private = false;
@@ -270,7 +274,7 @@ export class ProfileComponent implements OnInit {
 
     async openProfile(pubKey){
       this.pubKey = pubKey;
-      this.q.os.social.select(this.pubKey);
+      this.q.os.social.profile.select(this.pubKey);
       this.searchResultsActive = false;
 
     }
@@ -374,7 +378,7 @@ export class ProfileComponent implements OnInit {
     async showVerificationQR(){
       if(this.isMyProfile){
 
-        let text = await this.q.os.social.getVerificationQR();
+        let text = await this.q.os.social.profile.getVerificationQR();
         console.log(text);
         this.generateQR(text);
         this.open(this.qrCode);
