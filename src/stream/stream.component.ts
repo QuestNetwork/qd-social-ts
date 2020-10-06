@@ -63,7 +63,7 @@ export class StreamComponent implements OnInit {
 
   async updateStream(){
     try{
-      this.postList = this.q.os.social.post.get();
+      this.postList = this.q.os.social.timeline.get();
     }catch(e){
 
     }
@@ -85,12 +85,12 @@ export class StreamComponent implements OnInit {
 
 
       async search(){
-        this.searchResults = await this.q.os.social.post.search(this.searchPhrase);
+        this.searchResults = await this.q.os.social.timeline.search(this.searchPhrase);
         if(this.searchResults.length > 0){
           this.postList = this.searchResults;
         }
         else{
-          this.postList = this.q.os.social.post.get();
+          this.postList = this.q.os.social.timeline.get();
         }
         this.cd.detectChanges();
       }

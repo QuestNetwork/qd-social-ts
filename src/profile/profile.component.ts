@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
   newPost = "";
   post(){
     let postObj = { content: this.newPost, socialPubKey: this.pubKey };
-    this.q.os.social.post.new(postObj);
+    this.q.os.social.timeline.post.new(postObj);
     this.newPost = "";
     setTimeout( () => {
       this.init();
@@ -126,12 +126,12 @@ export class ProfileComponent implements OnInit {
 
     this.select(this.pubKey);
     try{
-      this.postList = this.q.os.social.post.get(this.pubKey);
+      this.postList = this.q.os.social.timeline.post.get(this.pubKey);
     }catch(e){
       if(e == 'no pubkey selected'){
         let p = await this.q.os.social.getMyProfile();
         this.pubKey = p['key']['pubKey'];
-        this.postList = this.q.os.social.post.get(this.pubKey);
+        this.postList = this.q.os.social.timeline.get(this.pubKey);
       }
     }
 
@@ -147,7 +147,7 @@ export class ProfileComponent implements OnInit {
        this.isVerified = this.q.os.social.isVerified(this.pubKey);
        this.postList = [];
        setTimeout( () => {
-         this.postList = this.q.os.social.post.get(this.pubKey);
+         this.postList = this.q.os.social.timeline.get(this.pubKey);
          this.cd.detectChanges();
        },2000);
        this.init();
