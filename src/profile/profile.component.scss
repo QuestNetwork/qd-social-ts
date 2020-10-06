@@ -122,7 +122,6 @@ font-size: 16px !important;
 
 .profilePrivacy{
   position: absolute;
-      top: 70px;
       font-size: 19px;
       right: 22px;
       background: #eed864;
@@ -135,6 +134,7 @@ font-size: 16px !important;
       padding-right: 10px;
       padding-left: 10px;
       cursor: pointer;
+          top: 20px;
 }
 
 .profilePrivacy nb-icon{
