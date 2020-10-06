@@ -44,8 +44,8 @@ export class ProfileComponent implements OnInit {
   async post(){
     let postObj = { content: this.newPost, socialPubKey: this.pubKey };
     await this.q.os.social.timeline.post.new(postObj);
-    this.timeline = this.q.os.social.timeline.get(this.pubKey);
-    this.q.os.social.profile.setProfile(await this.q.os.social.profile.get(this.pubKey),this.pubKey);
+    this.timeline = this.q.os.social.timeline.get(postObj['socialPubKey']);
+    this.q.os.social.profile.set(this.pubKey,await this.q.os.social.profile.get(this.pubKey));
     this.newPost = "";
     setTimeout( () => {
       this.init();

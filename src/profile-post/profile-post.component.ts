@@ -61,7 +61,7 @@ export class ProfilePostComponent implements OnInit {
 
   postDelete(postObj){
     console.log('qD Social/Profile: Deleting...',postObj);
-    this.q.os.social.timeline.post.delete({id: postObj['id']}, postObj['socialPubKey']);
+    this.q.os.social.timeline.post.delete({sig: postObj['sig']}, postObj['socialPubKey']);
     this.postObj['timestamp'] = 0;
     this.postObj['dTimestamp'] = "";
 
