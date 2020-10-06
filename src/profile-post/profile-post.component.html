@@ -18,17 +18,19 @@
 
 <div class="postContent" *ngIf="postObj.timestamp>0">
 
-  <div *ngIf="postRows.length > 0 && (postRows.length > 1 || !postRows[0][0]['isEmoji'])"  class="text">
-    <div *ngFor="let row of postRows" style="">
 
-        <div *ngFor="let chunk of row" class="chunkContainer">
-            <div *ngIf="!chunk['isEmoji']" class="textChunk"  [innerHTML]="chunk['text'] | linky:{newWindow: true}"></div>
-            <ngx-emoji *ngIf="chunk['isEmoji']" class="emojiChunk" [emoji]="chunk['emojiColon']" set="apple" size="24"  style="display:inline-block;max-height: 24px;overflow: hidden;"></ngx-emoji>
-        </div>
+    <div *ngIf="postRows.length > 0 && postRows.length != 1 || postRows[0].length != 1 || (postRows.length > 1 || !postRows[0][0]['isEmoji'])"  class="text">
+      <div *ngFor="let row of postRows" style="">
+
+          <div *ngFor="let chunk of row" class="chunkContainer">
+              <div *ngIf="!chunk['isEmoji']" class="textChunk"  [innerHTML]="chunk['text'] | linky:{newWindow: true}"></div>
+              <ngx-emoji *ngIf="chunk['isEmoji']" class="emojiChunk" [emoji]="chunk['emojiColon']" set="apple" size="24"  style="display:inline-block;max-height: 24px;overflow: hidden;"></ngx-emoji>
+          </div>
 
 
+      </div>
     </div>
-  </div>
+
 
 
   <!-- is single emoji -->
