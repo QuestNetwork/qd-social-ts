@@ -40,11 +40,18 @@
 
 
 
-
-
-
-<div class="fundUs"  *ngIf="!searchResultsActive">
+<div class="fundUs"  *ngIf="!searchResultsActive && postList.length > 0">
 
   <a class="mat-elevation-z18" href="https://github.com/QuestNetwork/qd-social-ts#support-us" target="_blank"><button mat-stroked-button color="secondary" class="defaultSettingsButton noOutlineButton fundButton" >Fund This Module For Upgrades!</button></a>
+
+</div>
+
+
+<div class="fundUs"  *ngIf="!searchResultsActive && postList.length == 0" style="margin-top: 40vh;">
+
+  <a class="mat-elevation-z18"  target="_blank">
+    <button mat-stroked-button color="secondary" class="defaultSettingsButton noOutlineButton fundButton" >
+      Syncing...
+    </button></a>
 
 </div>
