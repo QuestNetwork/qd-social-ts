@@ -118,9 +118,6 @@
 
   <div class="pubKeyDisplay" *ngIf="!searchResultsActive" (click)="showVerificationQR()">{{ pubKey }}</div>
 
-  <button mat-stroked-button color="primary" class="defaultSettingsButton thickOutlineButton saveButton" (click)="save()">Save</button>
-  <button mat-stroked-button color="primary" class="defaultSettingsButton thickOutlineButton discardButton" (click)="edit(false)" >Discard</button>
-
 
 <div class="name">
   <div class="alias">
@@ -135,6 +132,9 @@
   <textarea matInput name='about' [(ngModel)]='newAbout'></textarea>
 </div>
 
+
+  <button mat-stroked-button color="primary" class="defaultSettingsButton thickOutlineButton saveButton" (click)="save()">Save</button>
+  <button mat-stroked-button color="primary" class="defaultSettingsButton thickOutlineButton discardButton" (click)="edit(false)" >Discard</button>
 
 
 </div>
