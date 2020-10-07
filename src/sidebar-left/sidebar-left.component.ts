@@ -12,4 +12,6 @@ export class SocialSidebarLeftComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectedStream = 'Network';
+
 }

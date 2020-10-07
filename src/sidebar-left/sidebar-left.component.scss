@@ -2,3 +2,42 @@
   overflow: hidden !important;
     overflow-y: auto !important;
 }
+
+.algorithmsHeader{
+  margin-top: 70px;
+    color: #4982e7;
+    margin-bottom: 10px;
+    font-family: Ubuntu;
+}
+
+
+.treeNodeContainerSingle{
+
+  border-radius: 5px;
+  padding: 6px;
+  padding-right: 10px;
+  padding-left: 15px;
+  margin: 0px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #4781e9fc !important;
+  font-size: 16px;
+  font-family: Ubuntu;
+  }
+
+
+.newAlgoButton{
+  margin-top: 10px;
+background: transparent;
+border: 0;
+color: #256dff;
+font-family: Ubuntu;
+font-size: 16px;
+padding:10px;
+}
+
+.newAlgoIcon{
+  position: relative;
+    font-size: 16px;
+}
