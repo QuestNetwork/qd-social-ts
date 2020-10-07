@@ -232,7 +232,7 @@ input { caret-color: white; }
 .search{
 
     // background: #382b53;
-
+    z-index:23;
 
 
     padding: 20px;
@@ -317,6 +317,7 @@ box-shadow: none !important;
   right:0;
   bottom: 27px;
   top: 49px;
+  z-index:22;
 }
 
 
