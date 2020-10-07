@@ -43,6 +43,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { StreamComponent } from './stream/stream.component';
 
 import { ProfilePostComponent } from './profile-post/profile-post.component';
+import { SocialSidebarLeftComponent } from './sidebar-left/sidebar-left.component';
 
 import {MatIconModule} from '@angular/material/icon';
 
@@ -68,10 +69,11 @@ import { LinkyModule } from 'ngx-linky';
     FsIconComponent,
     ProfileComponent,
     ProfilePostComponent,
-    StreamComponent
+    StreamComponent,
+    SocialSidebarLeftComponent
   ],
   imports: [
-    
+
   NbSidebarModule,
     CdkTableModule,
     CdkTreeModule,

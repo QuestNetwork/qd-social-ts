@@ -1,4 +1,6 @@
-
+.floatButton{
+  left: 131px;position: absolute;
+}
 
 
 //
@@ -8,7 +10,14 @@
 //
 // //
 
-
+.toggleSideBarLeft{
+  left: 15px;
+  position: absolute;
+  top: 32px;
+  color: #d3c4c4;
+  cursor: pointer;
+  z-index:5;
+}
 
 
 .centerButtonWrapper{
@@ -72,11 +81,11 @@ nb-layout-column.profileLayoutColumn{
   background: linear-gradient(-10deg, #1d1a38, #3a0e0e);
   overflow:hidden;
    overflow-y: auto;
-    position: fixed;
-      top: 49px;
-    bottom: 28px;
-    left: 0;
-    right: 0;
+   position: absolute;
+     top: 0;
+     bottom: 28px;
+     left: 0;
+     right: 0;
 }
 
 nb-layout-column::-webkit-scrollbar{
@@ -97,7 +106,7 @@ nb-layout-column::-webkit-scrollbar-thumb {
 .toggleStreams{
   position: absolute;
       font-size: 19px;
-      left: 22px;
+      left: 52px;
       background: #eed864;
       padding: 3px;
       font-weight: bold;
@@ -108,7 +117,7 @@ nb-layout-column::-webkit-scrollbar-thumb {
       padding-right: 10px;
       padding-left: 10px;
       cursor: pointer;
-top: 20px;
+      top: 22px;
 }
 
 .toggleStreamsActive{

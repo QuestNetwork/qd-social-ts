@@ -1,16 +1,27 @@
 <nb-layout>
-  <nb-sidebar  state="expanded"  class="streamsSidebarColumn" *ngIf="streamsActive">
-        sidebar
+
+  <nb-sidebar state="expanded" left tag="left" [fixed]="sideBarFixed.left"  class="leftSideBar mat-elevation-z6" collapsed="true">
+    <button mat-stroked-button color="primary" (click)="lockSideBar('left', false)" class="defaultSettingsButton thinOutlineButton floatButton" *ngIf="sideBarFixed.left" >Lock Panel</button>
+    <button mat-stroked-button color="primary" (click)="lockSideBar('left', true)" class="defaultSettingsButton thinOutlineButton floatButton" *ngIf="!sideBarFixed.left" >Float Panel</button>
+    <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton thinOutlineButton ">Hide Panel</button>
+
+    <div class="toggleStreamsActive mat-elevatation-z6" (click)="goToMyProfile()"><nb-icon icon="person-outline"></nb-icon> My Profile</div>
+
+    <social-sidebar-left></social-sidebar-left>
   </nb-sidebar>
+
   <nb-layout-column class="streamsBrowseColumn"  *ngIf="streamsActive">
+    <div class="toggleSideBarRight toggleSideBarLeft" class="toggleSideBarLeft" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
+      <nb-icon icon="list-outline" ></nb-icon>
+    </div>
     <app-social-stream></app-social-stream>
   </nb-layout-column>
-  <nb-layout-column class="profileLayoutColumn"  *ngIf="!streamsActive">
+  <nb-layout-column class="profileLayoutColumn {{sideBarLockedClass}}"  *ngIf="!streamsActive">
+    <div class="toggleSideBarRight toggleSideBarLeft" class="toggleSideBarLeft" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
+      <nb-icon icon="list-outline" ></nb-icon>
+    </div>
     <div class="toggleStreams mat-elevatation-z14" *ngIf="!streamsActive"  (click)="toggleStreams()"><nb-icon icon="activity-outline"></nb-icon> Streams</div>
 
         <app-social-profile [pubKey]="selectedProfile"></app-social-profile>
   </nb-layout-column>
 </nb-layout>
-
-
-  <div class="toggleStreamsActive mat-elevatation-z6" *ngIf="streamsActive" (click)="toggleStreams()"><nb-icon icon="person-outline"></nb-icon> My Profile</div>
