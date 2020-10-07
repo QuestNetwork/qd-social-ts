@@ -545,7 +545,20 @@ margin-right:5vw;
 }
 
 .emojiPicker{
-  right: 60px;
+  right: 60px;position: absolute;
+    font-size: 19px;
+    right: 22px;
+    background: #e7d564ad;
+    padding: 3px;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #2769f7c7;
+    font-family: Ubuntu;
+    line-height: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+    top: 20px;
 }
 
 @media only screen and (min-width: 420px) and  (max-width: 480px){
@@ -559,4 +572,21 @@ margin-right:5vw;
   .emojiPicker{
     right: 0px
   }
+}
+
+.profilePrivacy.private{
+  position: absolute;
+    font-size: 19px;
+    right: 22px;
+    background: #e7d564ad;
+    padding: 3px;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #2769f7c7;
+    font-family: Ubuntu;
+    line-height: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+    top: 20px;
 }

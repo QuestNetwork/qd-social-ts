@@ -52,7 +52,7 @@
 
 <div class="poster" *ngIf="!searchResultsActive">
 
-  <div class="profilePrivacy mat-elevatation-z6" *ngIf="private" (click)="togglePrivacy()"><nb-icon icon="lock-outline"></nb-icon> Private</div>
+  <div class="profilePrivacy private mat-elevatation-z6" *ngIf="private" (click)="togglePrivacy()" ><nb-icon icon="lock-outline"></nb-icon> Private</div>
   <div class="profilePrivacy mat-elevatation-z14" *ngIf="!private"  (click)="togglePrivacy()"><nb-icon icon="globe-outline"></nb-icon> Public</div>
 
 
