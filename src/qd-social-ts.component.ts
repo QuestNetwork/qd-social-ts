@@ -132,7 +132,7 @@ sideBarVisibleSub;
 
     toggleSideBar(side) {
       this.sideBarVisible = this.q.os.bee.config.getSideBarVisible();
-      if( this.sideBarVisible[side] == true ){
+      if( this.sideBarVisible[side] ){
         this.sideBarVisible[side]  = false;
         this.sideBarLockedClass = "";
       }
