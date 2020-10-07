@@ -73,19 +73,20 @@ Check out the documentation.
 **0.9.4**
 - Pair by QR Code
 - Search For Social Profiles Received From All Connected Modules
-
+- Native Posts
+- Profile & Timeline Search
 
 ## Roadmap
 
 **0.9.4**
-- Native Posts
-- Share Private Profiles
 - Report Posts & Users
 - Ban Users
 
 **0.9.5**
+- Share Private Profiles 
+- Custom Timeline Search
 - Native Followers
-- Comments On Posts
+- Comments/Replies On Posts
 - Connect To Twitter
 
 **0.9.6**
