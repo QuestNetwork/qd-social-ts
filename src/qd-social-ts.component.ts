@@ -93,6 +93,19 @@ sideBarVisibleSub;
         this.streamsActive = true;
       });
 
+
+      this.sidebarService.onCollapse().subscribe(() => {
+        if(this.sideBarFixed['left']){
+          this.sideBarVisible['left'] = false;
+          this.sideBarLockedClass = "";
+          this.sidebarService.collapse('left');
+        }
+        else{
+          this.sideBarLockedClass = this.sideBarLockedClassA;
+        }
+      });
+
+
     }
 
 
@@ -140,14 +153,7 @@ sideBarVisibleSub;
   streamsActive = false;
   goToMyProfile(){
     this.q.os.social.profile.select('NoProfileSelected');
-    if(this.sideBarFixed['left']){
-      this.sideBarVisible['left'] = false;
-      this.sideBarLockedClass = "";
-      this.sidebarService.collapse('left');
-    }
-    else{
-      this.sideBarLockedClass = this.sideBarLockedClassA;
-    }
+
   }
   toggleStreams(){
     if(!this.streamsActive){
