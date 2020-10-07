@@ -89,7 +89,14 @@ sideBarVisibleSub;
       },100);
 
 
+      this.q.os.social.algo.onSelect().subscribe( (name) => {
+        this.streamsActive = true;
+      });
+
     }
+
+
+
 
 
   sideBarFixed = { right: true, left: true };

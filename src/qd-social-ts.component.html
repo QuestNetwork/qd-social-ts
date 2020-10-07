@@ -20,8 +20,11 @@
     <div class="toggleSideBarRight toggleSideBarLeft" class="toggleSideBarLeft" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
       <nb-icon icon="list-outline" ></nb-icon>
     </div>
-    <div class="toggleStreams mat-elevatation-z14" *ngIf="!streamsActive"  (click)="toggleStreams()"><nb-icon icon="activity-outline"></nb-icon> Stream</div>
 
-        <app-social-profile [pubKey]="selectedProfile"></app-social-profile>
+    <div class="toggleStreams mat-elevatation-z14" *ngIf="!streamsActive && !sideBarVisible['left']"  (click)="toggleStreams()">
+      <nb-icon icon="activity-outline"></nb-icon> Network
+    </div>
+
+    <app-social-profile [pubKey]="selectedProfile"></app-social-profile>
   </nb-layout-column>
 </nb-layout>
