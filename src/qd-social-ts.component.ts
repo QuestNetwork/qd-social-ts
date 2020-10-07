@@ -95,15 +95,16 @@ sideBarVisibleSub;
 
 
       this.sidebarService.onCollapse().subscribe(() => {
+        console.log('collapsed')
         if(this.sideBarFixed['left']){
           this.sideBarVisible['left'] = false;
           this.sideBarLockedClass = "";
-          this.sidebarService.collapse('left');
         }
         else{
           this.sideBarLockedClass = this.sideBarLockedClassA;
         }
       });
+
 
 
     }
@@ -153,13 +154,30 @@ sideBarVisibleSub;
   streamsActive = false;
   goToMyProfile(){
     this.q.os.social.profile.select('NoProfileSelected');
-
+    if(this.sideBarFixed['left']){
+      this.sideBarVisible['left'] = false;
+      this.sideBarLockedClass = "";
+      this.sidebarService.collapse('left');
+    }
+    else{
+      this.sideBarLockedClass = this.sideBarLockedClassA;
+    }
   }
   toggleStreams(){
     if(!this.streamsActive){
       this.q.os.social.profile.select('NoProfileSelected');
     }
+
     this.streamsActive = !this.streamsActive;
+
+    if(this.sideBarFixed['left']){
+      this.sideBarVisible['left'] = false;
+      this.sideBarLockedClass = "";
+      this.sidebarService.collapse('left');
+    }
+    else{
+      this.sideBarLockedClass = this.sideBarLockedClassA;
+    }
   }
 
 

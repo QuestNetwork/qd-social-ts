@@ -15,8 +15,11 @@ export class SocialSidebarLeftComponent implements OnInit {
     if(this.q.os.bee.config.getSideBarFixed()['left']){
       this.sidebarService.collapse('left');
     }
+    
     this.q.os.social.algo.select(name);
     this.selectedStream = name;
+
+
   }
 
 
