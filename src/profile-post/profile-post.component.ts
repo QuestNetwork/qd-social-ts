@@ -42,7 +42,19 @@ export class ProfilePostComponent implements OnInit {
     if(typeof this.postObj['content'] != 'undefined'){
       this.postRows = this.getArray(this.postObj['content']);
       this.postObj['dTimestamp'] = new Date(this.postObj['timestamp']).toString();
+
+      console.log('qD Social ProfilePost: Getting profile...',this.postObj['socialPubKey'])
+      try{
       this.profile = await this.q.os.social.profile.get(this.postObj['socialPubKey']);
+      if(typeof this.profile['alias'] == 'undefined'){
+        this.profile['alias'] = "Anonymous";
+      }
+      if(typeof this.profile['timestamp'] == 'undefined'){
+        this.profile['timestamp'] = 0;
+      }
+
+    }catch(e){ this.profile = { alias: 'Anonymous', timestamp: 0 }; }
+
       this.cd.detectChanges();
     }
   }
