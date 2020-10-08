@@ -131,12 +131,12 @@ export class ProfileComponent implements OnInit {
 
     this.select(this.pubKey);
     try{
-      this.timeline = this.q.os.social.timeline.get(this.pubKey);
+      this.timeline = await this.q.os.social.timeline.get(this.pubKey);
     }catch(e){
       if(e == 'no pubkey selected'){
         let p = await this.q.os.social.profile.getMyProfile();
         this.pubKey = p['key']['pubKey'];
-        this.timeline = this.q.os.social.timeline.get(this.pubKey);
+        this.timeline = await this.q.os.social.timeline.get(this.pubKey);
       }
     }
 
@@ -149,8 +149,8 @@ export class ProfileComponent implements OnInit {
        this.pubKey = pK;
 
        this.timeline = [];
-       setTimeout( () => {
-         this.timeline = this.q.os.social.timeline.get(this.pubKey);
+       setTimeout( async () => {
+         this.timeline = await this.q.os.social.timeline.get(this.pubKey);
          this.cd.detectChanges();
        },2000);
 

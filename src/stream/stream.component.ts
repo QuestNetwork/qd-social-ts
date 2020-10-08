@@ -63,7 +63,7 @@ export class StreamComponent implements OnInit {
 
   async updateStream(){
     try{
-      this.postList = this.q.os.social.timeline.get();
+      this.postList = await this.q.os.social.timeline.get();
     }catch(e){
 
     }
