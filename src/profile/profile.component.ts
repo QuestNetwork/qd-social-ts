@@ -44,13 +44,7 @@ export class ProfileComponent implements OnInit {
   async post(){
     let postObj = { content: this.newPost, socialPubKey: this.pubKey };
     await this.q.os.social.timeline.post.new(postObj);
-    this.timeline = this.q.os.social.timeline.get(postObj['socialPubKey']);
-    let p = await this.q.os.social.profile.get(this.pubKey);
-    this.q.os.social.profile.set(this.pubKey,p);
 
-    let mp =  await this.q.os.social.profile.getMyProfile();
-    let unsafeSocialObj = { timeline: this.timeline, alias: p['alias'], fullName: p['fullName'], about: p['about'], private: p['private'], key: { pubKey: mp['key']['pubKey'], privKey: mp['key']['privKey'] }  };
-    await this.q.os.social.profile.share(unsafeSocialObj)
 
     this.newPost = "";
     setTimeout( () => {
