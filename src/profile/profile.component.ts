@@ -382,7 +382,7 @@ export class ProfileComponent implements OnInit {
         console.log(text);
         this.generateQR(text);
         this.open(this.qrCode);
-        this.q.os.social.startVerificationWorker();
+        this.q.os.social.profile.startVerificationWorker();
       }
     }
 
