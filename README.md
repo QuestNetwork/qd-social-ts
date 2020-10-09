@@ -79,6 +79,7 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 ## Roadmap
 
 **0.9.4**
+- Comments/Replies On Posts
 - Report Posts & Users
 - Ban Users
 
@@ -86,7 +87,6 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Share Private Profiles 
 - Custom Timeline Search
 - Native Followers
-- Comments/Replies On Posts
 - Connect To Twitter
 
 **0.9.6**
