@@ -79,6 +79,7 @@ Check out the documentation.
 ## Roadmap
 
 **0.9.4**
+- Comments/Replies On Posts
 - Report Posts & Users
 - Ban Users
 
@@ -86,7 +87,6 @@ Check out the documentation.
 - Share Private Profiles 
 - Custom Timeline Search
 - Native Followers
-- Comments/Replies On Posts
 - Connect To Twitter
 
 **0.9.6**
