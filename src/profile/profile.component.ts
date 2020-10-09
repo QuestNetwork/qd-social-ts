@@ -42,6 +42,10 @@ export class ProfileComponent implements OnInit {
   timeline = [];
 
   async post(){
+    if(typeof this.pubKey == undefined || this.pubKey == 'NoProfileSelected'){
+      throw('post failed: this.pubKey');
+    }
+
     let postObj = { content: this.newPost, socialPubKey: this.pubKey };
     await this.q.os.social.timeline.post.new(postObj);
 
