@@ -193,8 +193,18 @@ export class ProfileComponent implements OnInit {
     this.editDetails = value;
   }
 
-  save(){
+  async save(){
+    let timeline = [];
+    try{
+       timeline = await this.q.os.social.timeline.getReferenceTree(this.pubKey);
+    }catch(e){}
+
     let socialComb = { private: this.private, alias: this.newAlias, fullName: this.newFullName, about: this.newAbout};
+
+    if(timeline.length > 0){
+       socialComb['timeline'] = timeline;
+     }
+
     this.q.os.social.profile.set(this.pubKey,socialComb);
     this.q.os.social.profile.select(this.pubKey);
     this.edit(false);
