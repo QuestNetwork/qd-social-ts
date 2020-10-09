@@ -43,7 +43,14 @@ export class ProfileComponent implements OnInit {
 
   async post(){
     if(typeof this.pubKey == undefined || this.pubKey == 'NoProfileSelected'){
-      throw('post failed: this.pubKey');
+      throw('no key set')
+    }
+
+    let mp = await this.q.os.social.profile.get(this.pubKey);
+    console.log(mp);
+    if(typeof mp['alias'] == 'undefined'){
+      alert('Please set your Alias first!');
+      throw('no name set')
     }
 
     let postObj = { content: this.newPost, socialPubKey: this.pubKey };
