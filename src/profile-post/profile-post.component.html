@@ -1,3 +1,6 @@
+
+
+
 <div class="postDelete" (click)="postDelete(postObj)" *ngIf="isMyProfile && postObj.timestamp>0">
   <nb-icon icon="trash-2-outline" ></nb-icon>
 </div>
@@ -38,6 +41,31 @@
   <div *ngIf="postRows.length == 1 && postRows[0].length == 1 && postRows[0][0]['isEmoji']">
     <ngx-emoji emoji="{{ postRows[0][0]['emojiColon'] }}" set="apple" size="64" class="" ></ngx-emoji>
   </div>
+
+
+  <button nbButton (click)="reply(postObj['qHash'])" class="replyButton"><nb-icon icon="message-square-outline" style="font-size: 26px;"></nb-icon></button>
+  <button nbButton (click)="selectPost(postObj['qHash'])" class="replyCount" *ngIf="replyCount > 0">{{ replyCount }}</button>
+
+
+  <div class="newPostContainer mat-elevation-z8" *ngIf="selectedNode == postObj['qHash']">
+
+    <textarea matInput name='newPost' [(ngModel)]="reply[postObj.qHash]" placeholder="Choose your words wisely"></textarea>
+
+
+      <ngx-emoji [nbPopover]="emojiPickerRef" emoji="grinning" set="apple" size="24" class="emojiPickerTrigger"></ngx-emoji>
+
+      <ng-template #emojiPickerRef>
+        <emoji-mart title="Pick your emoji…" (emojiClick)="addEmoji($event,postObj['qHash'])" emoji="blush" class="emojiPicker" darkMode="true"></emoji-mart>
+      </ng-template>
+
+
+    <button mat-stroked-button color="primary" class="defaultSettingsButton postButton" (click)="post(postObj['qHash'])">Reply</button>
+
+    <button mat-stroked-button color="warning" class="defaultSettingsButton postButton replyCancelButton" style="float:left" (click)="cancel()">Cancel</button>
+
+
+  </div>
+
 
 </div>
 

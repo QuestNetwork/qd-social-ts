@@ -8,21 +8,32 @@ import { NbSidebarService } from '@nebular/theme';
   styleUrls: ['./qd-social-ts.component.scss']
 })
 export class QDSocialComponent {
-  constructor(private sidebarService: NbSidebarService,private q: QuestOSService){}
+  constructor(private cd: ChangeDetectorRef, private sidebarService: NbSidebarService,private q: QuestOSService){}
 
   sideBarFixedSub;
 sideBarVisibleSub;
+postActive = false
   async ngOnInit() {
 
     let selectedProfile = this.q.os.social.profile.getSelected();
     if(typeof selectedProfile != 'undefined'){
       this.selectedProfile = selectedProfile;
+      this.postActive = false;
+      this.streamsActive = false;
     }
     this.q.os.social.profile.onSelect().subscribe( (selected) => {
       this.selectedProfile = selected;
       this.streamsActive = false;
+      this.postActive = false;
     })
 
+    this.q.os.social.timeline.post.onSelect().subscribe( async(selected) => {
+      console.log('QD Social: Selecting Post..',selected);
+      this.postActive = true;
+      this.streamsActive = false;
+      this.selectedPost = selected;
+      this.cd.detectChanges();
+    })
 
 
       this.sideBarFixed = this.q.os.bee.config.getSideBarFixed();
@@ -89,8 +100,9 @@ sideBarVisibleSub;
       },100);
 
 
-      this.q.os.social.algo.onSelect().subscribe( (name) => {
-        this.streamsActive = true;
+      this.q.os.social.algo.onSelect().subscribe( async(name) => {
+          this.streamsActive = true;
+          this.postActive = false;
       });
 
 
@@ -151,6 +163,8 @@ sideBarVisibleSub;
   sideBarLockedClassA = "sideBarLocked";
 
   selectedProfile = "NoProfileSelected";
+  selectedPost = "NoPostSelected";
+
   streamsActive = false;
   goToMyProfile(){
     this.q.os.social.profile.select('NoProfileSelected');
@@ -163,12 +177,12 @@ sideBarVisibleSub;
       this.sideBarLockedClass = this.sideBarLockedClassA;
     }
   }
-  toggleStreams(){
-    if(!this.streamsActive){
-      this.q.os.social.profile.select('NoProfileSelected');
-    }
+  async showStream(){
 
-    this.streamsActive = !this.streamsActive;
+    this.streamsActive = false;
+    await this.q.os.utilities.delay(500);
+    this.streamsActive = true;
+
 
     if(this.sideBarFixed['left']){
       this.sideBarVisible['left'] = false;

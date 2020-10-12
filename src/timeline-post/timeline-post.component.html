@@ -62,21 +62,38 @@
   </div>
 
 
+  <div class="repliesHeader" *ngIf="replies != undefined && replies.length > 0">
 
-<div class="fundUs" (click)="syncMore()" *ngIf="!searchResultsActive && groupedTimeline.length > 0" >
+      <nb-icon icon="message-square-outline" class="repliesIcon"></nb-icon>
 
-<button mat-stroked-button color="secondary" class="mat-elevation-z18 defaultSettingsButton noOutlineButton fundButton" >
-    Sync More
-  </button>
+    </div>
+
+  <div *ngFor="let post of replies; let i=index" class='postOuterWrapper replyOuterWrapper'>
+        <div class="postWrapper" *ngIf="post['content'].length > 0">
+          <app-social-profile-post  [postObj]="post" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8 post singleLevel" >
+          </app-social-profile-post>
+        </div>
+
+    </div>
 
 
-</div>
 
-<div class="fundUs"  *ngIf="!searchResultsActive && groupedTimeline.length == 0" style="margin-top: 40vh;">
+<!--
+<div class="fundUs"  *ngIf="syncingStatus && !searchResultsActive && groupedTimeline != undefined && replies.length > 3">
+
+  <a class="mat-elevation-z18" href="https://github.com/QuestNetwork/qd-social-ts#support-us" target="_blank"><button mat-stroked-button color="secondary" class="defaultSettingsButton noOutlineButton fundButton" >Fund This Module For Upgrades!</button></a>
+
+</div> -->
+
+<!--
+<div *ngIf="groupedTimeline  == undefined || groupedTimeline.length == 0 || !syncStatus" style="margin-top: 40vh;">
+  &nbsp;
+  </div>
+<div class="fundUs syncingButton {{syncingStatus}}"  *ngIf="!syncingStatus && replies.length < 1" style="">
 
   <a class="mat-elevation-z18"  target="_blank">
     <button mat-stroked-button color="secondary" class="defaultSettingsButton noOutlineButton fundButton" >
       Syncing...
     </button></a>
 
-</div>
+</div> -->

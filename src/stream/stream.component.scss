@@ -555,6 +555,91 @@ width:100vw;
   }
 }
 
-app-social-profile-post:nth-child(2){
+
+
+.newPostContainer,.postContainer{
+  background: #1e2437c9;
+  margin-left: 5vw;
+  border-radius: 10px;
+  padding: 40px;
+  opacity: 0.9;
+  font-family: Ubuntu;
+  font-size: 22px;
+  color: #4680e9;
+  margin-right: 5vw;
+  text-align: right;
+  margin-bottom: 5vh;
+      border: 1px solid #ff000042;
+          display: block;
+}
+.postContainer{
+  text-align:left;
+  border: 1px solid #2d63eca6;
+  border-radius:0px;
+    margin-top: -56px;
+}
+
+.postContainer.level-0{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-top: 0px;
+}
+
+.postOuterWrapper:last-child .postContainer{
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+      margin-top: -56px;
+}
+
+
+
+
+.postContainer.reply{
+  margin-top: -17px;
+  margin-bottom: 0;
+  border-left: 8px solid;
+  border-right: 8px solid;
+  border-top: 1px solid;
+  position: relative;
+  margin-left: 6vw;
+  margin-right: 6vw;
+  top: 22px;
+}
+
+
+.postContainer.singleLevel{
+  margin-top: 40px !important;
+margin-bottom: 20px;
+border-radius: 10px !important;
+
+}
+
+
+.postContainer.singleLevel.replyPost{
+    margin-top: 0px !important;
+    border-radius: 10px !important;
+
+}
+
+.replyLoop > div > .postContainer{
+  border-radius:0px;
+  border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.replyLoop:first-child > div > .postContainer{
+  border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top:30px;
+
+}
+
+.replyLoop:last-child > div > .postContainer{
+    border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+}
+
+
+.combinedTimeline:nth-child(2){
   margin-top: 120px;
 }

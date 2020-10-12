@@ -3,6 +3,7 @@ import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service
 import {
   ChangeDetectionStrategy,
   OnInit,
+  OnChanges,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -32,7 +33,9 @@ import swarmJson from '../swarm.json';
 @Component({
   selector: 'app-social-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
+
+
 })
 export class ProfileComponent implements OnInit {
 
@@ -42,6 +45,7 @@ export class ProfileComponent implements OnInit {
   timeline = [];
 
   async post(){
+    this.q.os.ui.showSnack('Syncing Timeline','Please Wait');
     if(typeof this.pubKey == undefined || this.pubKey == 'NoProfileSelected'){
       throw('no key set')
     }
@@ -59,7 +63,7 @@ export class ProfileComponent implements OnInit {
 
     this.newPost = "";
     setTimeout( () => {
-      this.init();
+      this.ngOnChanges();
     },2000);
   }
 
@@ -132,7 +136,10 @@ export class ProfileComponent implements OnInit {
     }
 
   noProfileSelected = "NoProfileSelected";
-  async init(){
+
+  syncSub = {};
+  async loadProfile(){
+
     console.log("Profile: Initializing...");
     this.isConnection = this.q.os.social.profile.isFavorite(this.pubKey);
     this.isRequestedConnection = this.q.os.social.profile.isRequestedFavorite(this.pubKey);
@@ -140,38 +147,143 @@ export class ProfileComponent implements OnInit {
     //load channel
     console.log("Profile: Bootstrapping Profile...");
 
-    this.select(this.pubKey);
     try{
-      this.timeline = await this.q.os.social.timeline.get(this.pubKey);
-    }catch(e){
-      if(e == 'no pubkey selected'){
-        let p = await this.q.os.social.profile.getMyProfile();
-        this.pubKey = p['key']['pubKey'];
-        this.timeline = await this.q.os.social.timeline.get(this.pubKey);
+     let socialComb = await this.q.os.social.profile.get(this.pubKey);
+     if(socialComb['key']['pubKey'] != this.pubKey){
+       this.pubKey = socialComb['key']['pubKey'];
+     }
+
+     this.isMyProfile = this.q.os.social.profile.isMyProfileId(this.pubKey);
+     console.log('Social: Is my profile:',this.isMyProfile);
+
+     if(typeof socialComb['alias'] != 'undefined'){
+       this.alias = socialComb['alias'];
+     }
+     if(typeof socialComb['fullName'] != 'undefined'){
+       this.fullName = socialComb['fullName'];
+     }
+     if(typeof socialComb['about'] != 'undefined'){
+       this.about = socialComb['about'];
+     }
+     if(typeof socialComb['private'] != 'undefined'){
+       this.private = socialComb['private'];
+     }
+
+    }catch(e){console.log(e)}
+
+  }
+
+  synced = [];
+  @Input() replyTree = {};
+  @Input() groupedTimeline = [];
+syncStatus = false;
+
+  syncMore(pubKey){
+    this.q.os.ui.showSnack('Syncing Timeline...','Please Wait');
+    let limit = this.q.os.social.timeline.agent.getLimit(pubKey);
+    limit += 5;
+    this.q.os.social.timeline.agent.sync(pubKey, {limit: limit});
+  }
+
+  updateListen(){
+
+
+
+    this.groupedTimeline = [];
+      this.replyTree = {};
+
+      this.unsubscribeAll();
+
+
+    // this.q.os.ui.showSnack('Syncing Timeline...','Please Wait');
+    if(typeof this.syncSub[this.pubKey] == 'undefined'){
+      this.syncSub[this.pubKey] = this.q.os.social.timeline.agent.onSync(this.pubKey).subscribe( async(timeline) => {
+        this.q.os.ui.showSnack('Syncing Timeline...','Please Wait');
+        this.syncStatus = false;
+
+      if(typeof timeline != 'undefined' && typeof timeline['groupedTimeline'] != 'undefined'){
+
+         this.replyTree = {};
+         this.groupedTimeline = [];
+        this.cd.detectChanges();
+
+        this.replyTree = JSON.parse(JSON.stringify(timeline['replyTree']));
+        this.groupedTimeline = JSON.parse(JSON.stringify(timeline['groupedTimeline']));
+        // console.log(this.groupedTimeline);
+        this.q.os.ui.showSnack('Timeline Synced!','Yeah',{duration: 500});
+        this.cd.detectChanges();
+
+        setTimeout( () => {
+          //update timeline
+          this.cd.detectChanges();
+
+        },2000);
+
+        setTimeout( () => {
+          //update timeline
+          this.cd.detectChanges();
+
+        },5000);
+
+        setTimeout( () => {
+          //update timeline
+          this.syncStatus = true;
+          this.cd.detectChanges();
+
+        },10000);
       }
+      else{
+        this.syncStatus = true;
+
+      }
+    });
+  }
+  }
+
+  async ngOnChanges(){
+
+    this.q.os.ui.showSnack('Syncing Timeline...','Please Wait');
+    this.updateListen();
+    try{
+      await this.q.os.social.timeline.agent.sync(this.pubKey);
+    }catch(e){
+
+          let mp = await this.q.os.social.profile.getMyProfile();
+          // if(typeof mp['alias'] == 'undefined'){
+          //   alert('Please set your Alias first!');
+          //   throw('no name set')
+          // }
+
+          this.unsubscribeAll();
+          this.q.os.social.profile.select(mp['key']['pubKey']);
     }
 
-    console.log('qD Social: Getting Timeline...',  this.timeline );
-    this.cd.detectChanges();
-  }
 
-   ngOnInit(){
-     this.q.os.social.profile.onSelect().subscribe( (pK) => {
-       this.pubKey = pK;
-
-       this.timeline = [];
-       setTimeout( async () => {
-         this.timeline = await this.q.os.social.timeline.get(this.pubKey);
-         this.cd.detectChanges();
-       },2000);
-
-       this.init();
-
-
-     });
-     this.init();
+    try{
+      await this.loadProfile();
+    }catch(e){}
 
   }
+
+
+
+
+  unsubscribeAll(){
+    let keys = Object.keys(this.syncSub);
+    for(let key of keys){
+      try{
+      this.syncSub[key].unsubscribe();
+      delete this.syncSub[this.pubKey];
+      }
+      catch(e){}
+    }
+  }
+
+  ngOnDestroy(){
+    this.unsubscribeAll();
+  }
+
+  ngOnInit(){}
 
 
   alias = "Anonymous";
@@ -208,41 +320,10 @@ export class ProfileComponent implements OnInit {
     this.q.os.social.profile.set(this.pubKey,socialComb);
     this.q.os.social.profile.select(this.pubKey);
     this.edit(false);
+    this.ngOnChanges();
   }
 
   isMyProfile = false;
-  async select(profileId){
-    console.log("Selecting profile...",profileId)
-    // console.log(this.q.os.social.getProfile(profileId));
-
-    try{
-     let socialComb = await this.q.os.social.profile.get(profileId);
-     if(socialComb['key']['pubKey'] != profileId){
-       this.pubKey = socialComb['key']['pubKey'];
-     }
-
-     console.log(this.pubKey);
-
-     this.isMyProfile = this.q.os.social.profile.isMyProfileId(this.pubKey);
-     console.log('Social: Is my profile:',this.isMyProfile);
-
-     if(typeof socialComb['alias'] != 'undefined'){
-       this.alias = socialComb['alias'];
-     }
-     if(typeof socialComb['fullName'] != 'undefined'){
-       this.fullName = socialComb['fullName'];
-     }
-     if(typeof socialComb['about'] != 'undefined'){
-       this.about = socialComb['about'];
-     }
-     if(typeof socialComb['private'] != 'undefined'){
-       this.private = socialComb['private'];
-     }
-
-     this.cd.detectChanges();
-
-    }catch(e){console.log(e)}
-  }
 
   private = true;
   isConnection = false;

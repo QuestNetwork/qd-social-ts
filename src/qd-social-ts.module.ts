@@ -41,6 +41,7 @@ import { MatMenuComponent } from './mat-menu/mat-menu.component';
 
 import { ProfileComponent } from './profile/profile.component';
 import { StreamComponent } from './stream/stream.component';
+import { TimelinePostComponent } from './timeline-post/timeline-post.component';
 
 import { ProfilePostComponent } from './profile-post/profile-post.component';
 import { SocialSidebarLeftComponent } from './sidebar-left/sidebar-left.component';
@@ -70,7 +71,8 @@ import { LinkyModule } from 'ngx-linky';
     ProfileComponent,
     ProfilePostComponent,
     StreamComponent,
-    SocialSidebarLeftComponent
+    SocialSidebarLeftComponent,
+    TimelinePostComponent
   ],
   imports: [
 
@@ -125,6 +127,7 @@ import { LinkyModule } from 'ngx-linky';
     MatMenuModule,
     ],
   providers: [
+
   NbDialogService
   ],
   bootstrap: [QDSocialComponent]

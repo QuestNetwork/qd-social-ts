@@ -3,6 +3,7 @@ import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service
 import {
   ChangeDetectionStrategy,
   OnInit,
+  OnChanges,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -31,19 +32,82 @@ import { NbComponentStatus } from '@nebular/theme';
   styleUrls: ['./profile-post.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProfilePostComponent implements OnInit {
+export class ProfilePostComponent implements OnInit,OnChanges {
   @Input() postObj = { id:"123",timestamp:0,content:"Demo", dTimestamp: "" };
   @Input() isMyProfile = false;
 
   profile = {};
+  dev = false;
+  selectedNode = "";
+  replyCount = 0;
+  reply(qHash){
+    this.selectedNode = qHash;
+    this.cd.detectChanges();
+  }
+  cancel(){
+    this.selectedNode = "";
+  }
+
+  selectPost(qHash){
+    this.q.os.social.timeline.post.select(qHash);
+  }
+
+
+
+    addEmoji($event, qHash = ""){
+      // let data = this.emojiForm.get('inputField');
+      // data.patchValue(data.value + $event.emoji.native)
+      if(typeof this.reply[qHash] == 'undefined'){
+        this.reply[qHash] = $event.emoji.colons + ' ';
+      }
+      else{
+        this.reply[qHash] +=  ' ' + $event.emoji.colons + ' ';
+      }
+
+      this.cd.detectChanges();
+
+    }
+
+    imeline = [];
+
+    async post(qHash){
+      this.q.os.ui.showSnack('Syncing Timeline...','Please Wait');
+      let mp = await this.q.os.social.profile.getMyProfile();
+      //console.log(mp);
+      if(typeof mp['alias'] == 'undefined'){
+        alert('Please set your Alias first!');
+        throw('no name set')
+      }
+
+      let postObj = { content: this.reply[qHash], socialPubKey: mp['key']['pubKey'], replyTo: qHash };
+      await this.q.os.social.timeline.post.new(postObj);
+
+      this.selectedNode = "";
+      this.reply[qHash] = "";
+      this.cd.detectChanges();
+
+      setTimeout( () => {
+        this.q.os.social.timeline.agent.reload();
+        //update timeline
+        this.cd.detectChanges();
+
+      },2000);
+    }
+
 
   postRows
+
+
   async ngOnInit(){
     if(typeof this.postObj['content'] != 'undefined'){
+
+
       this.postRows = this.getArray(this.postObj['content']);
       this.postObj['dTimestamp'] = new Date(this.postObj['timestamp']).toString();
 
-      console.log('qD Social ProfilePost: Getting profile...',this.postObj['socialPubKey'])
+      this.replyCount = this.q.os.social.timeline.agent.getReplyCount(this.postObj['qHash']);
+
+      //console.log('qD Social ProfilePost: Getting profile...',this.postObj['socialPubKey'])
       try{
       this.profile = await this.q.os.social.profile.get(this.postObj['socialPubKey']);
       if(typeof this.profile['alias'] == 'undefined'){
@@ -53,7 +117,11 @@ export class ProfilePostComponent implements OnInit {
         this.profile['timestamp'] = 0;
       }
 
+
+
     }catch(e){ this.profile = { alias: 'Anonymous', timestamp: 0 }; }
+
+  //  console.log(this.postRows );
 
       this.cd.detectChanges();
     }
@@ -116,7 +184,7 @@ export class ProfilePostComponent implements OnInit {
        // alert(inputString);
 
 
-    }catch(e){console.log(e); }
+    }catch(e){this.dev && console.log(e); }
 
     inputRows =  inputString.trim().split('\n');
     rows = [];

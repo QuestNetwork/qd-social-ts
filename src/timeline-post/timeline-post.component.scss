@@ -36,7 +36,7 @@
 }
 
 .verifyButton{
-      // margin-right: 70px !important;
+      margin-right: 70px !important;
 }
 
 
@@ -232,18 +232,15 @@ input { caret-color: white; }
 .search{
 
     // background: #382b53;
-    z-index:23;
 
-
+    z-index: 2;
+    right: 0;
+    left: 0;
     padding: 20px;
-height: 95px;
-
-    position: fixed;
-right: 0;
-left: 0;
-padding: 20px;
-height: 95px;
-bottom: 28px;
+    height: 95px;
+    bottom: 28px;
+    position: absolute;
+    top: 0;
 }
 
 .search input{
@@ -277,10 +274,10 @@ bottom: 28px;
 
 .fundUs{
   z-index: 2;
-  width: 100%;
-  padding-bottom: 160px;
-  text-align: center;
-  margin-top: 38px;
+      width: 100%;
+      margin-bottom:120px;
+      text-align:center;
+          margin-top: 38px;
 
 }
 
@@ -312,12 +309,11 @@ box-shadow: none !important;
   font-family: Ubuntu;
   overflow:hidden;
   overflow-y: auto;
-  position: fixed;
-  left:0;
-  right:0;
+  position: absolute;
+  left: 0;
+  right: 0;
   bottom: 27px;
-  top: 49px;
-  z-index:22;
+  top: 0;
 }
 
 
@@ -382,8 +378,6 @@ margin-top: 7px;
     overflow: hidden;
 
     background: linear-gradient(90deg, #192752 0%, #10162996 100%);
-
-        background: linear-gradient(90deg, #192752 0%, #101629d4 100%);
     overflow: hidden;
     cursor:pointer;
     border:1px solid transparent;
@@ -391,7 +385,7 @@ margin-top: 7px;
 
 
 .resultCard:hover{
-  background: linear-gradient(90deg, #151b2e 0%, #101629d4 100%);
+  background: linear-gradient(90deg, #151b2e 0%, #10162996 100%);
   overflow: hidden;
   border:1px solid red;
 }
@@ -442,7 +436,7 @@ margin-top: 7px;
   font-family: Ubuntu;
   font-size: 22px;
   color: #4680e9;
-  margin-right: 5vw;
+margin-right: 5vw;
   text-align: right;
   margin-bottom: 5vh;
       border: 1px solid #ff000042;
@@ -451,23 +445,8 @@ margin-top: 7px;
 .postContainer{
   text-align:left;
   border: 1px solid #2d63eca6;
-  border-radius:0px;
-    margin-top: -56px;
+
 }
-
-.postContainer.level-0{
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  margin-top: 0px;
-}
-
-.postOuterWrapper:last-child .postContainer{
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-      margin-top: -56px;
-}
-
-
 
 .postButton{
   color: #c6c489c7;
@@ -550,7 +529,7 @@ margin-bottom: 15px;
 border-radius: 0;
 border-top: 1px solid #40389e !important;
 border-bottom: 1px solid #423193 !important;
-margin-right:5vw;
+width:100vw;
 }
 
 .postContainer:last-child{
@@ -561,18 +540,6 @@ margin-right:5vw;
 
 .emojiPicker{
   right: 60px;
-    font-size: 19px;
-    right: 22px;
-    padding: 3px;
-    font-weight: bold;
-    border-radius: 4px;
-    color: #2769f7c7;
-    font-family: Ubuntu;
-    line-height: 30px;
-    padding-right: 10px;
-    padding-left: 10px;
-    cursor: pointer;
-    top: 20px;
 }
 
 @media only screen and (min-width: 420px) and  (max-width: 480px){
@@ -588,22 +555,43 @@ margin-right:5vw;
   }
 }
 
-.profilePrivacy.private{
-  position: absolute;
-    font-size: 19px;
-    right: 22px;
-    background: #e7d564ad;
-    padding: 3px;
-    font-weight: bold;
-    border-radius: 4px;
-    color: #2769f7c7;
-    font-family: Ubuntu;
-    line-height: 30px;
-    padding-right: 10px;
-    padding-left: 10px;
-    cursor: pointer;
-    top: 20px;
+
+
+.newPostContainer,.postContainer{
+  background: #1e2437c9;
+  margin-left: 5vw;
+  border-radius: 10px;
+  padding: 40px;
+  opacity: 0.9;
+  font-family: Ubuntu;
+  font-size: 22px;
+  color: #4680e9;
+  margin-right: 5vw;
+  text-align: right;
+  margin-bottom: 5vh;
+      border: 1px solid #ff000042;
+          display: block;
 }
+.postContainer{
+  text-align:left;
+  border: 1px solid #2d63eca6;
+  border-radius:0px;
+    margin-top: -56px;
+}
+
+.postContainer.level-0{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-top: 0px;
+}
+
+.postOuterWrapper:last-child .postContainer{
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+      margin-top: -56px;
+}
+
+
 
 
 .postContainer.reply{
@@ -649,4 +637,31 @@ border-radius: 10px !important;
 .replyLoop:last-child > div > .postContainer{
     border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
+}
+
+
+.combinedTimeline:nth-child(2){
+  margin-top: 120px;
+}
+
+
+.repliesHeader{
+  margin:20px;
+  text-align:center;
+}
+.repliesIcon{
+  color: #7d9dc3;
+    font-size: 26px;
+    margin: 20px;
+    margin-top: 40px;
+}
+
+
+.syncingButton.false{
+  margin-top: 0px;
+}
+
+
+.replyOuterWrapper:last-child {
+    margin-bottom: 120px;
 }

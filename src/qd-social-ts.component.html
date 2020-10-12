@@ -16,12 +16,18 @@
     </div>
     <app-social-stream></app-social-stream>
   </nb-layout-column>
-  <nb-layout-column class="profileLayoutColumn {{sideBarLockedClass}}"  *ngIf="!streamsActive">
+  <nb-layout-column class="streamsBrowseColumn"  *ngIf="postActive ">
+    <div class="toggleSideBarRight toggleSideBarLeft" class="toggleSideBarLeft" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
+      <nb-icon icon="list-outline" ></nb-icon>
+    </div>
+    <social-timeline-post  [qHash]="selectedPost"></social-timeline-post>
+  </nb-layout-column>
+  <nb-layout-column class="profileLayoutColumn {{sideBarLockedClass}}"  *ngIf="!streamsActive && !postActive">
     <div class="toggleSideBarRight toggleSideBarLeft" class="toggleSideBarLeft" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
       <nb-icon icon="list-outline" ></nb-icon>
     </div>
 
-    <div class="toggleStreams mat-elevatation-z14" *ngIf="!streamsActive && !sideBarVisible['left']"  (click)="toggleStreams()">
+    <div class="toggleStreams mat-elevatation-z14" *ngIf="!streamsActive && !sideBarVisible['left']"  (click)="showStream()">
       <nb-icon icon="activity-outline"></nb-icon> Network
     </div>
 

@@ -156,19 +156,58 @@
 </div>
 
 
-<app-social-profile-post *ngFor="let post of timeline" [postObj]="post" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8">
-</app-social-profile-post>
+<div *ngFor="let combinedTimeline of groupedTimeline" >
+  <!-- {{ post.qHash }} -->
+
+  <div *ngFor="let reply of replyTree[combinedTimeline[0].qHash]"  class="replyLoop">
+
+    <div *ngIf="combinedTimeline[0].content != undefined && reply.content != undefined" class="replyWrapper">
+      <app-social-profile-post [postObj]="reply" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8 reply">
+      </app-social-profile-post>
+    </div>
+
+  </div>
+
+  <div *ngFor="let post of combinedTimeline; let i=index" class='postOuterWrapper'>
+        <div *ngIf="post.content != undefined && combinedTimeline.length > 1" class="postWrapper">
+          <app-social-profile-post  [postObj]="post" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8 post level-{{i}}" >
+          </app-social-profile-post>
+        </div>
+        <div *ngIf="post.content != undefined && combinedTimeline.length == 1 && post.replyTo == undefined" class="postWrapper">
+          <app-social-profile-post  [postObj]="post" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8 post singleLevel" >
+          </app-social-profile-post>
+        </div>
+        <div *ngIf="post.content != undefined && combinedTimeline.length == 1 &&  post.replyTo != undefined" class="postWrapper">
+          <app-social-profile-post  [postObj]="post" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8 post singleLevel replyPost" >
+          </app-social-profile-post>
+        </div>
+    </div>
+
+  </div>
 
 
 
 
 
 
-
-
-<div class="fundUs"  *ngIf="!searchResultsActive">
+<!--
+<div class="fundUs"  *ngIf="syncStatus && !searchResultsActive && this.groupedTimeline.length > 3">
 
   <a class="mat-elevation-z18" href="https://github.com/QuestNetwork/qd-social-ts#support-us" target="_blank"><button mat-stroked-button color="secondary" class="defaultSettingsButton noOutlineButton fundButton" >Fund This Module For Upgrades!</button></a>
+
+</div>
+
+<div class="fundUs"  *ngIf="!syncStatus || !searchResultsActive || this.groupedTimeline.length > 3">
+
+
+</div> -->
+
+<div class="fundUs" (click)="syncMore(this.pubKey)" *ngIf="!searchResultsActive && groupedTimeline.length > 0" >
+
+<button mat-stroked-button color="secondary" class="mat-elevation-z18 defaultSettingsButton noOutlineButton fundButton" >
+    Sync More
+  </button>
+
 
 </div>
 

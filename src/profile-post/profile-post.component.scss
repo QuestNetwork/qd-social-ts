@@ -374,3 +374,80 @@ cursor:pointer;
   width: 100%;
     margin-top: 40px;
 }
+
+
+.replyButton{
+  position: relative;
+top: 22px;
+left: -10px;
+padding: 10px;
+background: transparent;
+border: 0;
+color: red;
+}
+
+
+.newPostContainer {
+
+     background: #1e2437c9;
+     margin-left: 9px;
+     margin-top: -4px;
+     border-radius: 10px;
+     padding: 40px;
+     opacity: 0.9;
+     font-family: Ubuntu;
+     font-size: 22px;
+     color: #4680e9;
+     margin-right: 0;
+     text-align: right;
+     width: auto;
+     margin-bottom: 0;
+     border: 1px solid #ff000042;
+
+}
+
+
+.emojiPickerTrigger{
+  opacity: 1;
+z-index: 9;
+padding: 8px;
+margin-right: 10px;
+cursor: pointer;
+right: 0;
+position: relative;
+    top: 3px;
+}
+
+.emojiPicker{
+
+    z-index: 222222 !important;
+    position: relative;
+right: 70px;
+background: transparent;
+
+}
+
+.replyCancelButton{
+  color:red !important;
+  float: left;
+color: red;
+border: 2px solid red;
+opacity: 0.5;
+}
+
+.replyCancelButton:hover{
+opacity:1;
+  }
+
+
+.replyCount{
+  background-color: #717dd333;
+    border: 0;
+    position: relative;
+    top: 17px;
+    font-size: 16px;
+    color: #4982e8;
+    border-radius: 30px;
+    padding: 6px;
+    line-height: 16px;
+}
