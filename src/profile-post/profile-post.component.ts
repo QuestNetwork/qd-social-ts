@@ -140,10 +140,11 @@ export class ProfilePostComponent implements OnInit,OnChanges {
   }
 
   postDelete(postObj){
-    console.log('qD Social/Profile: Deleting...',postObj);
-    this.q.os.social.timeline.post.delete(postObj['qHash'], postObj['socialPubKey']);
-    this.postObj['timestamp'] = 0;
-    this.postObj['dTimestamp'] = "";
+    alert('Coming in 0.9.5');
+    // console.log('qD Social/Profile: Deleting...',postObj);
+    // this.q.os.social.timeline.post.delete(postObj['qHash'], postObj['socialPubKey']);
+    // this.postObj['timestamp'] = 0;
+    // this.postObj['dTimestamp'] = "";
   }
 
   getArray(message){

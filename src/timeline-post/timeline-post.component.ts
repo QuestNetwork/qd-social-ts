@@ -90,9 +90,9 @@ export class TimelinePostComponent implements OnInit {
 
 
     syncSub;
-    @Input() replies = [];
-    @Input() groupedTimeline = [];
-    @Input() replyTree;
+  replies = [];
+     groupedTimeline = [];
+    replyTree;
 
     syncStatus = false;
 
@@ -110,29 +110,25 @@ export class TimelinePostComponent implements OnInit {
         console.log(timeline['timeline']);
         this.groupedTimeline = [];
         this.replies = [];
-        this.replyTree = [];
 
 
+        let repliesPushed = [];
 
         let t = timeline['timeline'];
         for(let p of t){
-
-          if(p['replyTo'] == this.qHash){
+          if(p['replyTo'] == this.qHash && !this.q.os.utilities.inArray(repliesPushed, p['qHash'])){
             this.replies.push(p)
-          //   this.cd.detectChanges();
+            repliesPushed.push(p['qHash']);
           }
 
           if(p['qHash'] == this.qHash){
-            this.groupedTimeline.push([p]);
-            // this.cd.detectChanges();
+            this.groupedTimeline = [[p]];
           }
-
         }
 
-        this.replyTree = timeline['replyTree'];
         this.syncingStatus = true;
         console.log('QD Social Timeline Post View: Replies Synced!');
-        this.q.os.ui.showSnack('Replies Synced!','Yeah',{duration: 1000});
+        this.q.os.ui.showSnack('Replies Synced!','Yeah',{duration: 2000});
         this.cd.detectChanges();
 
         setTimeout( () => {
@@ -175,7 +171,7 @@ export class TimelinePostComponent implements OnInit {
 
    async ngOnInit(){
      this.q.os.ui.showSnack('Syncing Replies...','Please Wait');
-     this.cd.detectChanges();
+     // this.cd.detectChanges();
 
 
       // this.groupedTimeline = [];

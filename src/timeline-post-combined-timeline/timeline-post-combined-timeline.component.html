@@ -1,0 +1,26 @@
+
+  <!-- {{ post.qHash }} -->
+
+  <div *ngFor="let reply of replyTree"  class="replyLoop">
+
+    <div *ngIf="combinedTimeline[0].content != undefined && reply.content != undefined" class="replyWrapper">
+      <app-social-profile-post [postObj]="reply" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8 reply">
+      </app-social-profile-post>
+    </div>
+
+  </div>
+
+  <div *ngFor="let post of combinedTimeline; let i=index" class='postOuterWrapper'>
+        <div *ngIf="post.content != undefined && combinedTimeline.length > 1" class="postWrapper">
+          <app-social-profile-post  [postObj]="post" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8 post level-{{i}}" >
+          </app-social-profile-post>
+        </div>
+        <div *ngIf="post.content != undefined && combinedTimeline.length == 1 && post.replyTo == undefined" class="postWrapper">
+          <app-social-profile-post  [postObj]="post" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8 post singleLevel" >
+          </app-social-profile-post>
+        </div>
+        <div *ngIf="post.content != undefined && combinedTimeline.length == 1 &&  post.replyTo != undefined" class="postWrapper">
+          <app-social-profile-post  [postObj]="post" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8 post singleLevel replyPost" >
+          </app-social-profile-post>
+        </div>
+    </div>

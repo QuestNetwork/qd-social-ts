@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Inject, AfterContentInit,ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, Inject, AfterContentInit,ChangeDetectorRef, Input } from '@angular/core';
 import { QuestOSService } from '../../qDesk/src/app/services/quest-os.service';
 import { NbSidebarService } from '@nebular/theme';
 
@@ -9,6 +9,7 @@ import { NbSidebarService } from '@nebular/theme';
 })
 export class QDSocialComponent {
   constructor(private cd: ChangeDetectorRef, private sidebarService: NbSidebarService,private q: QuestOSService){}
+  initRnd = 0;
 
   sideBarFixedSub;
 sideBarVisibleSub;
@@ -101,8 +102,7 @@ postActive = false
 
 
       this.q.os.social.algo.onSelect().subscribe( async(name) => {
-          this.streamsActive = true;
-          this.postActive = false;
+        this.syncWorker();
       });
 
 
@@ -122,6 +122,26 @@ postActive = false
     }
 
 
+  async  syncWorker(){
+    // this.postActive = false;
+      this.streamsActive = true;
+      this.cd.detectChanges();
+
+      console.log('QD Social Showing Stream...');
+
+                if(this.sideBarFixed['left']){
+                  this.sideBarVisible['left'] = false;
+                  this.sideBarLockedClass = "";
+                  this.sidebarService.collapse('left');
+                }
+                else{
+                  this.sideBarLockedClass = this.sideBarLockedClassA;
+                }
+
+
+
+
+    }
 
 
 
@@ -166,6 +186,8 @@ postActive = false
   selectedPost = "NoPostSelected";
 
   streamsActive = false;
+
+
   goToMyProfile(){
     this.q.os.social.profile.select('NoProfileSelected');
     if(this.sideBarFixed['left']){
@@ -177,21 +199,24 @@ postActive = false
       this.sideBarLockedClass = this.sideBarLockedClassA;
     }
   }
-  async showStream(){
+   showStream(){
+     // console.log('QD Social Showing Stream...');
+     // this.streamsActive = false;
+     //   this.streamsActive = true;
+     //   this.q.os.social.algo.select('Network');
+     //
+     //   if(this.sideBarFixed['left']){
+     //     this.sideBarVisible['left'] = false;
+     //     this.sideBarLockedClass = "";
+     //     this.sidebarService.collapse('left');
+     //   }
+     //   else{
+     //     this.sideBarLockedClass = this.sideBarLockedClassA;
+     //   }
+     //
+     // this.cd.detectChanges();
 
-    this.streamsActive = false;
-    await this.q.os.utilities.delay(500);
-    this.streamsActive = true;
 
-
-    if(this.sideBarFixed['left']){
-      this.sideBarVisible['left'] = false;
-      this.sideBarLockedClass = "";
-      this.sidebarService.collapse('left');
-    }
-    else{
-      this.sideBarLockedClass = this.sideBarLockedClassA;
-    }
   }
 
 

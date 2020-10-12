@@ -203,12 +203,11 @@ syncStatus = false;
 
       if(typeof timeline != 'undefined' && typeof timeline['groupedTimeline'] != 'undefined'){
 
-         this.replyTree = {};
+         // this.replyTree = {};
          this.groupedTimeline = [];
-        this.cd.detectChanges();
 
-        this.replyTree = JSON.parse(JSON.stringify(timeline['replyTree']));
-        this.groupedTimeline = JSON.parse(JSON.stringify(timeline['groupedTimeline']));
+        // this.replyTree = JSON.parse(JSON.stringify(timeline['replyTree']));
+        this.groupedTimeline = timeline['groupedTimeline'];
         // console.log(this.groupedTimeline);
         this.q.os.ui.showSnack('Timeline Synced!','Yeah',{duration: 500});
         this.cd.detectChanges();

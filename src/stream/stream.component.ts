@@ -30,10 +30,14 @@ import { NbComponentStatus } from '@nebular/theme';
 import swarmJson from '../swarm.json';
 
 
+
+
 @Component({
   selector: 'app-social-stream',
   templateUrl: './stream.component.html',
-  styleUrls: ['./stream.component.scss']
+  styleUrls: ['./stream.component.scss'],
+  // changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class StreamComponent implements OnInit {
 
@@ -41,6 +45,7 @@ export class StreamComponent implements OnInit {
 
   postList = [ ]
 
+  @Input() initRnd = 0;
 
 
 
@@ -91,7 +96,7 @@ export class StreamComponent implements OnInit {
 
 
     syncSub = {};
-    groupedTimeline = [];
+    @Input() groupedTimeline = [];
     replyTree = {};
     syncStatus = true;
     updateListen(){
@@ -101,23 +106,18 @@ export class StreamComponent implements OnInit {
       // this.q.os.ui.showSnack('Syncing Timeline...','Please Wait');
       if(typeof this.syncSub['all'] == 'undefined'){
         this.syncSub['all'] = this.q.os.social.timeline.agent.onSync('all').subscribe( async(timeline) => {
-          this.syncStatus = false;
+
 
         if(typeof timeline != 'undefined' && typeof timeline['groupedTimeline'] != 'undefined'){
 
-          this.replyTree = {};
-          this.groupedTimeline = [];
-          this.replyTree = JSON.parse(JSON.stringify(timeline['replyTree']));
-          this.groupedTimeline = JSON.parse(JSON.stringify(timeline['groupedTimeline']));
-          // console.log(this.groupedTimeline);
+          this.groupedTimeline = timeline['groupedTimeline'];
+          this.syncStatus = true;
+
           this.q.os.ui.showSnack('Stream Synced!','Yeah',{duration: 1000});
+
           this.cd.detectChanges();
 
-          setTimeout( () => {
-            //update timeline
-            this.cd.detectChanges();
 
-          },2000);
 
           setTimeout( () => {
             //update timeline
@@ -125,12 +125,12 @@ export class StreamComponent implements OnInit {
 
           },5000);
 
+
           setTimeout( () => {
             //update timeline
-            this.syncStatus = true;
             this.cd.detectChanges();
 
-          },10000);
+          },12000);
         }
         else{
           this.syncStatus = true;
@@ -142,21 +142,59 @@ export class StreamComponent implements OnInit {
 
 
     ngOnDestroy(){
+    try{
+        this.onAlgoChange.unsubscribe();
+      }catch(e){}
+
+
       let keys = Object.keys(this.syncSub);
       for(let key of keys){
         this.syncSub[key].unsubscribe();
       }
+
     }
 
-   async ngOnInit(){
+
+    onAlgoChange;
+   async ngOnInit(r = false){
+     this.syncStatus = false;
      this.updateListen();
-     await this.q.os.social.timeline.agent.sync('all');
+     // await this.q.os.social.timeline.agent.sync('all');
+     let timeline = await this.q.os.social.timeline.agent.sync('all');
+     this.groupedTimeline = timeline['groupedTimeline'];
+     this.syncStatus = true;
+     if(!r){
+       this.onAlgoChange = this.q.os.social.algo.onSelect().subscribe( async(name) => {
+         // console.log('new algo selected...');
+         this.ngOnInit(true);
+
+      });
+     }
+
 
   }
 
+
+
+    unsubscribeAll(){
+      let keys = Object.keys(this.syncSub);
+      for(let key of keys){
+        try{
+        this.syncSub[key].unsubscribe();
+        delete this.syncSub[this.pubKey];
+        }
+        catch(e){}
+      }
+    }
+
  async ngOnChanges(){
-   this.updateListen();
-   await this.q.os.social.timeline.agent.sync('all');
+   // this.syncStatus = false;
+   // this.updateListen();
+   // // await this.q.os.social.timeline.agent.sync('all');
+   // let timeline = await this.q.os.social.timeline.agent.sync('all');
+   // this.groupedTimeline = timeline['groupedTimeline'];
+   // this.syncStatus = true;
+
  }
 
 
@@ -166,12 +204,25 @@ export class StreamComponent implements OnInit {
     }
   }
 
-  async syncMore(){
-    this.q.os.ui.showSnack('Syncing Stream...','Please Wait');
-    await this.q.os.utilities.delay(1000);
+   async syncMoreWorker(){
     let limit = this.q.os.social.timeline.agent.getLimit('all');
     limit += 5;
-    this.q.os.social.timeline.agent.sync('all', {limit: limit});
+    let timeline = await this.q.os.social.timeline.agent.sync('all', {limit: limit});
+    this.groupedTimeline = timeline['groupedTimeline'];
+    this.syncStatus = true;
+    this.q.os.ui.showSnack('Stream Synced!','Yay',{duration:1000});
+    console.log(  this.groupedTimeline )
+    this.cd.detectChanges();
+  }
+
+  syncMore(){
+    this.syncStatus = false;
+    this.q.os.ui.showSnack('Syncing Stream...','Please Wait');
+    this.cd.detectChanges();
+    setTimeout( () => {
+      this.syncMoreWorker();
+    },3000);
+
   }
 
 

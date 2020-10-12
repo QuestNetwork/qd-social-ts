@@ -10,13 +10,13 @@
     <social-sidebar-left></social-sidebar-left>
   </nb-sidebar>
 
-  <nb-layout-column class="streamsBrowseColumn"  *ngIf="streamsActive">
+  <nb-layout-column class="streamsBrowseColumn"  [hidden]="!streamsActive">
     <div class="toggleSideBarRight toggleSideBarLeft" class="toggleSideBarLeft" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
       <nb-icon icon="list-outline" ></nb-icon>
     </div>
     <app-social-stream></app-social-stream>
   </nb-layout-column>
-  <nb-layout-column class="streamsBrowseColumn"  *ngIf="postActive ">
+  <nb-layout-column class="streamsBrowseColumn"  *ngIf="postActive && !streamsActive ">
     <div class="toggleSideBarRight toggleSideBarLeft" class="toggleSideBarLeft" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
       <nb-icon icon="list-outline" ></nb-icon>
     </div>
