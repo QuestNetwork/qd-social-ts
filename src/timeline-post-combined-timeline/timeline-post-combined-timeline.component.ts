@@ -49,7 +49,7 @@ export class TimelinePostCombinedTimelineComponent implements OnInit {
   DEVMODE = swarmJson['dev'];
 
 replyTree = []
-isMyProfile = false;
+@Input() isMyProfile = false;
    async ngOnInit(){
 
      if(typeof this.combinedTimeline[0]['replyTo'] != 'undefined'){

@@ -3,9 +3,9 @@ import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service
 import {
   ChangeDetectionStrategy,
   OnInit,
-  OnChanges,
   ChangeDetectorRef,
   Component,
+  NgZone,
   EventEmitter,
   HostBinding,
   HostListener,
@@ -21,6 +21,7 @@ import {NbDialogService } from '@nebular/theme';
 
 
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { NbComponentStatus } from '@nebular/theme';
 // import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
@@ -31,21 +32,25 @@ import swarmJson from '../swarm.json';
 
 
 @Component({
+  host: {
+      class:'profileLayoutColumn'
+  },
   selector: 'app-social-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 
 
 })
 export class ProfileComponent implements OnInit {
 
-  @Input() pubKey: string;
+  @Input() pubKey = "NoProfileSelected";
 
   newPost = "";
   timeline = [];
 
   async post(){
-    this.q.os.ui.showSnack('Syncing Timeline','Please Wait');
+    // this.q.os.ui.showSnack('Syncing Timeline','Please Wait');
     if(typeof this.pubKey == undefined || this.pubKey == 'NoProfileSelected'){
       throw('no key set')
     }
@@ -63,7 +68,7 @@ export class ProfileComponent implements OnInit {
 
     this.newPost = "";
     setTimeout( () => {
-      this.ngOnChanges();
+      this.syncTimeline();
     },2000);
   }
 
@@ -76,7 +81,7 @@ export class ProfileComponent implements OnInit {
 
 
 
-  constructor(private _sanitizer: DomSanitizer, private dialog:NbDialogService, private cd: ChangeDetectorRef, private q: QuestOSService) {
+  constructor(private route: ActivatedRoute, private router:Router,private ngZone: NgZone, private _sanitizer: DomSanitizer, private dialog:NbDialogService, private cd: ChangeDetectorRef, private q: QuestOSService) {
     //parse channels
   }
   DEVMODE = swarmJson['dev'];
@@ -85,7 +90,9 @@ export class ProfileComponent implements OnInit {
   status: NbComponentStatus | '' = '';
   inputFocus: boolean = false;
   inputHover: boolean = false;
-
+  showStream(){
+    this.ngZone.run(() => this.router.navigate(['/social/stream/network']));
+ }
   parseSearchBar(){
     if(this.searchPhrase.length > 0){
       this.search();
@@ -149,9 +156,6 @@ export class ProfileComponent implements OnInit {
 
     try{
      let socialComb = await this.q.os.social.profile.get(this.pubKey);
-     if(socialComb['key']['pubKey'] != this.pubKey){
-       this.pubKey = socialComb['key']['pubKey'];
-     }
 
      this.isMyProfile = this.q.os.social.profile.isMyProfileId(this.pubKey);
      console.log('Social: Is my profile:',this.isMyProfile);
@@ -179,7 +183,7 @@ export class ProfileComponent implements OnInit {
 syncStatus = false;
 
   syncMore(pubKey){
-    this.q.os.ui.showSnack('Syncing Timeline...','Please Wait');
+    // this.q.os.ui.showSnack('Syncing Timeline...','Please Wait');
     let limit = this.q.os.social.timeline.agent.getLimit(pubKey);
     limit += 5;
     this.q.os.social.timeline.agent.sync(pubKey, {limit: limit});
@@ -187,83 +191,116 @@ syncStatus = false;
 
   updateListen(){
 
-
-
-    this.groupedTimeline = [];
-      this.replyTree = {};
-
-      this.unsubscribeAll();
-
-
     // this.q.os.ui.showSnack('Syncing Timeline...','Please Wait');
     if(typeof this.syncSub[this.pubKey] == 'undefined'){
-      this.syncSub[this.pubKey] = this.q.os.social.timeline.agent.onSync(this.pubKey).subscribe( async(timeline) => {
-        this.q.os.ui.showSnack('Syncing Timeline...','Please Wait');
-        this.syncStatus = false;
+              this.syncSub[this.pubKey] = this.q.os.social.timeline.agent.onSync(this.pubKey).subscribe( async(timeline) => {
+                // this.q.os.ui.showSnack('Syncing Timeline...','Please Wait');
+                this.syncStatus = false;
 
-      if(typeof timeline != 'undefined' && typeof timeline['groupedTimeline'] != 'undefined'){
+              if(typeof timeline != 'undefined' && typeof timeline['groupedTimeline'] != 'undefined'){
 
-         // this.replyTree = {};
-         this.groupedTimeline = [];
+                 // this.replyTree = {};
+                 this.groupedTimeline = [];
 
-        // this.replyTree = JSON.parse(JSON.stringify(timeline['replyTree']));
-        this.groupedTimeline = timeline['groupedTimeline'];
-        // console.log(this.groupedTimeline);
-        this.q.os.ui.showSnack('Timeline Synced!','Yeah',{duration: 500});
-        this.cd.detectChanges();
+                // this.replyTree = JSON.parse(JSON.stringify(timeline['replyTree']));
+                this.groupedTimeline = timeline['groupedTimeline'];
+                // console.log(this.groupedTimeline);
+                this.q.os.ui.showSnack('Timeline Synced!','Yeah',{duration: 500});
+                this.syncStatus = true;
 
-        setTimeout( () => {
-          //update timeline
-          this.cd.detectChanges();
+                this.cd.detectChanges();
 
-        },2000);
+                setTimeout( () => {
+                  //update timeline
+                  this.cd.detectChanges();
 
-        setTimeout( () => {
-          //update timeline
-          this.cd.detectChanges();
+                },2000);
 
-        },5000);
+                setTimeout( () => {
+                  //update timeline
+                  this.cd.detectChanges();
 
-        setTimeout( () => {
-          //update timeline
-          this.syncStatus = true;
-          this.cd.detectChanges();
+                },5000);
 
-        },10000);
-      }
-      else{
-        this.syncStatus = true;
+                setTimeout( () => {
+                  //update timeline
+                  this.syncStatus = true;
+                  this.cd.detectChanges();
 
-      }
-    });
+                },10000);
+
+
+              }
+              else{
+                this.q.os.ui.showSnack('Sync Failed!','Oh No',{duration: 1000});
+
+                this.syncStatus = true;
+
+              }
+            });
+          }
+
+
+
   }
-  }
 
-  async ngOnChanges(){
 
-    this.q.os.ui.showSnack('Syncing Timeline...','Please Wait');
-    this.updateListen();
-    try{
-      await this.q.os.social.timeline.agent.sync(this.pubKey);
-    }catch(e){
+    ngOnInit(){
 
-          let mp = await this.q.os.social.profile.getMyProfile();
-          // if(typeof mp['alias'] == 'undefined'){
-          //   alert('Please set your Alias first!');
-          //   throw('no name set')
-          // }
+      this.ngOnChanges();
 
-          this.unsubscribeAll();
-          this.q.os.social.profile.select(mp['key']['pubKey']);
     }
 
 
-    try{
-      await this.loadProfile();
-    }catch(e){}
+  async ngOnChanges(){
 
+    if(typeof this.pubKey != 'undefined' && this.pubKey != 'NoProfileSelected' && this.pubKey.length > 0 ){
+      try{
+        await this.loadProfile();
+        this.cd.detectChanges();
+      }catch(e){}
+    }
+    else{
+      let mp = await this.q.os.social.profile.getMyProfile();
+      this.pubKey = JSON.parse(JSON.stringify(mp['key']['pubKey']));
+      await this.loadProfile();
+      this.cd.detectChanges();
+    }
+
+    // this.cd.detectChanges();
+
+    // this.updateListen();
+    if(typeof this.paramSub == 'undefined'){
+      this.paramSub = this.route.params.subscribe( async(params) => {
+        console.log(params);
+        if(typeof params['pubKey'] != 'undefined'){
+          this.pubKey = params['pubKey']
+        }
+        // this.ngOnChanges();
+        this.q.os.ui.showSnack('Syncing Timeline...','Please Wait');
+        this.ngOnChanges();
+
+      });
+    }
+
+    setTimeout( () => {
+      this.syncTimeline();
+    },3000);
   }
 
+
+  async syncTimeline(){
+
+    this.unsubscribeAll();
+    this.updateListen();
+
+    try{
+       await this.q.os.social.timeline.agent.sync(this.pubKey);
+    }catch(e){
+
+
+    }
+  }
 
 
 
@@ -279,10 +316,10 @@ syncStatus = false;
   }
 
   ngOnDestroy(){
+    this.paramSub.unsubscribe();
     this.unsubscribeAll();
-  }
 
-  ngOnInit(){}
+  }
 
 
   alias = "Anonymous";
@@ -319,8 +356,13 @@ syncStatus = false;
     this.q.os.social.profile.set(this.pubKey,socialComb);
     this.q.os.social.profile.select(this.pubKey);
     this.edit(false);
+
+
+
     this.ngOnChanges();
   }
+
+  paramSub
 
   isMyProfile = false;
 

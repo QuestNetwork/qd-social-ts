@@ -445,6 +445,10 @@ margin-right: 5vw;
 .postContainer{
   text-align:left;
   border: 1px solid #2d63eca6;
+  text-align: left;
+    border: 1px solid #2d63eca6;
+    border-radius: 0px;
+    margin-top: -46px;
 
 }
 
@@ -573,10 +577,10 @@ width:100vw;
           display: block;
 }
 .postContainer{
-  text-align:left;
-  border: 1px solid #2d63eca6;
-  border-radius:0px;
-    margin-top: -56px;
+  text-align: left;
+      border: 1px solid #2d63eca6;
+      border-radius: 0px;
+      margin-top: -46px;
 }
 
 .postContainer.level-0{
@@ -643,3 +647,16 @@ border-radius: 10px !important;
 .combinedTimeline:nth-child(2){
   margin-top: 120px;
 }
+
+.postOuterWrapper:last-child .postContainer{
+    margin-top: -44px;
+  }
+
+
+  .replyLoop .reply .lockClosed {
+      display: none;
+  }
+
+  .replyLoop:first-child .reply .lockClosed {
+      display: block;
+  }

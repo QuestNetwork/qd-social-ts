@@ -121,9 +121,10 @@ font-size: 16px !important;
 }
 
 .profilePrivacy{
-  position: absolute;
+  position: relative;
+      float: right;
       font-size: 19px;
-      right: 22px;
+      right: 18px;
       background: #eed864;
       padding: 3px;
       font-weight: bold;
@@ -134,7 +135,8 @@ font-size: 16px !important;
       padding-right: 10px;
       padding-left: 10px;
       cursor: pointer;
-          top: 20px;
+      top: 18px;
+      z-indeX: 1;
 }
 
 .profilePrivacy nb-icon{
@@ -278,8 +280,8 @@ bottom: 28px;
 .fundUs{
   z-index: 2;
   width: 100%;
-  padding-bottom: 160px;
-  text-align: center;
+    padding-bottom: 192px;
+      text-align: center;
   margin-top: 38px;
 
 }
@@ -545,7 +547,7 @@ background: transparent;
 margin-left: 0;
 margin-right: 0 !important;
 margin-top: 0;
-border: 0 !important;
+// border: 0 !important;
 margin-bottom: 15px;
 border-radius: 0;
 border-top: 1px solid #40389e !important;
@@ -589,9 +591,7 @@ margin-right:5vw;
 }
 
 .profilePrivacy.private{
-  position: absolute;
-    font-size: 19px;
-    right: 22px;
+
     background: #e7d564ad;
     padding: 3px;
     font-weight: bold;

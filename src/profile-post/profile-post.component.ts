@@ -11,6 +11,7 @@ import {
   HostListener,
   Input,
   Output,
+   NgZone,
   ViewChild,
   TemplateRef
 } from '@angular/core';
@@ -18,6 +19,7 @@ import {BehaviorSubject, Observable, of as observableOf} from 'rxjs';
 
 import {NbDialogService } from '@nebular/theme';
 
+import { Router,NavigationEnd, ActivatedRoute  } from '@angular/router';
 
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -49,7 +51,13 @@ export class ProfilePostComponent implements OnInit,OnChanges {
   }
 
   selectPost(qHash){
-    this.q.os.social.timeline.post.select(qHash);
+    // this.q.os.social.timeline.post.select(qHash);
+    this.ngZone.run(() => this.router.navigate(['/social/timeline/post/'+qHash]));
+
+  }
+
+  selectProfile(pubKey){
+    this.ngZone.run(() => this.router.navigate(['/social/profile/'+pubKey]));
   }
 
 
@@ -135,16 +143,19 @@ export class ProfilePostComponent implements OnInit,OnChanges {
     }
   }
 
-  constructor(private _sanitizer: DomSanitizer, private dialog:NbDialogService, private cd: ChangeDetectorRef, private q: QuestOSService) {
+  constructor(private ngZone: NgZone, private router: Router,private _sanitizer: DomSanitizer, private dialog:NbDialogService, private cd: ChangeDetectorRef, private q: QuestOSService) {
     //parse channels
+
+
+
   }
 
   postDelete(postObj){
-    alert('Coming in 0.9.5');
-    // console.log('qD Social/Profile: Deleting...',postObj);
-    // this.q.os.social.timeline.post.delete(postObj['qHash'], postObj['socialPubKey']);
-    // this.postObj['timestamp'] = 0;
-    // this.postObj['dTimestamp'] = "";
+    // alert('Coming in 0.9.5');
+    console.log('qD Social/Profile: Deleting...',postObj);
+    this.q.os.social.timeline.post.delete(postObj['qHash'], postObj['socialPubKey']);
+    this.postObj['timestamp'] = 0;
+    this.postObj['dTimestamp'] = "";
   }
 
   getArray(message){

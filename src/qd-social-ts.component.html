@@ -5,32 +5,19 @@
     <button mat-stroked-button color="primary" (click)="lockSideBar('left', true)" class="defaultSettingsButton thinOutlineButton floatButton" *ngIf="!sideBarFixed.left" >Float Panel</button>
     <button mat-stroked-button color="primary" (click)="toggleSideBar('left')" class="defaultSettingsButton thinOutlineButton ">Hide Panel</button>
 
-    <div class="toggleStreamsActive mat-elevatation-z6" (click)="goToMyProfile()"><nb-icon icon="person-outline"></nb-icon> My Profile</div>
+    <div class="toggleStreamsActive mat-elevatation-z6" [routerLink]="['/social/profile']"><nb-icon icon="person-outline"></nb-icon> My Profile</div>
 
     <social-sidebar-left></social-sidebar-left>
   </nb-sidebar>
 
-  <nb-layout-column class="streamsBrowseColumn"  [hidden]="!streamsActive">
-    <div class="toggleSideBarRight toggleSideBarLeft" class="toggleSideBarLeft" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
-      <nb-icon icon="list-outline" ></nb-icon>
-    </div>
-    <app-social-stream></app-social-stream>
-  </nb-layout-column>
-  <nb-layout-column class="streamsBrowseColumn"  *ngIf="postActive && !streamsActive ">
-    <div class="toggleSideBarRight toggleSideBarLeft" class="toggleSideBarLeft" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
-      <nb-icon icon="list-outline" ></nb-icon>
-    </div>
-    <social-timeline-post  [qHash]="selectedPost"></social-timeline-post>
-  </nb-layout-column>
-  <nb-layout-column class="profileLayoutColumn {{sideBarLockedClass}}"  *ngIf="!streamsActive && !postActive">
+
+
+  <nb-layout-column class="routerOutletWrapper streamsBrowseColumn  {{sideBarLockedClass}}{{sideBarVisible.left}}" >
     <div class="toggleSideBarRight toggleSideBarLeft" class="toggleSideBarLeft" (click)="toggleSideBar('left')" *ngIf="!this.sideBarVisible.left">
       <nb-icon icon="list-outline" ></nb-icon>
     </div>
 
-    <div class="toggleStreams mat-elevatation-z14" *ngIf="!streamsActive && !sideBarVisible['left']"  (click)="showStream()">
-      <nb-icon icon="activity-outline"></nb-icon> Network
-    </div>
-
-    <app-social-profile [pubKey]="selectedProfile"></app-social-profile>
+    <router-outlet></router-outlet>
   </nb-layout-column>
+
 </nb-layout>

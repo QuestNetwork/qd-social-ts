@@ -1,7 +1,8 @@
 <div class="algorithmsHeader">
 Algorithms:
 </div>
-<div  class="treeNodeContainerSingle Network" [class.active-channel]="selectedStream === 'Network'" (click)="showAlgo('Network')" >
+
+<div  class="treeNodeContainerSingle Network" [class.active-channel]="selectedStream === 'Network'"  [routerLink]="['/social/stream/network']" >
  <!-- <button mat-icon-button disabled></button> -->
  <nb-icon icon="activity"></nb-icon>
    <span class="checklist-leaf-node">

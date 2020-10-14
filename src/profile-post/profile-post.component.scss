@@ -158,8 +158,9 @@ font-size: 16px !important;
   .editButton{
     top: 52px;
   }
-}
 
+
+}
 
 input { caret-color: white; }
 
@@ -198,6 +199,9 @@ cursor:pointer;
     overflow: hidden;
   }
 }
+
+
+
 
 
 .senderIcon{
@@ -451,3 +455,32 @@ opacity:1;
     padding: 6px;
     line-height: 16px;
 }
+
+
+.lockClosed{
+  position: relative;
+}
+
+.lockClosed nb-icon{
+  position: absolute;
+      right: -5px;
+      top: -11px;
+      color: #2d64ed1c;
+      font-size: 28px;
+}
+
+
+
+//
+// @media only screen and (max-width: 616px) {
+//   .newPostContainer,.postContainer{
+// margin-left: 0;
+// margin-right: 0 !important;
+// margin-top: 0;
+// // border: 0 !important;
+// margin-bottom: 15px;
+// border-radius: 0;
+// border-top: 1px solid #40389e !important;
+// border-bottom: 1px solid #423193 !important;
+// margin-right:5vw;
+// }

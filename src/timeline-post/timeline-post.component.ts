@@ -18,6 +18,7 @@ import {BehaviorSubject, Observable, of as observableOf} from 'rxjs';
 
 import { BarcodeFormat } from '@zxing/library';
 import {NbDialogService } from '@nebular/theme';
+import {ActivatedRoute} from "@angular/router";
 
 
 import { DomSanitizer } from '@angular/platform-browser';
@@ -33,7 +34,9 @@ import swarmJson from '../swarm.json';
 @Component({
   selector: 'social-timeline-post',
   templateUrl: './timeline-post.component.html',
-  styleUrls: ['./timeline-post.component.scss']
+  styleUrls: ['./timeline-post.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class TimelinePostComponent implements OnInit {
 
@@ -42,10 +45,14 @@ export class TimelinePostComponent implements OnInit {
   postList = [ ]
 
 
-  constructor(private _sanitizer: DomSanitizer, private dialog:NbDialogService, private cd: ChangeDetectorRef, private q: QuestOSService) {
+  constructor(private route: ActivatedRoute,private _sanitizer: DomSanitizer, private dialog:NbDialogService, private cd: ChangeDetectorRef, private q: QuestOSService) {
     //parse channels
+
+
+
   }
   DEVMODE = swarmJson['dev'];
+
 
 
   @Input() buttonTitle: string = '';
@@ -66,26 +73,26 @@ export class TimelinePostComponent implements OnInit {
 
 
     parseSearchBar(){
-      if(this.searchPhrase.length > 0){
-        this.search();
-      }
-      else{
-        // this.searchResultsActive = false;
-        this.cd.detectChanges();
-      }
+      // if(this.searchPhrase.length > 0){
+      //   this.search();
+      // }
+      // else{
+      //   // this.searchResultsActive = false;
+      //   this.cd.detectChanges();
+      // }
     }
 
     timeline;
 
       async search(){
-        this.searchResults = await this.q.os.social.timeline.search(this.searchPhrase);
-        if(this.searchResults.length > 0){
-          this.timeline = this.searchResults;
-        }
-        else{
-          this.timeline = this.q.os.social.timeline.get();
-        }
-        this.cd.detectChanges();
+        // this.searchResults = await this.q.os.social.timeline.search(this.searchPhrase);
+        // if(this.searchResults.length > 0){
+        //   this.timeline = this.searchResults;
+        // }
+        // else{
+        //   this.timeline = this.q.os.social.timeline.get();
+        // }
+        // this.cd.detectChanges();
       }
 
 
@@ -103,6 +110,7 @@ export class TimelinePostComponent implements OnInit {
         this.syncSub.unsubscribe();
       }
       this.syncSub = this.q.os.social.timeline.agent.onSync('all').subscribe( async(timeline) => {
+        // this.q.os.ui.showSnack('Syncing Replies...','Please Wait');
 
 
 
@@ -127,9 +135,10 @@ export class TimelinePostComponent implements OnInit {
         }
 
         this.syncingStatus = true;
-        console.log('QD Social Timeline Post View: Replies Synced!');
         this.q.os.ui.showSnack('Replies Synced!','Yeah',{duration: 2000});
+        console.log('QD Social Timeline Post View: Replies Synced!');
         this.cd.detectChanges();
+
 
         setTimeout( () => {
           //update timeline
@@ -169,46 +178,66 @@ export class TimelinePostComponent implements OnInit {
     syncingStatus = false;
 
 
+paramSub
+
    async ngOnInit(){
-     this.q.os.ui.showSnack('Syncing Replies...','Please Wait');
-     // this.cd.detectChanges();
+
+
+
+
+
 
 
       // this.groupedTimeline = [];
       //       this.replyTree = [];
       //       this.replies = [];
       //
-      // this.updateListen();
+      this.updateListen();
+
+      this.paramSub = this.route.params.subscribe( async(params) => {
+        console.log(params);
+        this.qHash = params['qHash']
+        this.ngOnChanges();
+      });
+
+
       // await this.q.os.social.timeline.agent.sync('all');
       // this.syncingStatus = false;
       // this.cd.detectChanges();
+
+      // this.selectSub = this.q.os.social.timeline.post.onSelect().subscribe( () => {
+      //   this.ngOnChanges();
+      // });
+
   }
+
+  selectSub;
 
   async ngOnChanges(){
     this.q.os.ui.showSnack('Syncing Replies...','Please Wait');
-
-    this.groupedTimeline = [];
-          this.replyTree = [];
-          this.replies = [];
-
-    this.updateListen();
     await this.q.os.social.timeline.agent.sync('all', {limit: 0});
-    this.syncingStatus = false;
+    // this.syncingStatus = false;
 
 
 
   }
    ngOnDestroy(){
+
+     // this.selectSub.unsubscribe();
+     this.paramSub.unsubscribe();
+
     if(typeof this.syncSub != 'undefined'){
       this.syncSub.unsubscribe();
     }
+
+
   }
 
 
   searchBarClicked(){
-    if(this.searchResults.length > 0){
-      // this.searchResultsActive = true;
-    }
+    // if(this.searchResults.length > 0){
+    //   // this.searchResultsActive = true;
+    // }
   }
 
 

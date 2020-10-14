@@ -33,7 +33,7 @@
 
 <div class="postViewer" *ngIf="syncStatus">
 
-<social-timeline-post-combined-timeline *ngFor="let combinedTimeline of groupedTimeline" [combinedTimeline]="combinedTimeline">
+<social-timeline-post-combined-timeline *ngFor="let combinedTimeline of groupedTimeline" [combinedTimeline]="combinedTimeline" [isMyProfile]="isMyProfile">
 </social-timeline-post-combined-timeline>
 
 
@@ -47,7 +47,7 @@
 
 </div>
 
-<div class="fundUs"  *ngIf="!searchResultsActive && groupedTimeline.length == 0" style="margin-top: 40vh;">
+<div class="fundUs"  *ngIf="!searchResultsActive && ( groupedTimeline.length == 0 || !syncStatus)" style="margin-top: 40vh;">
 
   <a class="mat-elevation-z18"  target="_blank">
     <button mat-stroked-button color="secondary" class="defaultSettingsButton noOutlineButton fundButton" >

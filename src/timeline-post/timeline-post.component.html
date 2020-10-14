@@ -45,7 +45,7 @@
     </div>
 
   <div *ngFor="let post of replies; let i=index" class='postOuterWrapper replyOuterWrapper'>
-        <div class="postWrapper" *ngIf="post['content'].length > 0">
+        <div class="postWrapper" *ngIf="post['content'] != undefined && post['content'].length > 0">
           <app-social-profile-post  [postObj]="post" [isMyProfile]="isMyProfile" class="postContainer mat-elevation-z8 post singleLevel" >
           </app-social-profile-post>
         </div>

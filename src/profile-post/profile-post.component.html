@@ -1,6 +1,4 @@
 
-
-
 <div class="postDelete" (click)="postDelete(postObj)" *ngIf="isMyProfile && postObj.timestamp>0">
   <nb-icon icon="trash-2-outline" ></nb-icon>
 </div>
@@ -10,12 +8,12 @@
 </div>
 
 
-<div class="postAlias" *ngIf="profile['alias'].length > 0 && postObj.timestamp>0" (click)="q.os.social.profile.select(profile['key']['pubKey'])"> {{ profile['alias'] }} </div>
-<div class="postTime" *ngIf="postObj['dTimestamp'].length > 0">
+<div class="postAlias" *ngIf="profile['alias'] != undefined && profile['alias'].length > 0 && postObj.timestamp>0" (click)="selectProfile(profile['key']['pubKey'])"> {{ profile['alias'] }} </div>
+<div class="postTime" *ngIf="postObj['dTimestamp'] != undefined && postObj['dTimestamp'].length > 0">
   {{ postObj['dTimestamp'] }}
 </div>
 
-<div class="postTime" *ngIf="postObj['dTimestamp'].length < 0">
+<div class="postTime" *ngIf="postObj['dTimestamp'] != undefined && postObj['dTimestamp'].length < 0">
   {{ postObj['timestamp'] }}
 </div>
 
@@ -71,4 +69,8 @@
 
 <div class="postContent" *ngIf="postObj.timestamp == 0" style="margin-top:0px">
 [Post Deleted]
+</div>
+
+<div class="lockClosed">
+  <nb-icon icon="shield-outline"></nb-icon>
 </div>

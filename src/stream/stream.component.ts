@@ -157,6 +157,8 @@ export class StreamComponent implements OnInit {
 
     onAlgoChange;
    async ngOnInit(r = false){
+     this.q.os.ui.showSnack('Syncing Stream...','Please Wait')
+
      this.syncStatus = false;
      this.updateListen();
      // await this.q.os.social.timeline.agent.sync('all');
@@ -215,9 +217,9 @@ export class StreamComponent implements OnInit {
     this.cd.detectChanges();
   }
 
-  syncMore(){
-    this.syncStatus = false;
+  async syncMore(){
     this.q.os.ui.showSnack('Syncing Stream...','Please Wait');
+    this.syncStatus = false;
     this.cd.detectChanges();
     setTimeout( () => {
       this.syncMoreWorker();

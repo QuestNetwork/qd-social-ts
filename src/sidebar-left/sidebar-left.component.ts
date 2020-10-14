@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,NgZone } from '@angular/core';
 import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
 import { NbSidebarService } from '@nebular/theme';
+import { Router,NavigationEnd, ActivatedRoute  } from '@angular/router';
 
 @Component({
   selector: 'social-sidebar-left',
@@ -8,16 +9,19 @@ import { NbSidebarService } from '@nebular/theme';
   styleUrls: ['./sidebar-left.component.scss']
 })
 export class SocialSidebarLeftComponent implements OnInit {
-  constructor(private sidebarService: NbSidebarService,private q: QuestOSService){}
+  constructor(private router:Router,private ngZone:NgZone,private sidebarService: NbSidebarService,private q: QuestOSService){}
 
 
   showAlgo(name){
     if(this.q.os.bee.config.getSideBarFixed()['left']){
       this.sidebarService.collapse('left');
     }
-    
-    this.q.os.social.algo.select(name);
+
+    // this.q.os.social.algo.select(name);
     this.selectedStream = name;
+
+    this.ngZone.run(() => this.router.navigate(['/social/stream/'+name.toLowerCase()]));
+
 
 
   }

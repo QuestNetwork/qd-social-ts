@@ -42,3 +42,8 @@ padding:10px;
   position: relative;
     font-size: 16px;
 }
+
+.treeNodeContainerSingle:focus{
+  outline:0;
+  border:0;
+}

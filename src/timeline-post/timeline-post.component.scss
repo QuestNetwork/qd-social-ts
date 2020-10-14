@@ -670,12 +670,13 @@ border-radius: 10px !important;
 
 .postViewer{
   position: absolute;
-  left: 0;
-  top: 20px;
-  right: 0;
-  bottom: 77px;
-  overflow: hidden;
-  overflow-y: auto;
+      left: 0;
+      top: 20px;
+      right: 0;
+      bottom: 77px;
+      overflow: hidden;
+      padding-top: 22px;
+      overflow-y: auto;
 }
 
 .postViewer::-webkit-scrollbar{

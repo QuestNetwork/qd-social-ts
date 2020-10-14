@@ -1,6 +1,11 @@
-import { Component, ViewChild, ElementRef, Inject, AfterContentInit,ChangeDetectorRef, Input } from '@angular/core';
+import { Component, ViewChild, ElementRef, Inject, AfterContentInit,ChangeDetectorRef, Input, NgZone } from '@angular/core';
 import { QuestOSService } from '../../qDesk/src/app/services/quest-os.service';
 import { NbSidebarService } from '@nebular/theme';
+
+import { Router,NavigationEnd, ActivatedRoute  } from '@angular/router';
+import { filter } from 'rxjs/operators';
+
+
 
 @Component({
   selector: 'quest-messenger-root',
@@ -8,33 +13,56 @@ import { NbSidebarService } from '@nebular/theme';
   styleUrls: ['./qd-social-ts.component.scss']
 })
 export class QDSocialComponent {
-  constructor(private cd: ChangeDetectorRef, private sidebarService: NbSidebarService,private q: QuestOSService){}
+
+  // activateRoutes(){
+  //   if(this.router.url.indexOf('/social/timeline') > -1 || this.router.url.indexOf('/social/stream/') > -1){
+  //     this.routeActive = true;
+  //   }
+  //   else{
+  //     this.routeActive = false;
+  //   }
+  // }
+
+  constructor(private ngZone:NgZone,private cd: ChangeDetectorRef, private sidebarService: NbSidebarService,private q: QuestOSService,private activatedRoute: ActivatedRoute, private router: Router){
+    // console.log(this.router.url);
+    // this.activateRoutes();
+
+    // this.router.events.pipe(
+    //            filter(event => event instanceof NavigationEnd)
+    //        ).subscribe(() => {
+    //          // this.activateRoutes();
+    //        });
+    }
+
+
   initRnd = 0;
 
   sideBarFixedSub;
 sideBarVisibleSub;
 postActive = false
+routeActive = true;
   async ngOnInit() {
+
+
 
     let selectedProfile = this.q.os.social.profile.getSelected();
     if(typeof selectedProfile != 'undefined'){
       this.selectedProfile = selectedProfile;
       this.postActive = false;
-      this.streamsActive = false;
     }
-    this.q.os.social.profile.onSelect().subscribe( (selected) => {
-      this.selectedProfile = selected;
-      this.streamsActive = false;
-      this.postActive = false;
-    })
+    // this.q.os.social.profile.onSelect().subscribe( (selected) => {
+    //   this.selectedProfile = selected;
+    //   this.postActive = false;
+    //   this.routeActive = false;
+    // })
 
-    this.q.os.social.timeline.post.onSelect().subscribe( async(selected) => {
-      console.log('QD Social: Selecting Post..',selected);
-      this.postActive = true;
-      this.streamsActive = false;
-      this.selectedPost = selected;
-      this.cd.detectChanges();
-    })
+    // this.q.os.social.timeline.post.onSelect().subscribe( async(selected) => {
+    //   console.log('QD Social: Selecting Post..',selected);
+    //   this.postActive = true;
+    //   this.streamsActive = false;
+    //   this.selectedPost = selected;
+    //   this.cd.detectChanges();
+    // })
 
 
       this.sideBarFixed = this.q.os.bee.config.getSideBarFixed();
@@ -101,9 +129,6 @@ postActive = false
       },100);
 
 
-      this.q.os.social.algo.onSelect().subscribe( async(name) => {
-        this.syncWorker();
-      });
 
 
       this.sidebarService.onCollapse().subscribe(() => {
@@ -116,28 +141,6 @@ postActive = false
           this.sideBarLockedClass = this.sideBarLockedClassA;
         }
       });
-
-
-
-    }
-
-
-  async  syncWorker(){
-    // this.postActive = false;
-      this.streamsActive = true;
-      this.cd.detectChanges();
-
-      console.log('QD Social Showing Stream...');
-
-                if(this.sideBarFixed['left']){
-                  this.sideBarVisible['left'] = false;
-                  this.sideBarLockedClass = "";
-                  this.sidebarService.collapse('left');
-                }
-                else{
-                  this.sideBarLockedClass = this.sideBarLockedClassA;
-                }
-
 
 
 
@@ -185,11 +188,13 @@ postActive = false
   selectedProfile = "NoProfileSelected";
   selectedPost = "NoPostSelected";
 
-  streamsActive = false;
 
 
   goToMyProfile(){
-    this.q.os.social.profile.select('NoProfileSelected');
+    // this.q.os.social.profile.select('NoProfileSelected');
+    this.ngZone.run(() => this.router.navigate(['/social/profile']));
+
+
     if(this.sideBarFixed['left']){
       this.sideBarVisible['left'] = false;
       this.sideBarLockedClass = "";
@@ -198,25 +203,6 @@ postActive = false
     else{
       this.sideBarLockedClass = this.sideBarLockedClassA;
     }
-  }
-   showStream(){
-     // console.log('QD Social Showing Stream...');
-     // this.streamsActive = false;
-     //   this.streamsActive = true;
-     //   this.q.os.social.algo.select('Network');
-     //
-     //   if(this.sideBarFixed['left']){
-     //     this.sideBarVisible['left'] = false;
-     //     this.sideBarLockedClass = "";
-     //     this.sidebarService.collapse('left');
-     //   }
-     //   else{
-     //     this.sideBarLockedClass = this.sideBarLockedClassA;
-     //   }
-     //
-     // this.cd.detectChanges();
-
-
   }
 
 
