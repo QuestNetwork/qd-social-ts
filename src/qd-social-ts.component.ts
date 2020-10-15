@@ -34,6 +34,12 @@ export class QDSocialComponent {
     //        });
     }
 
+    ngOnDestroy(){
+      this.sideBarFixedSub.unsubscribe();
+      this.sideBarVisibleSub.unsubscribe();
+
+    }
+
 
   initRnd = 0;
 
