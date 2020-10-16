@@ -202,7 +202,8 @@
 
   <div class="resultCardWrapper" *ngFor="let result of searchResults">
 
-    <div class="resultCard mat-elevation-z6" fxLayout="row" (click)="openProfile(result['key']['pubKey'])">
+    <div class="resultCard mat-elevation-z6" fxLayout="row" [routerLink]="['/social/profile/'+result['key']['pubKey']]">
+
       <div class="searchResultPp">
         <img class="mat-elevation-z14" class="searchResultPpImg" src="./assets/defaultAvatar.png">
       </div>

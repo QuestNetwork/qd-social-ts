@@ -1,0 +1,74 @@
+<div class="results social-search-results" *ngIf="searchResultsActive">
+
+
+  <div class="resultCardWrapper" *ngFor="let result of searchResults">
+
+    <div class="resultCard mat-elevation-z6" fxLayout="row" [routerLink]="['/social/profile/'+result['key']['pubKey']]">
+      <div class="searchResultPp">
+        <img class="mat-elevation-z14" class="searchResultPpImg" src="./assets/defaultAvatar.png">
+      </div>
+      <div class="searchResultColumn">
+        <span class="searchResultAlias">{{ result['alias'] }} </span><br>
+        <span class="searchResultFullName">{{ result['fullName'] }} </span>
+      </div>
+      <div class="searchResultConnection topCorner" >
+
+        <nb-icon icon="star-outline" style="opacity: 0.2;" *ngIf="!result['isFavorite'] && !result['isRequestedFavorite']"></nb-icon>
+        <nb-icon icon="message-circle-outline" (click)="openMessages(result['key']['pubKey'])"  *ngIf="result['isFavorite']"></nb-icon>
+        <nb-icon icon="star-outline" *ngIf="result['isRequestedFavorite']" ></nb-icon>
+      </div>
+      <div class="searchResultAbout searchResultColumn" style="flex:auto;">
+        <div class="searchResultAboutWrapper">
+        {{ result['about'] }}
+        </div>
+      </div>
+      <div class="searchResultConnection searchResultColumn" style="  margin-top: 27px;  margin-right: 10px;">
+
+        <nb-icon icon="star-outline" style="opacity: 0.2;" *ngIf="!result['isFavorite'] && !result['isRequestedFavorite']"></nb-icon>
+        <nb-icon icon="message-circle-outline" (click)="openMessages(result['key']['pubKey'])"  *ngIf="result['isFavorite']"></nb-icon>
+        <nb-icon icon="star-outline" *ngIf="result['isRequestedFavorite']" ></nb-icon>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+
+
+<mat-form-field style="width: 169px; color:#598adb;" *ngIf="mode == 'small'">
+   <input matInput placeholder="Search"  [(ngModel)]='searchPhrase'   (keyup.enter)="search()" (keyup)="parseSearchBar()" class="mat-elevation-z16" (click)="searchBarClicked()">
+<!-- <button  nbSuffix nbButton ghost class="searchButtonWrapper"  (click)="search()"> -->
+</mat-form-field>
+
+<div class="search profileSearch"  *ngIf="mode == 'big'">
+
+  <div class="message-row">
+  <div style="    width: 100%;">
+
+    <input [(ngModel)]='searchPhrase'
+           fullWidth nbInput
+
+           (focus)="inputFocus = true"
+           (blur)="inputFocus = false"
+           (mouseenter)="inputHover = true"
+           (mouseleave)="inputHover = false"
+           type="text"
+           placeholder="{{  'Who are you looking for?' }}"
+           (keyup.enter)="search()" (keyup)="parseSearchBar()" class="mat-elevation-z16" (click)="searchBarClicked()">
+    <button  nbSuffix nbButton ghost class="searchButtonWrapper"
+
+            (click)="search()"
+        >
+      <nb-icon *ngIf="!buttonTitle; else title"  class="searchButton" icon="search-outline"></nb-icon>
+      <ng-template #title>{{ buttonTitle }}</ng-template>
+    </button>
+    </div>
+
+  </div>
+
+
+</div>
