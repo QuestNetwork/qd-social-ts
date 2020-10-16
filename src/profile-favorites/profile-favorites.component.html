@@ -166,7 +166,7 @@
        <nb-icon icon="shake-outline"></nb-icon>
          <span class="checklist-leaf-node"  draggable="true"
                        (dragstart)="handleDragStart($event, node);">
-           <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}" style="width:100%;">
+           <span class="nodeContent station"  [ngClass]="{'drag-start': dragNode===node}" style="width:100%;">
                 {{ getAliasFromDirectChannel2(node.item) }}
            </span>
          </span>
@@ -178,7 +178,7 @@
     <nb-icon icon="question-mark-outline"></nb-icon>
       <span class="checklist-leaf-node"  draggable="true"
                     (dragstart)="handleDragStart($event, node);">
-        <span class="nodeContent"  [ngClass]="{'drag-start': dragNode===node}" style="width:100%;">
+        <span class="nodeContent unknown"  [ngClass]="{'drag-start': dragNode===node}" style="width:100%;">
              Unknown
         </span>
       </span>
