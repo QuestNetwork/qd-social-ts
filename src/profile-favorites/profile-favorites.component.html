@@ -161,7 +161,7 @@
 
                      <!-- <div  class="treeNodeContrainerSingle {{node.item}}" *ngIf="!isFolder(node.item)"> -->
 
-      <div  class="treeNodeContainerSingle {{node.item}}"  (click)="goToProfileByChannel(node.item)"  [routerLinkActive]="['active-channel']" *ngIf="this.getAliasFromDirectChannel2(node.item).indexOf('qprivatedch') < 0">
+      <div  class="treeNodeContainerSingle {{node.item}}"  (click)="goToProfileByChannel(node.item)" [routerLink]="['/social/profile/'+pk[node.item]]" [routerLinkActive]="['active-channel']" *ngIf="this.getAliasFromDirectChannel2(node.item).indexOf('qprivatedch') < 0">
        <!-- <button mat-icon-button disabled></button> -->
        <nb-icon icon="shake-outline"></nb-icon>
          <span class="checklist-leaf-node"  draggable="true"

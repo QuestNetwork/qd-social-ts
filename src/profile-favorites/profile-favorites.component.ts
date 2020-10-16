@@ -976,6 +976,7 @@ getFavoriteFolderListTreeChildrenRec(data){
         console.log(name);
         channelsHandled.push(c);
         this.flatChannelNameList[c] = name;
+        this.pk[c] = await this.q.os.social.getPubKeyFromDirectChannel(c);
       }
     }
 
@@ -985,6 +986,7 @@ getFavoriteFolderListTreeChildrenRec(data){
         console.log(name);
         channelsHandled.push(c);
         this.flatChannelNameList2[c] = name;
+        this.pk[c] = await this.q.os.social.getPubKeyFromDirectChannel(c);
       }
     }
 
@@ -1033,8 +1035,11 @@ getFavoriteFolderListTreeChildrenRec(data){
     this.ngZone.run(() => this.router.navigate(['/messages']));
   }
 
+  pk = {};
+
   async  goToProfileByChannel(channel){
     let pk = await this.q.os.social.getPubKeyFromDirectChannel(channel);
+    this.pk[channel] = pk;
       this.ngZone.run(() => this.router.navigate(['/social/profile/'+pk]));
 
   }
