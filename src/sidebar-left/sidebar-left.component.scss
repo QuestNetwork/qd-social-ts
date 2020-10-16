@@ -4,8 +4,7 @@
 }
 
 .algorithmsHeader{
-  margin-top: 70px;
-    color: #4982e7;
+    margin-top: 20px;    color: #4982e7;
     margin-bottom: 10px;
     font-family: Ubuntu;
 }
@@ -25,6 +24,7 @@
   font-size: 16px;
   font-family: Ubuntu;
   cursor:pointer;
+  background:#262246;
   }
 
 
@@ -36,6 +36,7 @@ color: #256dff;
 font-family: Ubuntu;
 font-size: 16px;
 padding:10px;
+    margin-bottom: 10px;
 }
 
 .newAlgoIcon{
@@ -46,4 +47,9 @@ padding:10px;
 .treeNodeContainerSingle:focus{
   outline:0;
   border:0;
+}
+
+
+.algorithmsHeader:first-child {
+    margin-top: 22px;
 }

@@ -2,7 +2,7 @@
 Algorithms:
 </div>
 
-<div  class="treeNodeContainerSingle Network" [class.active-channel]="selectedStream === 'Network'"  [routerLink]="['/social/stream/network']" >
+<div  class="treeNodeContainerSingle Network"  [routerLink]="['/social/stream/network']" [routerLinkActive]="['active-channel']">
  <!-- <button mat-icon-button disabled></button> -->
  <nb-icon icon="activity"></nb-icon>
    <span class="checklist-leaf-node">
@@ -16,3 +16,21 @@ Algorithms:
 <button class="newAlgoButton">
   <nb-icon icon='plus-outline' class="newAlgoIcon"></nb-icon> New Algorithm
 </button>
+
+<div  class="treeNodeContainerSingle Network"  [routerLink]="['/social/profile']" [routerLinkActive]="['active-channel']" [routerLinkActiveOptions]="{exact:
+true}">
+ <!-- <button mat-icon-button disabled></button> -->
+ <nb-icon icon="shake-outline"></nb-icon>
+   <span class="checklist-leaf-node">
+     <span class="nodeContent"  >
+           My Station
+     </span>
+   </span>
+
+</div>
+
+<div class="algorithmsHeader">
+Favorites:
+</div>
+
+<social-profile-favorites></social-profile-favorites>

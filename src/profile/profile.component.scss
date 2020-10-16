@@ -39,6 +39,9 @@
       // margin-right: 70px !important;
 }
 
+.qrCodeShowGenerate{
+      max-width: 85vw;
+}
 
 .pp{
   border-radius:5px;
@@ -171,11 +174,14 @@ input { caret-color: white; }
     color: #d3a64140 !important;
     z-index: 9999;
     top: -45px;
-    cursor: pointer;
     margin-top: -53px;
         margin-bottom: 23px;
         margin-left: 78px;
 
+}
+
+.pubKeyDisplay.true{
+  cursor: pointer;
 }
 
 
@@ -649,4 +655,50 @@ border-radius: 10px !important;
 .replyLoop:last-child > div > .postContainer{
     border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
+}
+
+
+
+.pubKeyIcon{
+  width: 35px;
+  width: 35px;
+  height: 35px;
+  fill: #3f3ea7c4;
+  position: static;
+  right: 30px;
+  cursor: pointer;
+}
+
+.pubKeyDisplay.Icon{
+  margin: 0;
+float: right;
+margin-right: 30px;
+padding: 0;
+height: 0;
+overflow: visible;
+}
+.pubKeyDisplay.Icon:hover .pubKeyIcon{
+  fill: #5851bb;
+
+
+}
+
+
+
+
+@media only screen and (max-width: 807px) {
+
+  .pubKeyDisplay{
+    max-height: 20px;
+  text-overflow: ellipsis;
+  line-height: 10px;
+  font-size: 10px;
+  font-family: MONOSPACE;
+  word-break: break-all;
+  overflow: hidden;
+  }
+
+  .editButton{
+          margin-top: -9px;
+  }
 }

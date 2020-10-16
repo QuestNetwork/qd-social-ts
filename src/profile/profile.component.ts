@@ -426,7 +426,8 @@ syncStatus = false;
   async openMessages(pubKey){
     let channelName = this.q.os.channel.find(pubKey);
     this.q.os.channel.select(channelName);
-    this.q.os.ui.toTabIndex('1');
+    this.ngZone.run(() => this.router.navigate(['/messages']));
+
   }
 
 

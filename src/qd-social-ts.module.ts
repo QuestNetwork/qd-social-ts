@@ -45,6 +45,7 @@ import { TimelinePostComponent } from './timeline-post/timeline-post.component';
 
 import { ProfilePostComponent } from './profile-post/profile-post.component';
 import { SocialSidebarLeftComponent } from './sidebar-left/sidebar-left.component';
+import { ProfileFavoritesComponent } from './profile-favorites/profile-favorites.component';
 
 import { TimelinePostCombinedTimelineComponent } from './timeline-post-combined-timeline/timeline-post-combined-timeline.component';
 
@@ -75,7 +76,9 @@ import { LinkyModule } from 'ngx-linky';
     StreamComponent,
     SocialSidebarLeftComponent,
     TimelinePostComponent,
-    TimelinePostCombinedTimelineComponent
+    TimelinePostCombinedTimelineComponent,
+    ProfileFavoritesComponent
+
   ],
   imports: [
 
@@ -118,7 +121,6 @@ import { LinkyModule } from 'ngx-linky';
    EmojiModule,
    PickerModule,
    NbPopoverModule
-
 
   ],
   exports: [
