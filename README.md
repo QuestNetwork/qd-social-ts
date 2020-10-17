@@ -1,4 +1,4 @@
-![Completion 1.0.0](https://img.shields.io/badge/completion%20v1.0.0-8%25-red) ![Help Wanted](https://img.shields.io/badge/%20-help--wanted-%23159818) ![Version 0.9.3](https://img.shields.io/badge/version-0.9.4-green) ![Version 0.9.3](https://img.shields.io/badge/version-v0.9.5-blue) ![Sponsors](https://img.shields.io/badge/sponsors-0-red)
+![Completion 1.0.0](https://img.shields.io/badge/completion%20v1.0.0-19%25-red) ![Help Wanted](https://img.shields.io/badge/%20-help--wanted-%23159818) ![Version 0.9.3](https://img.shields.io/badge/version-0.9.4-green) ![Version 0.9.3](https://img.shields.io/badge/version-v0.9.5-blue) ![Sponsors](https://img.shields.io/badge/sponsors-0-red)
 
 ## qDesk Social
 
