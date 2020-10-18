@@ -95,11 +95,9 @@ Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/t
 - Use up To 5 Social Profiles Simultaneously 
 - Change Profile Picture
 - Change Poster
-
-
-**0.9.9**
-- Connect To Facebook/Instagram/Other Platforms
 - Connect [Markets](https://github.com/QuestNetwork/qd-market-ts)
+- Connect To Other Platforms (write custom adapters, with our requests you can also inlcude centralized platforms by our twitter example)
+
 
 **1.0.0**
 - Connect [Vibenarium](https://github.com/Vibenarium/vibenarium-platform)
