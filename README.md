@@ -4,13 +4,13 @@
 
 ## Description
 
-qDesk Social is a module for qDesk. It's accessible across qDesk, you can use it with qDesk Messages and other qDesk modules. It is used to show store information and latest store campaigns on qDesk Market.
+qDesk Social is a module for qDesk. It's accessible across qDesk, you can use it with qDesk Messages and other qDesk modules. It is used to show store information and latest store campaigns on qDesk Market. 
 
 It's not all qDesk though, qDesk Social is a protocol as well and if you are using [Quest OS](https://github.com/QuestNetwork/quest-os-js) in your applications, you can even use the underlying channels and data in your own application by booting with [Quest Social JS](https://github.com/QuestNetwork/quest-social-js).
 
 qDesk Social offers the ability to share posts and information about yourself and make connections with other people. You can have a public profile, granular privacy settings or invite only. qDesk Social is a module for [qDesk](https://github.com/QuestNetwork/qDesk) and it's built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/), [IPFS DAGs](https://docs.ipfs.io/concepts/merkle-dag/), and [qDesk](https://github.com/QuestNetwork/qDesk), our example app based on [Angular10](https://angular.io/).
 
-We have chosen Angular/Electron as an example environment because we believe it offers the best accessibility for developers coming from any other language/framework. It is already being used in Python on PyQt5 and we aim to provide the underlying library in Go and wherever possible in Rust as well.
+We have chosen Angular/Electron as an example environment because we believe it offers the best accessibility for developers coming from any other language/framework. The Quest Network is already being used in Python on PyQt5 and we aim to provide the underlying library in Go and wherever possible in Rust as well.
 
 qDesk makes it possible to build custom, secure and decentralized social networks in less than 20 days.
 
@@ -27,6 +27,10 @@ Check out other [Awesome Quest Network dApps](https://github.com/QuestNetwork/aw
 
 [Quest OS](https://github.com/QuestNetwork/quest-os-js) uses [4096 Bit RSA-OAEP](https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Operation) encryption, [256 Bit AES-CBC](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption and [NIST P-521 EC](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography#Fast_reduction_(NIST_curves)) signatures.
 
+## Manual & Documentation
+
+See our automated documentation for more information: https://questnetwork.github.io/docs
+
 ## Lead Maintainer
 
 [StationedInTheField](https://github.com/StationedInTheField)
@@ -41,7 +45,7 @@ Please consider supporting us, so that we can build a non-profit for this projec
 
 ## Development
 
-### Planning
+### Planning 
 
 See our [Kanban](https://github.com/orgs/QuestNetwork/projects/1) for the development of 0.9.5, feel free to add or pick up features!
 
@@ -58,10 +62,6 @@ qDesk Social is a module of [qDesk](https://github.com/QuestNetwork/qDesk), so p
 We added an example ```swarm.json``` to the ```src/app``` folder with an example node to make reproduction easier, but we strongly recommend to use our [Quest CLI](https://github.com/QuestNetwork/quest-cli) to test and build the app.
 
 Pro Tip: Put a file in your `/bin` that runs the quest-cli like so `node /path/to/quest-cli/index.js` from any folder on your system. It's much nicer!
-
-## API
-
-Check out the documentation.
 
 ## Features
 
@@ -95,11 +95,9 @@ Check out the documentation.
 - Use up To 5 Social Profiles Simultaneously 
 - Change Profile Picture
 - Change Poster
-
-
-**0.9.9**
-- Connect To Facebook/Instagram/Other Platforms
 - Connect [Markets](https://github.com/QuestNetwork/qd-market-ts)
+- Connect To Other Platforms (write custom adapters, with our requests you can also inlcude centralized platforms by our twitter example)
+
 
 **1.0.0**
 - Connect [Vibenarium](https://github.com/Vibenarium/vibenarium-platform)
