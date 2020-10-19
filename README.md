@@ -2,7 +2,7 @@
 
 ## qD Social
 
-## Descriptiona
+## Description
 
 qD Social is a module for qDesk. It's accessible across qDesk, you can use it with [qD Messages](https://github.com/QuestNetwork/qd-messages-ts) and other qDesk modules. It is used to show store information and latest store campaigns on [qD Market](https://github.com/QuestNetwork/qd-market-ts). 
 
