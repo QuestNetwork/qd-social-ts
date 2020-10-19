@@ -4,13 +4,13 @@
 
 ## Description
 
-qD Social is a module for qDesk. It's accessible across qDesk, you can use it with [qD Messages](https://github.com/QuestNetwork/qd-messages-ts) and other qDesk modules. It is used to show store information and latest store campaigns on [qD Market](https://github.com/QuestNetwork/qd-market-ts). 
-
 qD Social offers the ability to share posts and information about yourself and make connections with other people. You can have a public profile, granular privacy settings or invite only. 
 
 0.9.5+ allow to connect qD Social profiles to Twitter without sharing information with Twitter as an additional layer of verification. It is planned to add passive verification for a custom list of external networks to verify the peer identities.
 
 1.0.0+ complies with privacy regulations and can be used for confidential information as a production social network for enterprises worldwide.
+
+qD Social is a module for qDesk. It's accessible across qDesk, you can use it with [qD Messages](https://github.com/QuestNetwork/qd-messages-ts) and other qDesk modules. It is used to show store information and latest store campaigns on [qD Market](https://github.com/QuestNetwork/qd-market-ts). 
 
 qD Social is built on [Quest OS](https://github.com/QuestNetwork/quest-os-js) which makes use of the [Interplanetary Filesystem](https://ipfs.io), [IPFS GossipSub](https://blog.ipfs.io/2020-05-20-gossipsub-v1.1/), [IPFS DAGs](https://docs.ipfs.io/concepts/merkle-dag/), and [qDesk](https://github.com/QuestNetwork/qDesk), our example app based on [Angular10](https://angular.io/).
 
