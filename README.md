@@ -12,9 +12,7 @@ qDesk Social offers the ability to share posts and information about yourself an
 
 1.0.0+ complies with privacy regulations and can be used for confidential information as a production social network for enterprises worldwide.
 
-[qDesk](https://github.com/QuestNetwork/qDesk) works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova.
-
-qDesk makes it possible to build custom, secure and decentralized social networks in less than 20 days.
+[qDesk](https://github.com/QuestNetwork/qDesk) works in the browser, as an Electron on Windows, Mac and Linux and Android using Cordova and makes it possible to build custom, secure and decentralized social networks in less than 20 days.
 
 We have chosen Angular/Electron as an example environment because we believe it offers the best accessibility for developers coming from any other language/framework. The Quest Network is already being used in Python on PyQt5 and we aim to provide the underlying library in Go and wherever possible in Rust as well.
 
