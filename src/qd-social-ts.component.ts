@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, Inject, AfterContentInit,ChangeDetectorRef, Input, NgZone } from '@angular/core';
-import { QuestOSService } from '../../qDesk/src/app/services/quest-os.service';
+import { QuestOSService } from '../../qD/src/app/services/quest-os.service';
 import { NbSidebarService } from '@nebular/theme';
 
 import { Router,NavigationEnd, ActivatedRoute  } from '@angular/router';

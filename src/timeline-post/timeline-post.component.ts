@@ -1,4 +1,4 @@
-import { QuestOSService } from '../../../qDesk/src/app/services/quest-os.service';
+import { QuestOSService } from '../../../qD/src/app/services/quest-os.service';
 
 import {
   ChangeDetectionStrategy,
